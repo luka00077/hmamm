@@ -1,370 +1,1156 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Medical Student | همام - منصة طلاب الطب المتكاملة</title>
-  <!-- Fonts: Elegant & Readable -->
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Student - المنصة الطبية الشاملة | الدكتور همام</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --primary-light: #1e293b;
+            --secondary: #1e40af;
+            --accent: #3b82f6;
+            --accent-light: #60a5fa;
+            --gold: #f59e0b;
+            --gold-light: #fbbf24;
+            --danger: #ef4444;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --bg: #f1f5f9;
+            --card: #ffffff;
+            --text: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --radius-sm: 0.5rem;
+            --radius: 0.75rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            --radius-2xl: 2rem;
+            --shadow: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.12);
+            --shadow-xl: 0 20px 40px rgba(0,0,0,0.15);
+            --transition: 0.3s ease;
+        }
 
-    body {
-      background: #d6d2c4;  /* خلفية خارجية رمادية دافئة */
-      font-family: 'Cairo', sans-serif;
-      color: #2c2b28;
-      line-height: 1.55;
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* حاوية الموقع الرئيسية - أنيقة وحديثة بلمسة كلاسيكية */
-    .main-palace {
-      max-width: 1400px;
-      margin: 2rem auto;
-      background: #ffffff;
-      box-shadow: 0 25px 45px -12px rgba(0,0,0,0.35), 0 1px 2px rgba(0,0,0,0.05);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: all 0.2s;
-    }
+        html { scroll-behavior: smooth; }
 
-    /* الهيدر - نظيف واحترافي */
-    .pro-header {
-      padding: 1.6rem 2rem 1rem;
-      background: #fefcf7;
-      border-bottom: 1px solid #e9e2d4;
-      text-align: center;
-    }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #eef2ff 0%, #f1f5f9 30%, #f0fdf4 60%, #fefce8 100%);
+            color: var(--text);
+            line-height: 1.8;
+            direction: rtl;
+            min-height: 100vh;
+        }
 
-    .site-name {
-      font-size: 2.6rem;
-      font-weight: 700;
-      font-family: 'Playfair Display', serif;
-      color: #2b2b2b;
-      letter-spacing: -0.5px;
-    }
+        /* ========== NAVBAR ========== */
+        .navbar {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 0.9rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-bottom: 3px solid rgba(59,130,246,0.3);
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
 
-    .site-name span {
-      font-weight: 400;
-      color: #a3845c;
-    }
+        .navbar-brand {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            letter-spacing: -0.5px;
+        }
 
-    .owner-line {
-      margin-top: 8px;
-      font-size: 0.85rem;
-      font-family: monospace;
-      letter-spacing: 1px;
-      color: #7d6e53;
-      border-top: 1px solid #ece3d7;
-      display: inline-block;
-      padding-top: 10px;
-    }
+        .navbar-brand i { color: var(--gold); font-size: 1.8rem; }
 
-    .owner-line i {
-      margin: 0 6px;
-      color: #b49162;
-    }
+        .nav-links {
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
-    /* شريط التنقل - انيق */
-    .nav-bar {
-      background: #f5f2ea;
-      border-bottom: 1px solid #e0d6c8;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.2rem;
-      padding: 0.6rem 1rem;
-    }
+        .nav-links a {
+            color: rgba(255,255,255,0.88);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all var(--transition);
+            border: 1px solid transparent;
+        }
 
-    .nav-btn {
-      background: transparent;
-      border: none;
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 0.65rem 1.7rem;
-      margin: 0 0.1rem;
-      font-family: 'Cairo', sans-serif;
-      color: #4a4133;
-      cursor: pointer;
-      transition: 0.2s;
-      border-radius: 40px;
-    }
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
 
-    .nav-btn i {
-      margin-left: 8px;
-    }
+        .nav-links a.admin-link { color: var(--gold-light); }
 
-    .nav-btn.active {
-      background: #2c2b28;
-      color: #fef5e6;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+        /* ========== HERO ========== */
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem 4rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #1e40af 100%);
+            border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
 
-    .nav-btn:hover:not(.active) {
-      background: #e7dfd1;
-      color: #1f1c16;
-    }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -20%;
+            width: 140%;
+            height: 160%;
+            background: radial-gradient(circle at 30% 40%, rgba(59,130,246,0.3) 0%, transparent 60%);
+            animation: heroPulse 6s ease-in-out infinite;
+        }
 
-    /* منطقة المحتوى */
-    .content-zone {
-      padding: 2rem 2.2rem;
-      background: #ffffff;
-      min-height: 580px;
-    }
+        @keyframes heroPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
 
-    /* بطاقات الخدمات */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.8rem;
-      margin: 2rem 0;
-    }
+        .hero > * { position: relative; z-index: 1; }
 
-    .service-card {
-      background: #fefcf9;
-      border-radius: 24px;
-      padding: 1.5rem;
-      border: 1px solid #ede6db;
-      transition: all 0.25s;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
-    }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
 
-    .service-card:hover {
-      transform: translateY(-5px);
-      border-color: #cfc2ae;
-      box-shadow: 0 15px 25px -12px rgba(0,0,0,0.1);
-    }
+        .hero h1 span { color: var(--gold); }
 
-    .card-icon {
-      font-size: 2.3rem;
-      color: #a88960;
-      margin-bottom: 14px;
-    }
+        .hero p { font-size: 1.3rem; opacity: 0.9; max-width: 800px; margin: 0 auto 2rem; }
 
-    .service-card h3 {
-      font-size: 1.45rem;
-      font-weight: 700;
-      border-right: 4px solid #cfb688;
-      padding-right: 12px;
-      margin-bottom: 0.8rem;
-    }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-    .service-card p {
-      color: #5a5448;
-      margin-bottom: 1rem;
-      font-size: 0.88rem;
-    }
+        /* ========== CONTAINER ========== */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem 3rem; }
 
-    .btn-solid {
-      display: inline-block;
-      background: #f3ede2;
-      border: 1px solid #cdc0aa;
-      padding: 0.4rem 1.2rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #4d3f2c;
-      text-decoration: none;
-      cursor: pointer;
-      transition: 0.2s;
-      border-radius: 30px;
-    }
+        /* ========== BUTTONS ========== */
+        .btn {
+            padding: 0.75rem 1.8rem;
+            border: none;
+            border-radius: 3rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-family: 'Cairo', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
 
-    .btn-solid i {
-      margin-left: 5px;
-    }
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(59,130,246,0.35);
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(59,130,246,0.5); }
 
-    .btn-solid:hover {
-      background: #e5daca;
-      border-color: #b2966e;
-    }
+        .btn-gold {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #0f172a;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.35);
+        }
+        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(245,158,11,0.5); }
 
-    /* list styles */
-    .benefits-list {
-      list-style: none;
-      padding: 0;
-    }
-    .benefits-list li {
-      margin-bottom: 12px;
-      padding-right: 1.8rem;
-      position: relative;
-      font-weight: 500;
-    }
-    .benefits-list li:before {
-      content: "▹";
-      position: absolute;
-      right: 0;
-      color: #b28b54;
-      font-weight: bold;
-    }
+        .btn-success {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff;
+        }
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #fff;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); }
+        .btn-sm { padding: 0.4rem 1rem; font-size: 0.8rem; }
 
-    .highlight-box {
-      background: #faf7f0;
-      border-radius: 28px;
-      padding: 1.4rem;
-      margin-top: 2rem;
-      border-right: 8px solid #aa8860;
-    }
+        /* ========== SECTION TITLES ========== */
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin: 3rem 0 2rem;
+            color: var(--primary);
+            position: relative;
+        }
 
-    hr.divider-clean {
-      border: none;
-      height: 1px;
-      background: #e9e0d4;
-      margin: 2rem 0;
-    }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: var(--accent);
+            margin: 0.8rem auto 0;
+            border-radius: 1rem;
+        }
 
-    footer {
-      background: #f7f4ec;
-      padding: 1.2rem;
-      text-align: center;
-      border-top: 1px solid #e3dacd;
-      color: #6a5e4b;
-      font-size: 0.8rem;
-    }
+        /* ========== STATS ========== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
 
-    @media (max-width: 750px) {
-      .main-palace {
-        margin: 0.8rem;
-        border-radius: 16px;
-      }
-      .site-name {
-        font-size: 1.9rem;
-      }
-      .content-zone {
-        padding: 1.2rem;
-      }
-    }
-  </style>
+        .stat-card {
+            background: var(--card);
+            padding: 2rem 1.5rem;
+            border-radius: var(--radius-xl);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+        }
+
+        .stat-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+        .stat-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 0.7rem; }
+        .stat-card h3 { font-size: 2.2rem; font-weight: 900; color: var(--primary); }
+        .stat-card p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        /* ========== CARDS ========== */
+        .card {
+            background: var(--card);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+            margin-bottom: 1.5rem;
+        }
+        .card:hover { box-shadow: var(--shadow-lg); }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+        }
+
+        .feature-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-xl); border-color: var(--accent); }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.2rem;
+        }
+
+        .feature-icon i { font-size: 2.2rem; color: #1e40af; }
+
+        /* ========== BOOK CARDS ========== */
+        .book-card {
+            background: var(--card);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: all var(--transition);
+        }
+
+        .book-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); }
+        .book-cover {
+            height: 180px;
+            background: linear-gradient(135deg, #0f172a, #1e3a5f, #3b82f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 3.5rem;
+        }
+        .book-info { padding: 1.5rem; }
+        .book-info h3 { font-size: 1.1rem; margin-bottom: 0.4rem; color: var(--primary); }
+
+        /* ========== BADGES ========== */
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.9rem;
+            border-radius: 2rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+        .badge-primary { background: #dbeafe; color: #1e40af; }
+        .badge-gold { background: #fef3c7; color: #92400e; }
+        .badge-success { background: #d1fae5; color: #065f46; }
+        .badge-danger { background: #fee2e2; color: #991b1b; }
+
+        /* ========== ALERTS ========== */
+        .alert {
+            padding: 1rem 1.2rem;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            border-right: 4px solid;
+        }
+        .alert-success { background: #d1fae5; color: #065f46; border-color: #10b981; }
+        .alert-danger { background: #fee2e2; color: #991b1b; border-color: #ef4444; }
+        .alert-info { background: #dbeafe; color: #1e40af; border-color: #3b82f6; }
+
+        /* ========== FORM ========== */
+        .form-group { margin-bottom: 1.3rem; }
+        .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 700; color: var(--text); }
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            transition: all var(--transition);
+            background: #fff;
+        }
+        .form-control:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(59,130,246,0.08); }
+        textarea.form-control { resize: vertical; min-height: 80px; }
+
+        /* ========== SEARCH ========== */
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 0.9rem 3rem 0.9rem 1.2rem;
+            border: 2px solid var(--border);
+            border-radius: 3rem;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            transition: all var(--transition);
+        }
+        .search-box input:focus { outline: none; border-color: var(--accent); }
+        .search-box i { position: absolute; right: 1.2rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+        /* ========== QUIZ OPTIONS ========== */
+        .quiz-option {
+            padding: 0.9rem 1.2rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            background: #fff;
+            font-weight: 500;
+        }
+        .quiz-option:hover { border-color: var(--accent); background: #eff6ff; }
+        .quiz-option.selected { border-color: var(--accent); background: #dbeafe; box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
+
+        /* ========== TIMER ========== */
+        .timer {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #fff;
+            padding: 0.7rem 1.8rem;
+            border-radius: 2rem;
+            font-size: 1.4rem;
+            font-weight: 800;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+
+        /* ========== PAGINATION ========== */
+        .pagination { display: flex; justify-content: center; gap: 0.4rem; margin-top: 2rem; flex-wrap: wrap; }
+        .pagination button {
+            padding: 0.5rem 1.1rem;
+            border: 2px solid var(--border);
+            background: #fff;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 700;
+            font-family: 'Cairo', sans-serif;
+            transition: all var(--transition);
+        }
+        .pagination button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+        /* ========== MODAL ========== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: #fff;
+            border-radius: var(--radius-2xl);
+            padding: 2.5rem;
+            max-width: 550px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all var(--transition);
+        }
+        .modal-close:hover { color: var(--danger); }
+
+        /* ========== LOADING ========== */
+        .loading { text-align: center; padding: 3rem; }
+        .spinner {
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* ========== TOAST ========== */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: var(--primary);
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 2rem;
+            z-index: 9999;
+            animation: slideUp 0.4s ease;
+            font-weight: 600;
+            box-shadow: var(--shadow-xl);
+        }
+        @keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        /* ========== TABS ========== */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: rgba(255,255,255,0.75);
+            text-align: center;
+            padding: 2.5rem 2rem;
+            margin-top: 3rem;
+            border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+        }
+        .footer strong { color: #fff; }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; padding: 0.8rem 1rem; }
+            .nav-links { justify-content: center; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero { padding: 3rem 1rem 2.5rem; }
+            .section-title { font-size: 1.7rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 1.8rem; }
+            .btn { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
+        }
+    </style>
 </head>
 <body>
-<div class="main-palace">
-  <div class="pro-header">
-    <div class="site-name">📚 MEDICAL STUDENT <span>// بوابتك للاحتراف</span></div>
-    <div class="owner-line">
-      <i class="fas fa-feather-alt"></i>  صاحب المنصة: <strong style="color:#2c2418;">همام</strong>  <i class="fas fa-stethoscope"></i>  |  أكثر من 25 خدمة طبية متطورة
+
+<!-- ==================== NAVBAR ==================== -->
+<nav class="navbar">
+    <a href="#" class="navbar-brand" onclick="navigateTo('home')">
+        <i class="fas fa-graduation-cap"></i> Medical Student
+    </a>
+    <div class="nav-links" id="navLinks">
+        <a href="#" onclick="navigateTo('home')" class="active" data-tab="home"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="#" onclick="navigateTo('library')" data-tab="library"><i class="fas fa-book-open"></i> المكتبة</a>
+        <a href="#" onclick="navigateTo('quizzes')" data-tab="quizzes"><i class="fas fa-question-circle"></i> اختبارات</a>
+        <a href="#" onclick="navigateTo('forum')" data-tab="forum"><i class="fas fa-comments"></i> المجتمع</a>
+        <a href="#" onclick="navigateTo('ai')" data-tab="ai"><i class="fas fa-robot"></i> AI</a>
+        <a href="#" onclick="navigateTo('login')" data-tab="login" id="loginLink"><i class="fas fa-sign-in-alt"></i> دخول</a>
+        <a href="#" onclick="navigateTo('register')" data-tab="register" id="registerLink"><i class="fas fa-user-plus"></i> حساب</a>
+        <a href="#" onclick="navigateTo('admin')" data-tab="admin" class="admin-link" style="display:none;" id="adminLink"><i class="fas fa-cog"></i> الإدارة</a>
+        <a href="#" onclick="logout()" style="display:none;" id="logoutLink"><i class="fas fa-sign-out-alt"></i> خروج</a>
     </div>
-  </div>
+</nav>
 
-  <div class="nav-bar" id="navBar">
-    <button class="nav-btn active" data-tab="home"><i class="fas fa-home"></i> الرئيسية</button>
-    <button class="nav-btn" data-tab="services"><i class="fas fa-cogs"></i> الميزات القوية</button>
-    <button class="nav-btn" data-tab="resources"><i class="fas fa-graduation-cap"></i> الشروحات</button>
-    <button class="nav-btn" data-tab="library"><i class="fas fa-database"></i> المكتبة الذهبية</button>
-  </div>
+<!-- ==================== MAIN CONTENT ==================== -->
+<main id="mainContent" class="container"></main>
 
-  <div class="content-zone" id="mainContent">
-    <!-- ديناميكي -->
-  </div>
-
-  <footer>
-    <i class="fas fa-brain"></i> Medical Student – التميز لطلاب الطب | جميع الحقوق محفوظة © 2025 | بتصميم وإشراف همام
-  </footer>
+<!-- ==================== MODAL ==================== -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modalContent">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <div id="modalBody"></div>
+    </div>
 </div>
 
-<script>
-  // ========== قاعدة بيانات المحتوى ==========
-  // قائمة تحتوي على أكثر من 20 ميزة/خدمة قوية موزعة على التبويبات
+<!-- ==================== TOAST CONTAINER ==================== -->
+<div id="toastContainer"></div>
 
-  const TABS = {
-    home: `
-      <div>
-        <h2 style="font-size: 1.9rem; font-weight: 700; border-bottom: 2px solid #e4d9ca; display: inline-block;">⚡ منصة همام: قلب الطب النابض</h2>
-        <div class="highlight-box" style="margin-top: 20px;">
-          <p style="font-size: 1.05rem;">منصة متكاملة تجمع بين <strong>الخبرة السريرية والتقنيات التعليمية</strong>. هنا يجد طالب الطب أكثر من 25 ميزة فريدة: من محاكاة الحالات، إلى خطط الدراسة المخصصة، إلى بنوك الأسئلة الاحترافية.</p>
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+    <p><strong>Medical Student</strong> © 2025 - جميع الحقوق محفوظة</p>
+    <p>إشراف: <strong>الدكتور همام</strong> | 📧 dr.humam@medicalstudent.com</p>
+    <p style="margin-top: 0.5rem; font-size: 0.9rem;">🚀 المنصة الطبية التعليمية الأولى عربياً</p>
+</footer>
+
+<script>
+// ==================== APP STATE ====================
+const APP = {
+    token: localStorage.getItem('ms_token') || null,
+    user: JSON.parse(localStorage.getItem('ms_user') || 'null'),
+    currentTab: 'home',
+    
+    // Mock Database
+    db: {
+        users: [
+            { id: 1, full_name: 'الدكتور همام', email: 'dr.humam@medicalstudent.com', password: 'Med@Humam2025#Secure', role: 'admin', university: 'المشرف العام', academic_year: '', is_active: true }
+        ],
+        books: [
+            { id: 1, title: "Gray's Anatomy for Students, 5th Edition", author: 'Richard L. Drake', desc: 'المرجع الذهبي في علم التشريح البشري. يغطي جميع أجهزة الجسم مع صور توضيحية ثلاثية الأبعاد.', cat: 'علم التشريح', catIcon: 'fa-bone', downloads: 1250, views: 3400 },
+            { id: 2, title: "Atlas of Human Anatomy, 8th Edition", author: 'Frank H. Netter', desc: 'أطلس تشريحي مصور عالمي. يحتوي على أكثر من 600 لوحة تشريحية ملونة.', cat: 'علم التشريح', catIcon: 'fa-bone', downloads: 980, views: 2800 },
+            { id: 3, title: "Guyton and Hall Textbook of Medical Physiology, 14th", author: 'John E. Hall', desc: 'المرجع الأشهر في الفسيولوجيا الطبية. يشرح وظائف الأعضاء بأسلوب واضح.', cat: 'الفسيولوجيا', catIcon: 'fa-heart-pulse', downloads: 1100, views: 3100 },
+            { id: 4, title: "Robbins and Cotran Pathologic Basis of Disease, 10th", author: 'Vinay Kumar', desc: 'المرجع الأساسي في علم الأمراض. يغطي آليات المرض والتشخيص.', cat: 'علم الأمراض', catIcon: 'fa-microscope', downloads: 890, views: 2500 },
+            { id: 5, title: "Goodman and Gilman's Pharmacological Basis, 14th", author: 'Laurence L. Brunton', desc: 'الكتاب المقدس في علم الأدوية. يغطي آليات عمل الأدوية وتطبيقاتها.', cat: 'علم الأدوية', catIcon: 'fa-capsules', downloads: 760, views: 2100 },
+            { id: 6, title: "Harrison's Principles of Internal Medicine, 21st", author: 'Dan L. Longo', desc: 'أشمل مرجع في الطب الباطني. يستخدمه الأطباء حول العالم.', cat: 'الطب الباطني', catIcon: 'fa-stethoscope', downloads: 1500, views: 4200 },
+            { id: 7, title: "Schwartz's Principles of Surgery, 11th Edition", author: 'F. Charles Brunicardi', desc: 'المرجع الذهبي في الجراحة العامة والتخصصات الجراحية.', cat: 'الجراحة العامة', catIcon: 'fa-scalpel', downloads: 680, views: 1900 },
+            { id: 8, title: "Nelson Textbook of Pediatrics, 21st Edition", author: 'Robert M. Kliegman', desc: 'المرجع الشامل في طب الأطفال والرعاية الصحية للطفل.', cat: 'طب الأطفال', catIcon: 'fa-baby', downloads: 550, views: 1600 },
+            { id: 9, title: "Williams Obstetrics, 26th Edition", author: 'F. Gary Cunningham', desc: 'المرجع الذهبي في التوليد والرعاية ما قبل الولادة.', cat: 'النساء والتوليد', catIcon: 'fa-female', downloads: 620, views: 1800 },
+            { id: 10, title: "Braunwald's Heart Disease, 12th Edition", author: 'Peter Libby', desc: 'المرجع الشامل في أمراض القلب والأوعية الدموية.', cat: 'طب القلب', catIcon: 'fa-heart', downloads: 720, views: 2000 },
+            { id: 11, title: "Katzung & Trevor's Pharmacology, 13th", author: 'Anthony J. Trevor', desc: 'مراجعة شاملة لعلم الأدوية مع أسئلة USMLE.', cat: 'علم الأدوية', catIcon: 'fa-capsules', downloads: 440, views: 1300 },
+            { id: 12, title: "Jawetz Medical Microbiology, 28th", author: 'Stefan Riedel', desc: 'علم الأحياء الدقيقة الطبية والأمراض المعدية.', cat: 'الأحياء الدقيقة', catIcon: 'fa-bacteria', downloads: 380, views: 1100 }
+        ],
+        categories: [
+            { name: 'anatomy', name_ar: 'علم التشريح', icon: 'fa-bone' },
+            { name: 'physiology', name_ar: 'الفسيولوجيا', icon: 'fa-heart-pulse' },
+            { name: 'pathology', name_ar: 'علم الأمراض', icon: 'fa-microscope' },
+            { name: 'pharmacology', name_ar: 'علم الأدوية', icon: 'fa-capsules' },
+            { name: 'microbiology', name_ar: 'الأحياء الدقيقة', icon: 'fa-bacteria' },
+            { name: 'internal_medicine', name_ar: 'الطب الباطني', icon: 'fa-stethoscope' },
+            { name: 'surgery', name_ar: 'الجراحة العامة', icon: 'fa-scalpel' },
+            { name: 'pediatrics', name_ar: 'طب الأطفال', icon: 'fa-baby' },
+            { name: 'obgyn', name_ar: 'النساء والتوليد', icon: 'fa-female' },
+            { name: 'cardiology', name_ar: 'طب القلب', icon: 'fa-heart' }
+        ],
+        quizzes: [
+            {
+                id: 1, title: 'اختبار تشريح الطرف العلوي', desc: 'أسئلة شاملة في تشريح الطرف العلوي', cat: 'علم التشريح', time: 15, questions: [
+                    { id: 1, text: 'أي العضلات تعمل كعاطفة رئيسية للساعد؟', a: 'ثلاثية الرؤوس', b: 'ذات الرأسين', c: 'العضدية الكعبرية', d: 'الدالية', correct: 'B', explain: 'العضلة ذات الرأسين العضدية هي العاطف الرئيسي للساعد.' },
+                    { id: 2, text: 'العصب المسؤول عن تعصيب العضلة الدالية؟', a: 'الكعبري', b: 'المتوسط', c: 'الإبطي', d: 'الزندي', correct: 'C', explain: 'العصب الإبطي (C5-C6) يعصب العضلة الدالية.' },
+                    { id: 3, text: 'أي عظمة في الصف القريب من الرسغ؟', a: 'المربعي', b: 'الزورقي', c: 'الهلالي', d: 'رأس العضد', correct: 'B', explain: 'العظم الزورقي (Scaphoid) في الصف القريب. كسره شائع.' },
+                    { id: 4, text: 'الشريان تحت الترقوة الأيمن يتفرع من:', a: 'قوس الأبهر', b: 'الجذع العضدي الرأسي', c: 'السباتي', d: 'الإبطي', correct: 'B', explain: 'الجذع العضدي الرأسي هو أول فرع من قوس الأبهر.' },
+                    { id: 5, text: 'العصب المار عبر النفق الرسغي:', a: 'الزندي', b: 'الكعبري', c: 'المتوسط', d: 'الجلدي', correct: 'C', explain: 'العصب المتوسط يمر عبر النفق الرسغي مع الأوتار المثنية.' }
+                ]
+            },
+            {
+                id: 2, title: 'اختبار علم الأدوية - مضادات الميكروبات', desc: 'أسئلة في المضادات الحيوية', cat: 'علم الأدوية', time: 20, questions: [
+                    { id: 1, text: 'آلية عمل البنسلين:', a: 'تثبيط البروتين', b: 'تثبيط الجدار الخلوي', c: 'تثبيط DNA', d: 'تثبيط الغشاء', correct: 'B', explain: 'البنسلين يثبط تخليق الببتيدوغليكان في الجدار الخلوي.' },
+                    { id: 2, text: 'أي الأدوية من الماكروليدات؟', a: 'سيبروفلوكساسين', b: 'دوكسيسايكلين', c: 'أزيثروميسين', d: 'جنتاميسين', correct: 'C', explain: 'أزيثروميسين يرتبط بالوحدة 50S الريبوسومية.' },
+                    { id: 3, text: 'لماذا يمنع التتراسايكلين تحت سن 8؟', a: 'فشل كلوي', b: 'تثبيط النخاع', c: 'تصبغ الأسنان', d: 'تشوهات', correct: 'C', explain: 'يرتبط بالكالسيوم في الأسنان النامية مسبباً تصبغاً دائماً.' },
+                    { id: 4, text: 'متلازمة الرجل الأحمر مع أي دواء؟', a: 'بنسلين', b: 'كليندامايسين', c: 'فانكومايسين', d: 'مترونيدازول', correct: 'C', explain: 'تحدث مع التسريب السريع للفانكومايسين بسبب تحرر الهيستامين.' },
+                    { id: 5, text: 'ترياق التسمم بالأسيتامينوفين:', a: 'نالوكسون', b: 'N-أسيتيل سيستئين', c: 'فلومازينيل', d: 'أتروبين', correct: 'B', explain: 'NAC يعيد الجلوتاثيون ويزيل سمية NAPQI.' }
+                ]
+            }
+        ],
+        posts: [
+            { id: 1, title: 'كيف أذاكر التشريح بكفاءة؟', content: 'أنا طالب سنة رابعة وأعاني من حفظ أسماء العضلات والأعصاب. ما هي أفضل الطرق للمذاكرة؟ هل تنصحون بتطبيقات الـ3D؟', author: 'أحمد محمد', replies: 3, date: '2025-01-15', cat: 'علم التشريح' },
+            { id: 2, title: 'تجربتي مع USMLE Step 1', content: 'الحمد لله أنهيت Step 1 بمعدل 248. رحلتي استغرقت 8 أشهر من التحضير. سأشارككم المصادر وخطة المذاكرة.', author: 'سارة خالد', replies: 5, date: '2025-02-20', cat: 'عام' },
+            { id: 3, title: 'ACE inhibitors vs ARBs', content: 'ما الفرق العملي بين ACE inhibitors و ARBs من حيث آلية العمل والآثار الجانبية؟', author: 'محمد نور', replies: 2, date: '2025-03-10', cat: 'علم الأدوية' },
+            { id: 4, title: 'نصائح للتعامل مع ضغط الامتحانات', content: 'مع اقتراب الامتحانات النهائية، الضغط النفسي بدأ يزيد. كيف تتعاملون مع التوتر؟', author: 'فاطمة الزهراء', replies: 4, date: '2025-04-05', cat: 'عام' },
+            { id: 5, title: 'Schwartz vs Sabiston للجراحة', content: 'محتار بين الكتابين لمقرر الجراحة. أيهم أفضل من حيث الشرح والصور؟', author: 'عمر عبد الرحمن', replies: 2, date: '2025-05-01', cat: 'الجراحة العامة' }
+        ],
+        nextUserId: 2,
+        nextBookId: 13,
+        nextPostId: 6
+    },
+    
+    quizState: { currentQuiz: null, answers: {}, timer: null, timeLeft: 0 }
+};
+
+// ==================== ROUTER ====================
+function navigateTo(tab) {
+    APP.currentTab = tab;
+    
+    document.querySelectorAll('.nav-links a[data-tab]').forEach(a => a.classList.remove('active'));
+    const activeLink = document.querySelector(`.nav-links a[data-tab="${tab}"]`);
+    if (activeLink) activeLink.classList.add('active');
+    
+    const container = document.getElementById('mainContent');
+    
+    switch(tab) {
+        case 'home': container.innerHTML = renderHome(); break;
+        case 'library': container.innerHTML = renderLibrary(); break;
+        case 'quizzes': container.innerHTML = renderQuizzes(); break;
+        case 'forum': container.innerHTML = renderForum(); break;
+        case 'ai': container.innerHTML = renderAI(); break;
+        case 'login': container.innerHTML = renderLogin(); break;
+        case 'register': container.innerHTML = renderRegister(); break;
+        case 'admin': container.innerHTML = APP.isLoggedIn() && APP.user.role === 'admin' ? renderAdmin() : renderLogin(); break;
+        default: container.innerHTML = renderHome();
+    }
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ==================== AUTH ====================
+APP.isLoggedIn = function() { return !!this.token && !!this.user; };
+
+function login(email, password) {
+    const user = APP.db.users.find(u => u.email === email && u.password === password && u.is_active);
+    if (!user) { showToast('بيانات الدخول غير صحيحة', 'error'); return false; }
+    APP.token = 'mock_token_' + user.id;
+    APP.user = user;
+    localStorage.setItem('ms_token', APP.token);
+    localStorage.setItem('ms_user', JSON.stringify(user));
+    updateNavLinks();
+    showToast(`مرحباً ${user.full_name}!`, 'success');
+    navigateTo(user.role === 'admin' ? 'admin' : 'home');
+    return true;
+}
+
+function register(full_name, email, password, university, academic_year) {
+    if (APP.db.users.find(u => u.email === email)) { showToast('البريد مسجل مسبقاً', 'error'); return false; }
+    if (password.length < 8) { showToast('كلمة المرور قصيرة', 'error'); return false; }
+    const newUser = { id: APP.db.nextUserId++, full_name, email, password, role: 'student', university, academic_year, is_active: true };
+    APP.db.users.push(newUser);
+    APP.token = 'mock_token_' + newUser.id;
+    APP.user = newUser;
+    localStorage.setItem('ms_token', APP.token);
+    localStorage.setItem('ms_user', JSON.stringify(newUser));
+    updateNavLinks();
+    showToast('تم إنشاء الحساب بنجاح!', 'success');
+    navigateTo('home');
+    return true;
+}
+
+function logout() {
+    APP.token = null;
+    APP.user = null;
+    localStorage.removeItem('ms_token');
+    localStorage.removeItem('ms_user');
+    updateNavLinks();
+    showToast('تم تسجيل الخروج', 'success');
+    navigateTo('home');
+}
+
+function updateNavLinks() {
+    const loggedIn = APP.isLoggedIn();
+    const isAdmin = loggedIn && APP.user.role === 'admin';
+    document.getElementById('loginLink').style.display = loggedIn ? 'none' : 'inline-flex';
+    document.getElementById('registerLink').style.display = loggedIn ? 'none' : 'inline-flex';
+    document.getElementById('logoutLink').style.display = loggedIn ? 'inline-flex' : 'none';
+    document.getElementById('adminLink').style.display = isAdmin ? 'inline-flex' : 'none';
+}
+
+// ==================== RENDER FUNCTIONS ====================
+function renderHome() {
+    return `
+        <div class="hero">
+            <i class="fas fa-stethoscope" style="font-size: 4.5rem; color: var(--gold); margin-bottom: 1rem; display: block;"></i>
+            <h1>منصة <span>Medical Student</span></h1>
+            <p>المنصة التعليمية المتكاملة لطلاب الطب البشري</p>
+            <p style="font-size: 1.05rem; opacity: 0.85;">📚 +2500 مرجع طبي | 🧠 +8000 سؤال | 🤖 أدوات AI | 💬 مجتمع تفاعلي | 👨‍⚕️ محاكيات سريرية</p>
+            <div class="hero-buttons" style="margin-top: 2.5rem;">
+                <button class="btn btn-gold" style="padding: 1rem 2.5rem; font-size: 1.15rem;" onclick="navigateTo('register')"><i class="fas fa-rocket"></i> ابدأ رحلتك الآن</button>
+                <button class="btn btn-outline" style="padding: 1rem 2.5rem; font-size: 1.15rem;" onclick="navigateTo('library')"><i class="fas fa-book-medical"></i> تصفح المكتبة</button>
+            </div>
         </div>
         
-        <h3 style="margin: 28px 0 12px 0;"><i class="fas fa-medal"></i> أبرز 8 خدمات فورية:</h3>
-        <div class="feature-grid">
-          <div class="service-card"><i class="fas fa-microchip card-icon"></i><h3>تشخيص بالذكاء المساعد</h3><p>أداة تفاعلية لتحليل الأعراض وتوليد تشخيصات تفاضلية.</p><button class="btn-solid" onclick="alert('🔍 منصة التشخيص: ai.hamam-med.com | تواصل مع الدعم لتفعيل حسابك')">جرب الآن</button></div>
-          <div class="service-card"><i class="fas fa-calendar-week card-icon"></i><h3>جدول دراسي مخصص لك</h3><p>بناء خطة أسبوعية ذكية حسب مستوى تركيزك وأهدافك.</p><button class="btn-solid" onclick="alert('📅 سيصلك رابط لإنشاء خطتك خلال 24 ساعة')">اطلب الخطط</button></div>
-          <div class="service-card"><i class="fas fa-heartbeat card-icon"></i><h3>تفسير ECG احترافي</h3><p>دروس وتدريب على 150 نمط تخطيط قلب حقيقي.</p><button class="btn-solid" onclick="alert('❤️ رابط الدورة: ecg.hamam-academy.com')">ابدأ التدريب</button></div>
-          <div class="service-card"><i class="fas fa-users card-icon"></i><h3>مجموعات النقاش السريري</h3><p>لقاءات أسبوعية مع زملاء وأطباء متميزين بإشراف همام.</p><button class="btn-solid" onclick="alert('انضم إلى قناة التلغرام: t.me/medical_hamam')"><i class="fab fa-telegram"></i> انضم</button></div>
+        <div class="stats-grid">
+            <div class="stat-card"><i class="fas fa-book"></i><h3>+2,500</h3><p>كتاب ومرجع</p></div>
+            <div class="stat-card"><i class="fas fa-user-graduate"></i><h3>+5,200</h3><p>طالب مسجل</p></div>
+            <div class="stat-card"><i class="fas fa-question-circle"></i><h3>+8,200</h3><p>سؤال تدريبي</p></div>
+            <div class="stat-card"><i class="fas fa-flask"></i><h3>+290</h3><p>محاكاة سريرية</p></div>
         </div>
-        <hr class="divider-clean">
-        <div class="highlight-box"><i class="fas fa-quote-right"></i>  "همام يضع بين يديك خلاصة السنوات – استثمر وقتك في التعلم الفعال."</div>
-      </div>
-    `,
-    services: `
-      <h2 style="font-size: 1.8rem;"><i class="fas fa-crown"></i> أكثر من 20 ميزة قوية في مكان واحد</h2>
-      <div class="feature-grid">
-        <div class="service-card"><i class="fas fa-chalkboard-user card-icon"></i><h3>محاضرات تفاعلية مسجلة</h3><p>سلسلة "المنهج النظري الكامل" لكل مواد السنوات السريرية.</p><button class="btn-solid" onclick="alert('🎥 الروابط محمية، أرسل بريدك لاستلام المحاضرات')">طلب الوصول</button></div>
-        <div class="service-card"><i class="fas fa-question-circle card-icon"></i><h3>بنك أسئلة (5000 سؤال)</h3><p>أسئلة نمط USMLE والامتحانات العربية مع تحليل الأداء.</p><button class="btn-solid" onclick="alert('📊 نسخة تجريبية: 300 سؤال مجاني بعد التسجيل')">جرب البنك</button></div>
-        <div class="service-card"><i class="fas fa-file-alt card-icon"></i><h3>ملخصات التشخيص السريع</h3><p>أكثر من 200 ملخص لحالات طبية شائعة بأسلوب نقطي.</p><button class="btn-solid" onclick="alert('📁 سترسل الملفات PDF عبر البريد فوراً')">تحميل مجاني</button></div>
-        <div class="service-card"><i class="fas fa-head-side-medical card-icon"></i><h3>محاكي اتخاذ القرار</h3><p>سيناريوهات غرفة الطوارئ + تقييم لحظة بلحظة.</p><button class="btn-solid" onclick="alert('🚑 منصة المحاكاة: sim.medicalstudent.com | كود HAMAM2025')">ابدأ السيناريو</button></div>
-        <div class="service-card"><i class="fas fa-chart-line card-icon"></i><h3>تحليل تقدمك الأكاديمي</h3><p>لوحة تحكم شخصية تعرض نقاط القوة والضعف لديك.</p><button class="btn-solid" onclick="alert('📈 أرسل "تقرير" إلى support@hamam-med.com')">اطلب التقرير</button></div>
-        <div class="service-card"><i class="fas fa-diagnoses card-icon"></i><h3>دليل الأعراض والعلامات</h3><p>أكبر مكتبة إلكترونية للأعراض مع فيديوهات توضيحية.</p><button class="btn-solid" onclick="alert('🩺 تم تفعيل الرابط: symptoms.hamamlib.com')">تصفح الدليل</button></div>
-        <div class="service-card"><i class="fas fa-microscope card-icon"></i><h3>المختبر الافتراضي</h3><p>تحليل نتائج المختبر، تعليم تفسير CBC، غازات الدم وغيرها.</p><button class="btn-solid" onclick="alert('🧪 منصة المختبر: lab.hamam-edu.com')">بدء المحاكاة</button></div>
-        <div class="service-card"><i class="fas fa-brain card-icon"></i><h3>كورس علم الأعصاب المتقدم</h3><p>تشريح عصبي، آفات، وتخطيط أعصاب عملي.</p><button class="btn-solid" onclick="alert('🧠 يتم إرسال المحتوى خلال 24 ساعة')">طلب الكورس</button></div>
-        <div class="service-card"><i class="fas fa-laptop-medical card-icon"></i><h3>تطبيق جوال مجاني</h3><p>نسخة كاملة من المنصة للهواتف مع أوفلاين.</p><button class="btn-solid" onclick="alert('📱 رابط التحميل: medicalstudent.page.link/app')">تنزيل التطبيق</button></div>
-        <div class="service-card"><i class="fas fa-prescription-bottle card-icon"></i><h3>دليل الأدوية السريري</h3><p>جرعات، تداخلات، دواعي استعمال كل دواء في 3 ثوان.</p><button class="btn-solid" onclick="alert('💊 قاعدة بيانات الأدوية محدثة 2025')">البحث عن دواء</button></div>
-        <div class="service-card"><i class="fas fa-stethoscope card-icon"></i><h3>سلسلة "الفحص السريري"</h3><p>مقاطع فيديو لفحص أجهزة الجسم كاملاً.</p><button class="btn-solid" onclick="alert('📽️ قائمة التشغيل: youtube.com/@hamam_clinical')">شاهد الآن</button></div>
-        <div class="service-card"><i class="fas fa-book card-icon"></i><h3>ملخصات Robbins ملونة</h3><p>خرائط ذهنية لأهم الأمراض المرضية.</p><button class="btn-solid" onclick="alert('📘 تحميل مباشر: robbins.hamam-summary.com')">الحصول عليها</button></div>
-      </div>
-      <div class="highlight-box"><i class="fas fa-gem"></i>  <strong>إضافة مميزة:</strong> خدمة "اسأل همام" – إجابات مخصصة لأسئلتك الطبية خلال 24 ساعة. أرسل سؤالك إلى ask@hamam-med.com</div>
-    `,
-    resources: `
-      <h2 style="font-size: 1.8rem;"><i class="fas fa-video"></i> الشروحات الحصرية – منهج همام</h2>
-      <div class="feature-grid">
-        <div class="service-card"><i class="fas fa-heart card-icon"></i><h3>أمراض القلب بالتفصيل</h3><p>شرح أعراض، تخطيط، أدوية، وحالات إسعافية (PDF+ فيديو).</p><button class="btn-solid" onclick="alert('📥 تم إرسال الرابط إلى بريدك الافتراضي (تجريبي)')">تنزيل الشرح</button></div>
-        <div class="service-card"><i class="fas fa-lungs card-icon"></i><h3>أمراض الصدر والتنفس</h3><p>الربو، الالتهاب الرئوي، الانسداد الرئوي المزمن – خطط علاجية.</p><button class="btn-solid" onclick="alert('📚 حمل الملف: 340 صفحة بقلم همام')">احصل على الملف</button></div>
-        <div class="service-card"><i class="fas fa-kidneys card-icon"></i><h3>الكلية وارتفاع الضغط</h3><p>تفسير تحاليل وظائف الكلى وأمراض الكبيبات.</p><button class="btn-solid" onclick="alert('🧬 رابط الدورة التفاعلية متاح للأعضاء المسجلين')">ابدأ التعلم</button></div>
-        <div class="service-card"><i class="fas fa-bone card-icon"></i><h3>أمراض الروماتيزم</h3><p>التهاب المفاصل الروماتويدي، الذئبة الحمراء، تشخيص وعلاج.</p><button class="btn-solid" onclick="alert('🦴 محتوى قوي مع جداول مقارنة')">طلب المادة</button></div>
-        <div class="service-card"><i class="fas fa-flask card-icon"></i><h3>فارماكولوجيا الألم</h3><p>مسكنات، مخدرات موضعية، وأفيونيات بطريقة منهجية.</p><button class="btn-solid" onclick="alert('💊 ملف حصري من إعداد همام، أرسل بريدك')">تحميل الدليل</button></div>
-        <div class="service-card"><i class="fas fa-dna card-icon"></i><h3>الأمراض الوراثية الشائعة</h3><p>أنماط وراثة، أمثلة، واستشارة وراثية افتراضية.</p><button class="btn-solid" onclick="alert('🧬 محتوى محدث 2025 متوفر مجاناً')">المزيد</button></div>
-      </div>
-      <hr class="divider-clean">
-      <div class="highlight-box"><i class="fas fa-chalkboard"></i>  قناة التلغرام: <strong>شرح يومي لحالة طبية</strong> – انضم لمجتمع همام التعليمي. <button class="btn-solid" onclick="alert('رابط التلغرام: t.me/medical_hamam_daily')"><i class="fab fa-telegram"></i> انضم الآن</button></div>
-    `,
-    library: `
-      <h2 style="font-size: 1.8rem;"><i class="fas fa-landmark"></i> المكتبة الذهبية – مراجع كلاسيكية وحديثة</h2>
-      <div class="feature-grid">
-        <div class="service-card"><i class="fas fa-book-open card-icon"></i><h3>Gray's Anatomy 42nd</h3><p>أطلس تشريح كامل، نسخة عالية الوضوح.</p><button class="btn-solid" onclick="alert('📖 رابط التحميل: drive.google.com/grays_42_hamam')">تصفح الأطلس</button></div>
-        <div class="service-card"><i class="fas fa-book-medical card-icon"></i><h3>Harrison Manual 21e</h3><p>دليل الباطنية السريع – ملخص أهم الفصول.</p><button class="btn-solid" onclick="alert('📕 نسخة معلم بخط همام')">الحصول على الدليل</button></div>
-        <div class="service-card"><i class="fas fa-microscope card-icon"></i><h3>Robbins & Cotran Pathology</h3><p>صور ونصوص للباثولوجيا المرضية، نسخة 10th مع ملخصات.</p><button class="btn-solid" onclick="alert('📘 متوفر في المكتبة الرقمية للمنصة')">فتح المكتبة</button></div>
-        <div class="service-card"><i class="fas fa-capsules card-icon"></i><h3>Katzung Pharmacology</h3><p>أساسيات الدوائية – جداول فعالة للمراجعة النهائية.</p><button class="btn-solid" onclick="alert('💊 قريباً: سلسلة فيديوهات مع همام')">الإشعار المسبق</button></div>
-        <div class="service-card"><i class="fas fa-database card-icon"></i><h3>First Aid for the USMLE</h3><p>ملخص مع إضافات همام – خارطة طريق النجاح.</p><button class="btn-solid" onclick="alert('📇 رابط التحميل المحمي: usmle.hamam-lib.com')">طلب الرابط</button></div>
-        <div class="service-card"><i class="fas fa-file-powerpoint card-icon"></i><h3>مكتبة الشرائح المتميزة</h3><p>أكثر من 500 عرض تقديمي في 20 تخصص.</p><button class="btn-solid" onclick="alert('📂 سيتم إرسال قاعدة البيانات بعد التسجيل المجاني')">تصفح الشرائح</button></div>
-      </div>
-      <div class="highlight-box"><i class="fas fa-crown"></i>  باقة همام البلاتينية: تمنحك صلاحية الوصول إلى كل الكتب، خطط الدراسة، وجلسات خاصة – <button class="btn-solid" onclick="alert('للاشتراك: platinum@hamam-med.com | خصم 40% للطلاب')">استفسر الآن</button></div>
-    `
-  };
+        
+        <h2 class="section-title">🎯 ماذا نقدم لك؟</h2>
+        <div class="cards-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-book-medical"></i></div>
+                <h3>مكتبة طبية عملاقة</h3>
+                <p style="color: var(--text-secondary);">آلاف الكتب والمراجع الطبية الحديثة مصنفة حسب التخصص للقراءة والتحميل</p>
+                <button class="btn btn-primary" style="margin-top: 1.2rem;" onclick="navigateTo('library')">تصفح المكتبة</button>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                <h3>اختبارات ذكية</h3>
+                <p style="color: var(--text-secondary);">بنك أسئلة ضخم مع اختبارات MCQs تفاعلية وتصحيح فوري وتحليل نقاط الضعف</p>
+                <button class="btn btn-gold" style="margin-top: 1.2rem;" onclick="navigateTo('quizzes')">جرب اختباراً</button>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-comments"></i></div>
+                <h3>مجتمع طلابي</h3>
+                <p style="color: var(--text-secondary);">منتدى تفاعلي لطرح الأسئلة وتبادل الخبرات مع زملائك من جميع الجامعات</p>
+                <button class="btn btn-primary" style="margin-top: 1.2rem;" onclick="navigateTo('forum')">انضم للنقاش</button>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                <h3>أدوات ذكاء اصطناعي</h3>
+                <p style="color: var(--text-secondary);">تشخيص تفاضلي، تلخيص محاضرات، محاكي ECG والمزيد من الأدوات الذكية</p>
+                <button class="btn btn-gold" style="margin-top: 1.2rem;" onclick="navigateTo('ai')">استكشف الأدوات</button>
+            </div>
+        </div>
+        
+        <div class="card" style="text-align: center; background: linear-gradient(135deg, #fef3c7, #fde68a); border: none; margin-top: 2rem;">
+            <h2>👨‍⚕️ تحت إشراف الدكتور همام</h2>
+            <p style="font-size: 1.05rem; color: var(--text-secondary); margin: 0.8rem 0;">نقدم لكم أفضل المصادر التعليمية والمراجع الطبية بأحدث الإصدارات العالمية</p>
+            <div style="display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-top: 1.2rem;">
+                <span class="badge badge-primary">🧬 التشريح</span><span class="badge badge-primary">💊 الأدوية</span>
+                <span class="badge badge-gold">🔪 الجراحة</span><span class="badge badge-primary">🩺 الباطني</span>
+                <span class="badge badge-gold">👶 الأطفال</span><span class="badge badge-primary">👩‍⚕️ النساء</span>
+                <span class="badge badge-gold">🧠 الأعصاب</span><span class="badge badge-primary">🫀 القلب</span>
+            </div>
+        </div>
+    `;
+}
 
-  // JavaScript لإدارة التبويبات
-  const contentDiv = document.getElementById('mainContent');
-  const navButtons = document.querySelectorAll('.nav-btn');
+function renderLibrary() {
+    const books = APP.db.books;
+    const cats = APP.db.categories;
+    
+    return `
+        <h1 style="margin-bottom: 0.5rem;">📚 المكتبة الطبية</h1>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">${books.length} كتاب ومرجع طبي بأحدث الإصدارات العالمية</p>
+        
+        <div class="search-box">
+            <input type="text" id="libSearch" placeholder="ابحث عن كتاب، مؤلف، أو تخصص..." oninput="filterLibrary()">
+            <i class="fas fa-search"></i>
+        </div>
+        
+        <div style="margin-bottom: 1.5rem; display: flex; gap: 0.4rem; flex-wrap: wrap;" id="catFilters">
+            <button class="btn btn-sm btn-primary" onclick="filterLibraryByCat('')">الكل</button>
+            ${cats.map(c => `<button class="btn btn-sm" onclick="filterLibraryByCat('${c.name_ar}')">${c.name_ar}</button>`).join('')}
+        </div>
+        
+        <div class="cards-grid" id="booksGrid">
+            ${books.map(b => `
+                <div class="book-card" data-cat="${b.cat}">
+                    <div class="book-cover"><i class="fas ${b.catIcon || 'fa-book'}"></i></div>
+                    <div class="book-info">
+                        <h3>${b.title}</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">✍️ ${b.author}</p>
+                        <span class="badge badge-primary">${b.cat}</span>
+                        <p style="margin: 0.5rem 0; font-size: 0.85rem; color: var(--text-muted);">${b.desc}</p>
+                        <button class="btn btn-primary btn-sm" onclick="downloadBook(${b.id})"><i class="fas fa-download"></i> تحميل</button>
+                        <p style="margin-top: 0.4rem; font-size: 0.78rem; color: var(--text-muted);">📥 ${b.downloads} | 👁 ${b.views}</p>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
 
-  function renderSection(sectionId) {
-    if (TABS[sectionId]) {
-      contentDiv.innerHTML = TABS[sectionId];
-    } else {
-      contentDiv.innerHTML = `<div class="highlight-box">⚠️ هذه الصفحة قيد التطوير من همام، تابع التحديثات.</div>`;
-    }
-  }
-
-  function setActiveTab(tabId) {
-    navButtons.forEach(btn => {
-      if (btn.getAttribute('data-tab') === tabId) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
+function filterLibrary() {
+    const q = document.getElementById('libSearch').value.toLowerCase();
+    document.querySelectorAll('#booksGrid .book-card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(q) ? 'block' : 'none';
     });
-    renderSection(tabId);
-  }
+}
 
-  navButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tab = btn.getAttribute('data-tab');
-      if (tab) setActiveTab(tab);
+function filterLibraryByCat(cat) {
+    document.querySelectorAll('#catFilters button').forEach((b, i) => {
+        b.classList.toggle('btn-primary', i === 0 ? cat === '' : b.textContent.trim() === cat);
     });
-  });
+    document.querySelectorAll('#booksGrid .book-card').forEach(card => {
+        card.style.display = !cat || card.dataset.cat === cat ? 'block' : 'none';
+    });
+}
 
-  // تحميل الصفحة الرئيسية (home) أولاً
-  setActiveTab('home');
+function downloadBook(id) {
+    if (!APP.isLoggedIn()) { showToast('يرجى تسجيل الدخول أولاً', 'error'); navigateTo('login'); return; }
+    const book = APP.db.books.find(b => b.id === id);
+    book.downloads++;
+    showToast(`📥 جاري تحميل: ${book.title}`, 'success');
+}
+
+// ==================== QUIZZES ====================
+function renderQuizzes() {
+    const quizzes = APP.db.quizzes;
+    return `
+        <h1 style="margin-bottom: 0.5rem;">📝 الاختبارات التفاعلية</h1>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">اختبر معلوماتك الطبية مع أسئلة MCQs حقيقية وتصحيح فوري</p>
+        <div class="cards-grid" id="quizList">
+            ${quizzes.map(q => `
+                <div class="card">
+                    <h3>${q.title}</h3>
+                    <p style="color: var(--text-secondary);">🏷 ${q.cat} | 📝 ${q.questions.length} أسئلة | ⏱ ${q.time} دقيقة</p>
+                    <p style="color: var(--text-muted); margin: 0.5rem 0;">${q.desc}</p>
+                    <button class="btn btn-primary" onclick="startQuiz(${q.id})"><i class="fas fa-play"></i> ابدأ الاختبار</button>
+                </div>
+            `).join('')}
+        </div>
+        <div id="quizArea" style="display:none;"></div>
+    `;
+}
+
+function startQuiz(quizId) {
+    const quiz = APP.db.quizzes.find(q => q.id === quizId);
+    if (!APP.isLoggedIn()) { showToast('يرجى تسجيل الدخول أولاً', 'error'); navigateTo('login'); return; }
+    
+    APP.quizState.currentQuiz = quiz;
+    APP.quizState.answers = {};
+    APP.quizState.timeLeft = quiz.time * 60;
+    
+    document.getElementById('quizList').style.display = 'none';
+    document.getElementById('quizArea').style.display = 'block';
+    
+    let html = `<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;"><h2>${quiz.title}</h2><div class="timer" id="timerDisplay">${formatTime(APP.quizState.timeLeft)}</div></div>`;
+    
+    quiz.questions.forEach((q, i) => {
+        html += `<div class="card" style="margin-bottom:1rem;"><h3>سؤال ${i+1}: ${q.text}</h3><div style="margin-top:1rem;">`;
+        const opts = [['A', q.a], ['B', q.b], ['C', q.c], ['D', q.d]];
+        opts.forEach(o => {
+            html += `<div class="quiz-option" onclick="selectQuizAnswer(${q.id}, '${o[0]}')" id="qopt_${q.id}_${o[0]}">${o[0]}) ${o[1]}</div>`;
+        });
+        html += `</div></div>`;
+    });
+    
+    html += `<button class="btn btn-gold" style="width:100%;padding:1rem;font-size:1.1rem;" onclick="submitQuiz()"><i class="fas fa-check-circle"></i> تقديم الإجابات</button></div>`;
+    
+    document.getElementById('quizArea').innerHTML = html;
+    
+    APP.quizState.timer = setInterval(() => {
+        APP.quizState.timeLeft--;
+        const display = document.getElementById('timerDisplay');
+        if (display) display.textContent = formatTime(APP.quizState.timeLeft);
+        if (APP.quizState.timeLeft <= 0) { clearInterval(APP.quizState.timer); submitQuiz(); }
+    }, 1000);
+}
+
+function selectQuizAnswer(qid, opt) {
+    APP.quizState.answers[qid] = opt;
+    ['A','B','C','D'].forEach(o => {
+        const el = document.getElementById(`qopt_${qid}_${o}`);
+        if (el) el.classList.remove('selected');
+    });
+    const el = document.getElementById(`qopt_${qid}_${opt}`);
+    if (el) el.classList.add('selected');
+}
+
+function submitQuiz() {
+    clearInterval(APP.quizState.timer);
+    const quiz = APP.quizState.currentQuiz;
+    let correct = 0;
+    quiz.questions.forEach(q => {
+        if (APP.quizState.answers[q.id] === q.correct) correct++;
+    });
+    const score = Math.round((correct / quiz.questions.length) * 100);
+    const passed = score >= 60;
+    
+    document.getElementById('quizArea').innerHTML = `
+        <div class="card" style="text-align:center;">
+            <i class="fas ${passed ? 'fa-trophy' : 'fa-book'}" style="font-size:5rem;color:${passed ? 'var(--gold)' : 'var(--danger)'};margin-bottom:1rem;"></i>
+            <h2 style="color:${passed ? 'var(--success)' : 'var(--danger)'};">${passed ? '🎉 مبروك! أنت ناجح' : '📚 تحتاج مراجعة'}</h2>
+            <p style="font-size:2.5rem;margin:1.5rem 0;font-weight:900;">${score}%</p>
+            <p style="font-size:1.2rem;">✅ ${correct} / ❌ ${quiz.questions.length - correct} من ${quiz.questions.length}</p>
+            ${quiz.questions.map((q, i) => {
+                const userAns = APP.quizState.answers[q.id] || 'لم تجب';
+                const isCorrect = userAns === q.correct;
+                return `<div class="alert ${isCorrect ? 'alert-success' : 'alert-danger'}" style="text-align:right;margin-top:0.5rem;"><strong>س ${i+1}:</strong> إجابتك: ${userAns || 'لم تجب'} | الصحيح: ${q.correct}<br><small>${q.explain}</small></div>`;
+            }).join('')}
+            <button class="btn btn-primary" onclick="navigateTo('quizzes')" style="margin-top:1.5rem;">العودة للاختبارات</button>
+        </div>
+    `;
+}
+
+function formatTime(s) { const m = Math.floor(s/60), sec = s%60; return `${m.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`; }
+
+// ==================== FORUM ====================
+function renderForum() {
+    const posts = APP.db.posts;
+    return `
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
+            <h1>💬 مجتمع طلاب الطب</h1>
+            ${APP.isLoggedIn() ? '<button class="btn btn-gold" onclick="showNewPostForm()"><i class="fas fa-plus"></i> منشور جديد</button>' : '<button class="btn btn-primary" onclick="navigateTo(\'login\')">سجل دخول للمشاركة</button>'}
+        </div>
+        <div id="newPostForm" style="display:none;" class="card">
+            <h3>✍️ منشور جديد</h3>
+            <div class="form-group"><label>العنوان</label><input type="text" class="form-control" id="postTitle" placeholder="عنوان المنشور..."></div>
+            <div class="form-group"><label>المحتوى</label><textarea class="form-control" id="postContent" rows="4" placeholder="اكتب منشورك هنا..."></textarea></div>
+            <button class="btn btn-gold" onclick="createPost()"><i class="fas fa-paper-plane"></i> نشر</button>
+            <button class="btn" onclick="document.getElementById('newPostForm').style.display='none'" style="margin-right:0.5rem;">إلغاء</button>
+        </div>
+        <div id="postsList">
+            ${posts.map(p => `
+                <div class="card">
+                    <h3>${p.title}</h3>
+                    <p style="color:var(--text-secondary);margin:0.5rem 0;">${p.content.substring(0, 150)}...</p>
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+                        <p style="color:var(--text-muted);font-size:0.85rem;">👤 ${p.author} | 💬 ${p.replies} ردود | 📅 ${p.date}</p>
+                        <button class="btn btn-primary btn-sm" onclick="viewPost(${p.id})">عرض</button>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+        <div id="postDetail" style="display:none;"></div>
+    `;
+}
+
+function showNewPostForm() {
+    document.getElementById('newPostForm').style.display = 'block';
+    document.getElementById('postTitle').focus();
+}
+
+function createPost() {
+    const title = document.getElementById('postTitle').value.trim();
+    const content = document.getElementById('postContent').value.trim();
+    if (!title || !content) return showToast('املأ جميع الحقول', 'error');
+    
+    APP.db.posts.unshift({
+        id: APP.db.nextPostId++,
+        title,
+        content,
+        author: APP.user.full_name,
+        replies: 0,
+        date: new Date().toISOString().split('T')[0],
+        cat: 'عام'
+    });
+    
+    document.getElementById('newPostForm').style.display = 'none';
+    document.getElementById('postTitle').value = '';
+    document.getElementById('postContent').value = '';
+    showToast('تم نشر المنشور!', 'success');
+    navigateTo('forum');
+}
+
+function viewPost(id) {
+    const post = APP.db.posts.find(p => p.id === id);
+    if (!post) return;
+    document.getElementById('postsList').style.display = 'none';
+    document.getElementById('postDetail').style.display = 'block';
+    document.getElementById('postDetail').innerHTML = `
+        <button class="btn" onclick="navigateTo('forum')" style="margin-bottom:1rem;">← عودة</button>
+        <div class="card"><h2>${post.title}</h2><p style="margin:1rem 0;line-height:2;">${post.content}</p><p style="color:var(--text-muted);">👤 ${post.author} | 📅 ${post.date}</p></div>
+    `;
+}
+
+// ==================== AI TOOLS ====================
+function renderAI() {
+    return `
+        <h1 style="margin-bottom:2rem;">🤖 مركز الذكاء الاصطناعي الطبي</h1>
+        <div class="cards-grid">
+            <div class="card">
+                <h2><i class="fas fa-stethoscope"></i> التشخيص التفاضلي</h2>
+                <p style="color:var(--text-secondary);margin:1rem 0;">أدخل الأعراض الرئيسية واحصل على تحليل</p>
+                <textarea class="form-control" id="symptomsInput" rows="3" placeholder="حمى، سعال جاف، ضيق تنفس..."></textarea>
+                <button class="btn btn-primary" style="margin-top:1rem;" onclick="runDiagnosis()">تحليل</button>
+                <div id="diagnosisResult" style="margin-top:1rem;"></div>
+            </div>
+            <div class="card">
+                <h2><i class="fas fa-file-alt"></i> تلخيص المحاضرات</h2>
+                <p style="color:var(--text-secondary);margin:1rem 0;">ألصق نص المحاضرة للحصول على ملخص</p>
+                <textarea class="form-control" id="lectureInput" rows="3" placeholder="ألصق النص هنا..."></textarea>
+                <button class="btn btn-gold" style="margin-top:1rem;" onclick="runSummary()">تلخيص</button>
+                <div id="summaryResult" style="margin-top:1rem;"></div>
+            </div>
+            <div class="card" style="text-align:center;">
+                <i class="fas fa-heartbeat" style="font-size:3rem;color:var(--accent);margin-bottom:1rem;"></i>
+                <h3>محاكي ECG</h3>
+                <p style="color:var(--text-secondary);">تحليل تخطيط القلب</p>
+                <button class="btn btn-primary" onclick="simulateECG()">تشغيل</button>
+            </div>
+            <div class="card" style="text-align:center;">
+                <i class="fas fa-dna" style="font-size:3rem;color:var(--gold);margin-bottom:1rem;"></i>
+                <h3>تحليل وراثي</h3>
+                <p style="color:var(--text-secondary);">تحليل المتلازمات الوراثية</p>
+                <button class="btn btn-gold" onclick="showToast('🧬 أداة التحليل الوراثي قيد التطوير', 'info')">تحليل</button>
+            </div>
+        </div>
+    `;
+}
+
+function runDiagnosis() {
+    const symptoms = document.getElementById('symptomsInput')?.value.trim();
+    if (!symptoms) return showToast('أدخل الأعراض أولاً', 'error');
+    document.getElementById('diagnosisResult').innerHTML = `
+        <div class="alert alert-info"><strong>نتيجة التحليل:</strong><br>
+        • التهاب الجهاز التنفسي العلوي (45%)<br>
+        • الإنفلونزا الموسمية (30%)<br>
+        • التهاب الشعب الهوائية (15%)<br>
+        • حساسية (10%)<br>
+        <small>⚠️ أداة تعليمية فقط. راجع طبيبك.</small></div>`;
+}
+
+function runSummary() {
+    const text = document.getElementById('lectureInput')?.value.trim();
+    if (!text) return showToast('أدخل النص أولاً', 'error');
+    document.getElementById('summaryResult').innerHTML = `
+        <div class="alert alert-info"><strong>ملخص:</strong> تم تحليل ${text.length} حرف. النقاط الرئيسية مستخرجة.</div>`;
+}
+
+function simulateECG() {
+    const rhythms = ['نظم جيبي طبيعي', 'رجفان أذيني', 'تسرع بطيني', 'احصار أذيني بطيني'];
+    showToast('🫀 الحالة: ' + rhythms[Math.floor(Math.random() * rhythms.length)], 'info');
+}
+
+// ==================== LOGIN / REGISTER ====================
+function renderLogin() {
+    return `
+        <div class="card" style="max-width:500px;margin:4rem auto;">
+            <h2 style="text-align:center;margin-bottom:2rem;"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</h2>
+            <div id="loginError" class="alert alert-danger" style="display:none;"></div>
+            <div class="form-group"><label>البريد الإلكتروني</label><input type="email" class="form-control" id="loginEmail" value="dr.humam@medicalstudent.com"></div>
+            <div class="form-group"><label>كلمة المرور</label><input type="password" class="form-control" id="loginPassword" value="Med@Humam2025#Secure"></div>
+            <button class="btn btn-primary" style="width:100%;" onclick="handleLogin()"><i class="fas fa-sign-in-alt"></i> دخول</button>
+            <p style="text-align:center;margin-top:1rem;">ليس لديك حساب؟ <a href="#" onclick="navigateTo('register')">إنشاء حساب</a></p>
+        </div>
+    `;
+}
+
+function handleLogin() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    if (!email || !password) { showToast('املأ جميع الحقول', 'error'); return; }
+    const success = login(email, password);
+    if (!success) document.getElementById('loginError').style.display = 'block';
+}
+
+function renderRegister() {
+    return `
+        <div class="card" style="max-width:500px;margin:4rem auto;">
+            <h2 style="text-align:center;margin-bottom:2rem;"><i class="fas fa-user-plus"></i> إنشاء حساب</h2>
+            <div id="regError" class="alert alert-danger" style="display:none;"></div>
+            <div class="form-group"><label>الاسم الكامل</label><input type="text" class="form-control" id="regName"></div>
+            <div class="form-group"><label>البريد الإلكتروني</label><input type="email" class="form-control" id="regEmail"></div>
+            <div class="form-group"><label>كلمة المرور</label><input type="password" class="form-control" id="regPassword" minlength="8"></div>
+            <div class="form-group"><label>الجامعة</label><input type="text" class="form-control" id="regUni"></div>
+            <div class="form-group"><label>السنة الدراسية</label><select class="form-control" id="regYear"><option value="">اختر</option><option>الأولى</option><option>الثانية</option><option>الثالثة</option><option>الرابعة</option><option>الخامسة</option><option>السادسة</option><option>امتياز</option></select></div>
+            <button class="btn btn-gold" style="width:100%;" onclick="handleRegister()"><i class="fas fa-user-plus"></i> إنشاء</button>
+            <p style="text-align:center;margin-top:1rem;">لديك حساب؟ <a href="#" onclick="navigateTo('login')">دخول</a></p>
+        </div>
+    `;
+}
+
+function handleRegister() {
+    const name = document.getElementById('regName').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const password = document.getElementById('regPassword').value;
+    const uni = document.getElementById('regUni').value.trim();
+    const year = document.getElementById('regYear').value;
+    if (!name || !email || !password) { showToast('املأ الحقول المطلوبة', 'error'); return; }
+    const success = register(name, email, password, uni, year);
+    if (!success) document.getElementById('regError').style.display = 'block';
+}
+
+// ==================== ADMIN ====================
+function renderAdmin() {
+    if (!APP.isLoggedIn() || APP.user.role !== 'admin') return renderLogin();
+    const users = APP.db.users;
+    const books = APP.db.books;
+    return `
+        <h1 style="margin-bottom:1rem;">⚙️ لوحة إدارة همام</h1>
+        <div class="stats-grid" style="margin-bottom:2rem;">
+            <div class="stat-card"><i class="fas fa-users"></i><h3>${users.length}</h3><p>مستخدم</p></div>
+            <div class="stat-card"><i class="fas fa-book"></i><h3>${books.length}</h3><p>كتاب</p></div>
+            <div class="stat-card"><i class="fas fa-download"></i><h3>${books.reduce((s,b) => s+b.downloads, 0)}</h3><p>تحميل</p></div>
+            <div class="stat-card"><i class="fas fa-comments"></i><h3>${APP.db.posts.length}</h3><p>منشور</p></div>
+        </div>
+        <h2>👥 المستخدمين</h2>
+        ${users.map(u => `
+            <div class="card"><p><strong>${u.full_name}</strong> (${u.email}) | ${u.role} | ${u.university || 'غير محدد'}</p></div>
+        `).join('')}
+        <h2 style="margin-top:2rem;">📚 الكتب</h2>
+        ${books.map(b => `
+            <div class="card"><p><strong>${b.title}</strong> - ${b.author} | 📥 ${b.downloads}</p></div>
+        `).join('')}
+    `;
+}
+
+// ==================== MODAL ====================
+function openModal(content) {
+    document.getElementById('modalBody').innerHTML = content;
+    document.getElementById('modalOverlay').classList.add('active');
+}
+
+function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+}
+
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+
+// ==================== TOAST ====================
+function showToast(message, type = 'success') {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.style.background = type === 'error' ? 'var(--danger)' : type === 'info' ? 'var(--accent)' : 'var(--primary)';
+    toast.textContent = message;
+    container.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
+
+// ==================== INIT ====================
+document.addEventListener('DOMContentLoaded', () => {
+    updateNavLinks();
+    navigateTo('home');
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+});
 </script>
+
 </body>
 </html>
