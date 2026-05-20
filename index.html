@@ -2,628 +2,570 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Student | الدكتور همام - المنصة الطبية الشاملة</title>
-    <meta name="description" content="أقوى منصة طبية عربية - 2500+ كتاب، 8200+ سؤال، أدوات AI، مجتمع تفاعلي">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- PWA App Settings -->
+    <meta name="theme-color" content="#0f172a" id="themeColorMeta">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>منصة همام | Medical Student</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
     <style>
+        /* ======== VARIABLES (LIGHT & DARK THEMES) ======== */
         :root {
             --primary: #0f172a; --primary-light: #1e293b; --secondary: #1e40af;
-            --accent: #3b82f6; --gold: #f59e0b; --danger: #ef4444; --success: #10b981;
-            --bg: #f1f5f9; --card: #fff; --text: #0f172a; --text-secondary: #475569;
-            --text-muted: #94a3b8; --border: #e2e8f0; --shadow: 0 1px 3px rgba(0,0,0,0.08);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.1); --shadow-lg: 0 10px 25px rgba(0,0,0,0.12);
-            --radius: 0.75rem; --radius-xl: 1.5rem; --radius-2xl: 2rem; --transition: 0.3s ease;
+            --accent: #3b82f6; --accent-hover: #2563eb; --gold: #f59e0b; 
+            --danger: #ef4444; --success: #10b981;
+            
+            /* Light Theme Defaults */
+            --bg: #f8fafc; --bg-secondary: #f1f5f9; --card: #ffffff; 
+            --text: #0f172a; --text-muted: #64748b; --border: #e2e8f0;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --radius: 16px; --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior:smooth; }
+
+        [data-theme="dark"] {
+            --bg: #0f172a; --bg-secondary: #1e293b; --card: #1e293b; 
+            --text: #f8fafc; --text-muted: #94a3b8; --border: #334155;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --primary-light: #0f172a;
+        }
+
+        /* ======== RESET & TYPOGRAPHY ======== */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body {
-            font-family:'Cairo',sans-serif; background:linear-gradient(135deg,#eef2ff 0%,#f1f5f9 30%,#f0fdf4 60%,#fefce8 100%);
-            color:var(--text); line-height:1.8; direction:rtl; min-height:100vh;
+            font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--text); 
+            line-height: 1.6; padding-bottom: 80px; transition: background var(--transition), color var(--transition);
         }
-        /* ======== NAVBAR ======== */
+        
+        /* ======== TOP NAVBAR ======== */
         .navbar {
-            background:linear-gradient(135deg,#0f172a,#1e293b); padding:0.9rem 2rem;
-            display:flex; justify-content:space-between; align-items:center;
-            position:sticky; top:0; z-index:1000; box-shadow:0 4px 20px rgba(0,0,0,0.3);
-            border-bottom:3px solid rgba(59,130,246,0.3); flex-wrap:wrap; gap:0.5rem;
+            background: var(--card); padding: 1rem 5%; display: flex; justify-content: space-between; 
+            align-items: center; position: sticky; top: 0; z-index: 1000; 
+            box-shadow: var(--shadow); border-bottom: 1px solid var(--border);
+            transition: background var(--transition);
         }
-        .navbar-brand { color:#fff; font-size:1.5rem; font-weight:900; text-decoration:none; display:flex; align-items:center; gap:0.7rem; }
-        .navbar-brand i { color:var(--gold); font-size:1.8rem; }
-        .nav-links { display:flex; gap:0.4rem; align-items:center; flex-wrap:wrap; }
-        .nav-links a {
-            color:rgba(255,255,255,0.88); text-decoration:none; padding:0.5rem 1rem;
-            border-radius:2rem; font-weight:600; font-size:0.9rem; transition:all var(--transition);
-            border:1px solid transparent; cursor:pointer;
+        .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .brand-icon { color: var(--accent); font-size: 2.2rem; filter: drop-shadow(0 2px 4px rgba(59,130,246,0.3)); }
+        .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+        .brand-title { color: var(--text); font-size: 1.5rem; font-weight: 900; }
+        .brand-subtitle { color: var(--text-muted); font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+        
+        .nav-links { display: flex; gap: 0.5rem; align-items: center; }
+        .nav-item {
+            color: var(--text-muted); text-decoration: none; padding: 0.6rem 1.2rem; border-radius: 30px;
+            font-weight: 700; font-size: 0.95rem; transition: var(--transition);
+            display: flex; align-items: center; gap: 8px; cursor: pointer;
         }
-        .nav-links a:hover,.nav-links a.active { background:rgba(255,255,255,0.12); color:#fff; border-color:rgba(255,255,255,0.2); transform:translateY(-2px); }
-        .container { max-width:1400px; margin:0 auto; padding:0 1.5rem 3rem; }
-        /* ======== HERO ======== */
+        .nav-item:hover, .nav-item.active { background: var(--accent); color: white; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(59,130,246,0.3); }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: var(--bg-secondary); color: var(--text); border: none; width: 40px; height: 40px;
+            border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; 
+            justify-content: center; transition: var(--transition); border: 1px solid var(--border);
+        }
+        .theme-toggle:hover { background: var(--border); }
+
+        /* ======== MOBILE BOTTOM NAV ======== */
+        .mobile-nav {
+            display: none; position: fixed; bottom: 0; left: 0; width: 100%;
+            background: var(--card); box-shadow: 0 -5px 20px rgba(0,0,0,0.08); z-index: 1000;
+            justify-content: space-around; padding: 0.8rem 0; border-top: 1px solid var(--border);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        }
+        .mobile-nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 5px;
+            color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 700;
+            position: relative; transition: var(--transition);
+        }
+        .mobile-nav-item i { font-size: 1.3rem; transition: var(--transition); }
+        .mobile-nav-item.active { color: var(--accent); }
+        .mobile-nav-item.active i { transform: translateY(-3px) scale(1.1); }
+        .mobile-nav-item.active::after {
+            content: ''; position: absolute; bottom: -8px; width: 5px; height: 5px; 
+            background: var(--accent); border-radius: 50%;
+        }
+
+        /* ======== LAYOUT & ANIMATIONS ======== */
+        .container { max-width: 1400px; margin: 2rem auto; padding: 0 5%; min-height: 65vh; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+        
+        .card {
+            background: var(--card); border-radius: var(--radius); padding: 1.5rem;
+            box-shadow: var(--shadow); border: 1px solid var(--border); transition: var(--transition);
+            position: relative; overflow: hidden;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: var(--accent); }
+        
+        /* ======== HERO SECTION ======== */
         .hero {
-            text-align:center; padding:5rem 2rem 4rem;
-            background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#1e40af 100%);
-            border-radius:0 0 var(--radius-2xl) var(--radius-2xl); color:white;
-            position:relative; overflow:hidden; margin-bottom:3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; border-radius: 24px; padding: 4rem 2rem; text-align: center;
+            margin-bottom: 3rem; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(30,64,175,0.3);
         }
-        .hero::before { content:''; position:absolute; top:-30%; left:-20%; width:140%; height:160%; background:radial-gradient(circle at 30% 40%,rgba(59,130,246,0.3) 0%,transparent 60%); animation:heroPulse 6s ease-in-out infinite; }
-        @keyframes heroPulse { 0%,100%{transform:scale(1);opacity:0.5} 50%{transform:scale(1.1);opacity:0.8} }
-        .hero>*{position:relative;z-index:1;}
-        .hero h1{font-size:3.2rem;font-weight:900;margin-bottom:1rem;text-shadow:0 2px 10px rgba(0,0,0,0.3);}
-        .hero h1 span{color:var(--gold);}
-        .hero p{font-size:1.3rem;opacity:0.9;max-width:800px;margin:0 auto 2rem;}
-        .hero-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+        .hero::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+        .hero h1 { font-size: 3rem; font-weight: 900; margin-bottom: 1rem; position: relative; z-index: 1; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .hero p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; position: relative; z-index: 1; max-width: 600px; margin-inline: auto; }
+        
         /* ======== BUTTONS ======== */
-        .btn { padding:0.75rem 1.8rem; border:none; border-radius:3rem; font-weight:700; font-size:0.95rem; cursor:pointer; transition:all var(--transition); font-family:'Cairo',sans-serif; display:inline-flex; align-items:center; gap:0.5rem; text-decoration:none; white-space:nowrap; }
-        .btn-primary{background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;box-shadow:0 4px 15px rgba(59,130,246,0.35);}
-        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(59,130,246,0.5);}
-        .btn-gold{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#0f172a;box-shadow:0 4px 15px rgba(245,158,11,0.35);}
-        .btn-gold:hover{transform:translateY(-3px);}
-        .btn-success{background:linear-gradient(135deg,#10b981,#059669);color:#fff;}
-        .btn-danger{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;}
-        .btn-outline{background:transparent;border:2px solid #fff;color:#fff;}
-        .btn-sm{padding:0.4rem 1rem;font-size:0.8rem;}
-        .btn-xs{padding:0.25rem 0.7rem;font-size:0.72rem;}
-        /* ======== SECTION ======== */
-        .section-title{text-align:center;font-size:2.2rem;font-weight:900;margin:3rem 0 2rem;color:var(--primary);}
-        .section-title::after{content:'';display:block;width:80px;height:5px;background:var(--accent);margin:0.8rem auto 0;border-radius:1rem;}
-        /* ======== STATS ======== */
-        .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-bottom:3rem;}
-        .stat-card{background:var(--card);padding:2rem 1.5rem;border-radius:var(--radius-xl);text-align:center;box-shadow:var(--shadow-md);border:1px solid var(--border);transition:all var(--transition);}
-        .stat-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
-        .stat-card i{font-size:2.5rem;color:var(--accent);margin-bottom:0.7rem;}
-        .stat-card h3{font-size:2.2rem;font-weight:900;color:var(--primary);}
-        /* ======== CARD ======== */
-        .card{background:var(--card);border-radius:var(--radius-xl);padding:2rem;box-shadow:var(--shadow-md);border:1px solid var(--border);transition:all var(--transition);margin-bottom:1.5rem;}
-        .card:hover{box-shadow:var(--shadow-lg);}
-        .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-bottom:2rem;}
-        .feature-card{background:var(--card);border-radius:var(--radius-xl);padding:2.5rem 2rem;text-align:center;box-shadow:var(--shadow-md);border:1px solid var(--border);transition:all var(--transition);}
-        .feature-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,0.15);border-color:var(--accent);}
-        .feature-icon{width:80px;height:80px;background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;}
-        .feature-icon i{font-size:2.2rem;color:#1e40af;}
-        /* ======== BOOK ======== */
-        .book-card{background:var(--card);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);transition:all var(--transition);}
-        .book-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,0.15);}
-        .book-cover{height:160px;background:linear-gradient(135deg,#0f172a,#1e3a5f,#3b82f6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:3rem;}
-        .book-info{padding:1.5rem;}
-        .book-info h3{font-size:1rem;margin-bottom:0.4rem;color:var(--primary);}
-        /* ======== BADGE ======== */
-        .badge{display:inline-block;padding:0.3rem 0.9rem;border-radius:2rem;font-size:0.75rem;font-weight:700;}
-        .badge-primary{background:#dbeafe;color:#1e40af;}
-        .badge-gold{background:#fef3c7;color:#92400e;}
-        .badge-success{background:#d1fae5;color:#065f46;}
-        .badge-danger{background:#fee2e2;color:#991b1b;}
-        /* ======== ALERT ======== */
-        .alert{padding:1rem 1.2rem;border-radius:var(--radius);margin-bottom:1rem;font-weight:600;border-right:4px solid;}
-        .alert-success{background:#d1fae5;color:#065f46;border-color:#10b981;}
-        .alert-danger{background:#fee2e2;color:#991b1b;border-color:#ef4444;}
-        .alert-info{background:#dbeafe;color:#1e40af;border-color:#3b82f6;}
-        .alert-warning{background:#fef3c7;color:#92400e;border-color:#f59e0b;}
-        /* ======== FORM ======== */
-        .form-group{margin-bottom:1.3rem;}
-        .form-group label{display:block;margin-bottom:0.4rem;font-weight:700;color:var(--text);}
-        .form-control{width:100%;padding:0.8rem 1rem;border:2px solid var(--border);border-radius:var(--radius);font-family:'Cairo',sans-serif;font-size:1rem;transition:all var(--transition);background:#fff;}
-        .form-control:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(59,130,246,0.08);}
-        textarea.form-control{resize:vertical;min-height:80px;}
-        select.form-control{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23475569' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 1rem center;padding-left:2.5rem;}
-        /* ======== SEARCH ======== */
-        .search-box{position:relative;max-width:600px;margin:0 auto 2rem;}
-        .search-box input{width:100%;padding:0.9rem 3rem 0.9rem 1.2rem;border:2px solid var(--border);border-radius:3rem;font-family:'Cairo',sans-serif;font-size:1rem;transition:all var(--transition);}
-        .search-box input:focus{outline:none;border-color:var(--accent);}
-        .search-box i{position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);color:var(--text-muted);}
-        /* ======== QUIZ ======== */
-        .quiz-option{padding:0.9rem 1.2rem;border:2px solid var(--border);border-radius:var(--radius);margin-bottom:0.5rem;cursor:pointer;transition:all var(--transition);background:#fff;font-weight:500;}
-        .quiz-option:hover{border-color:var(--accent);background:#eff6ff;}
-        .quiz-option.selected{border-color:var(--accent);background:#dbeafe;box-shadow:0 0 0 3px rgba(59,130,246,0.15);}
-        .timer{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;padding:0.7rem 1.8rem;border-radius:2rem;font-size:1.4rem;font-weight:800;display:inline-block;letter-spacing:1px;}
-        /* ======== PAGINATION ======== */
-        .pagination{display:flex;justify-content:center;gap:0.4rem;margin-top:2rem;flex-wrap:wrap;}
-        .pagination button{padding:0.5rem 1.1rem;border:2px solid var(--border);background:#fff;border-radius:var(--radius);cursor:pointer;font-weight:700;font-family:'Cairo',sans-serif;transition:all var(--transition);}
-        .pagination button.active{background:var(--accent);color:#fff;border-color:var(--accent);}
-        /* ======== MODAL ======== */
-        .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:2000;justify-content:center;align-items:center;backdrop-filter:blur(4px);}
-        .modal-overlay.active{display:flex;}
-        .modal{background:#fff;border-radius:var(--radius-2xl);padding:2.5rem;max-width:550px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:0 25px 50px rgba(0,0,0,0.25);position:relative;}
-        .modal-close{position:absolute;top:1rem;left:1rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text-muted);transition:all var(--transition);}
-        .modal-close:hover{color:var(--danger);}
-        /* ======== LOADING ======== */
-        .loading{text-align:center;padding:3rem;}
-        .spinner{border:4px solid var(--border);border-top:4px solid var(--accent);border-radius:50%;width:44px;height:44px;animation:spin 0.8s linear infinite;margin:0 auto 1rem;}
-        @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-        /* ======== TOAST ======== */
-        .toast{position:fixed;bottom:2rem;left:2rem;background:var(--primary);color:#fff;padding:1rem 2rem;border-radius:2rem;z-index:9999;animation:slideUp 0.4s ease;font-weight:600;box-shadow:0 15px 30px rgba(0,0,0,0.3);}
-        @keyframes slideUp{from{transform:translateY(100px);opacity:0}to{transform:translateY(0);opacity:1}}
-        /* ======== TAB CONTENT ======== */
-        .tab-content{display:none;}
-        .tab-content.active{display:block;}
-        /* ======== FOOTER ======== */
-        .footer{background:linear-gradient(135deg,#0f172a,#1e293b);color:rgba(255,255,255,0.75);text-align:center;padding:2.5rem 2rem;margin-top:3rem;border-radius:var(--radius-2xl) var(--radius-2xl) 0 0;}
-        .footer strong{color:#fff;}
+        .btn {
+            padding: 0.8rem 1.8rem; border: none; border-radius: 30px; font-weight: 800; font-size: 1rem;
+            cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 10px;
+            text-decoration: none; font-family: inherit; justify-content: center;
+        }
+        .btn-primary { background: linear-gradient(45deg, var(--accent), var(--accent-hover)); color: white; box-shadow: 0 4px 15px rgba(59,130,246,0.4); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59,130,246,0.6); }
+        .btn-outline { background: transparent; border: 2px solid white; color: white; }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); }
+        
+        /* ======== FILTERS ======== */
+        .filters { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 2rem; scrollbar-width: none; }
+        .filters::-webkit-scrollbar { display: none; }
+        .filter-btn {
+            background: var(--bg-secondary); border: 1px solid var(--border); color: var(--text);
+            padding: 0.5rem 1.2rem; border-radius: 20px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: var(--transition);
+        }
+        .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+        /* ======== BOOKS & QUIZZES ======== */
+        .book-cover {
+            height: 160px; border-radius: 12px; margin-bottom: 1rem;
+            display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.2); position: relative;
+        }
+        .badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.5); color: #fff; padding: 4px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: bold; backdrop-filter: blur(5px); }
+
+        /* ======== AI CHAT ======== */
+        .chat-container { display: flex; flex-direction: column; height: 600px; background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow); }
+        .chat-box { flex-grow: 1; padding: 1.5rem; overflow-y: auto; background: var(--bg-secondary); display: flex; flex-direction: column; gap: 1rem; }
+        .msg { max-width: 85%; padding: 1rem 1.2rem; border-radius: 18px; font-weight: 600; line-height: 1.5; animation: fadeIn 0.3s; }
+        .msg-user { background: var(--accent); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .msg-ai { background: var(--card); color: var(--text); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border); box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .chat-input-area { padding: 1rem; background: var(--card); border-top: 1px solid var(--border); display: flex; gap: 10px; }
+        .chat-input-area input { flex-grow: 1; padding: 1rem 1.5rem; border: 2px solid var(--border); border-radius: 30px; background: var(--bg); color: var(--text); font-family: inherit; font-size: 1rem; outline: none; transition: var(--transition); }
+        .chat-input-area input:focus { border-color: var(--accent); }
+        .chat-input-area button { width: 55px; height: 55px; border-radius: 50%; padding: 0; flex-shrink: 0; }
+
+        /* Typing Indicator */
+        .typing-indicator { display: flex; gap: 5px; padding: 10px 15px; background: var(--card); border-radius: 18px; align-self: flex-start; border: 1px solid var(--border); width: fit-content;}
+        .dot { width: 8px; height: 8px; background: var(--text-muted); border-radius: 50%; animation: bounce 1.4s infinite ease-in-out both; }
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+
+        /* ======== TOAST NOTIFICATIONS ======== */
+        #toast-container { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+        .toast { background: var(--primary); color: white; padding: 0.8rem 1.5rem; border-radius: 30px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 10px 25px rgba(0,0,0,0.2); animation: toastAnim 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; display: flex; align-items: center; gap: 10px; }
+        @keyframes toastAnim { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        /* ======== MODALS (QUIZ ENGINE) ======== */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal { background: var(--card); width: 90%; max-width: 600px; border-radius: 24px; padding: 2rem; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); border: 1px solid var(--border); max-height: 90vh; overflow-y: auto; }
+        .close-modal { position: absolute; top: 1.5rem; left: 1.5rem; background: none; border: none; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; }
+        
+        .quiz-option { display: block; width: 100%; text-align: right; padding: 1rem; margin-bottom: 10px; background: var(--bg); border: 2px solid var(--border); border-radius: 12px; font-family: inherit; font-size: 1rem; font-weight: 700; color: var(--text); cursor: pointer; transition: var(--transition); }
+        .quiz-option:hover { border-color: var(--accent); background: var(--bg-secondary); }
+        .quiz-option.correct { background: var(--success); color: white; border-color: var(--success); }
+        .quiz-option.wrong { background: var(--danger); color: white; border-color: var(--danger); }
+
         /* ======== RESPONSIVE ======== */
-        @media(max-width:768px){.navbar{flex-direction:column;padding:0.8rem 1rem;}.nav-links{justify-content:center;}.hero h1{font-size:2.2rem;}.hero{padding:3rem 1rem 2.5rem;}.section-title{font-size:1.7rem;}.cards-grid{grid-template-columns:1fr;}.stats-grid{grid-template-columns:repeat(2,1fr);}}
-        @media(max-width:480px){.stats-grid{grid-template-columns:1fr;}.hero h1{font-size:1.8rem;}}
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-nav { display: flex; }
+            .hero h1 { font-size: 2.2rem; }
+            .theme-toggle { position: absolute; left: 5%; top: 1rem; }
+            .brand-container { margin: 0 auto; }
+            .navbar { justify-content: center; position: relative; }
+        }
     </style>
 </head>
 <body>
 
-<!-- ==================== NAVBAR ==================== -->
-<nav class="navbar">
-    <a href="#" class="navbar-brand" onclick="navigate('home')"><i class="fas fa-graduation-cap"></i> Medical Student</a>
-    <div class="nav-links" id="navLinks">
-        <a onclick="navigate('home')" class="active" data-tab="home"><i class="fas fa-home"></i> الرئيسية</a>
-        <a onclick="navigate('library')" data-tab="library"><i class="fas fa-book-open"></i> المكتبة</a>
-        <a onclick="navigate('quizzes')" data-tab="quizzes"><i class="fas fa-question-circle"></i> اختبارات</a>
-        <a onclick="navigate('forum')" data-tab="forum"><i class="fas fa-comments"></i> المجتمع</a>
-        <a onclick="navigate('ai')" data-tab="ai"><i class="fas fa-robot"></i> AI</a>
-        <a onclick="navigate('login')" data-tab="login" id="loginLink"><i class="fas fa-sign-in-alt"></i> دخول</a>
-        <a onclick="navigate('register')" data-tab="register" id="registerLink"><i class="fas fa-user-plus"></i> حساب</a>
-        <a onclick="navigate('admin')" data-tab="admin" class="admin-link" style="display:none;" id="adminLink"><i class="fas fa-cog"></i> الإدارة</a>
-        <a onclick="logout()" style="display:none;" id="logoutLink"><i class="fas fa-sign-out-alt"></i> خروج</a>
+    <!-- ======== NAVBAR ======== -->
+    <nav class="navbar">
+        <a href="#" class="brand-container" onclick="navigate('home')">
+            <i class="fas fa-user-md brand-icon"></i>
+            <div class="brand-text">
+                <span class="brand-title">منصة همام</span>
+                <span class="brand-subtitle">Medical Student</span>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a class="nav-item active" data-tab="home" onclick="navigate('home')"><i class="fas fa-home"></i> الرئيسية</a>
+            <a class="nav-item" data-tab="library" onclick="navigate('library')"><i class="fas fa-book-medical"></i> المكتبة</a>
+            <a class="nav-item" data-tab="quizzes" onclick="navigate('quizzes')"><i class="fas fa-tasks"></i> الاختبارات</a>
+            <a class="nav-item" data-tab="ai" onclick="navigate('ai')"><i class="fas fa-robot"></i> الذكاء الاصطناعي</a>
+            <button class="theme-toggle" onclick="toggleTheme()" title="تغيير المظهر"><i class="fas fa-moon"></i></button>
+        </div>
+    </nav>
+
+    <!-- ======== MAIN CONTENT CONTAINER ======== -->
+    <div class="container" id="app"></div>
+
+    <!-- ======== MOBILE BOTTOM NAV ======== -->
+    <div class="mobile-nav">
+        <a class="mobile-nav-item active" data-mobile-tab="home" onclick="navigate('home')">
+            <i class="fas fa-home"></i><span>الرئيسية</span>
+        </a>
+        <a class="mobile-nav-item" data-mobile-tab="library" onclick="navigate('library')">
+            <i class="fas fa-book-medical"></i><span>المكتبة</span>
+        </a>
+        <a class="mobile-nav-item" data-mobile-tab="quizzes" onclick="navigate('quizzes')">
+            <i class="fas fa-tasks"></i><span>الاختبارات</span>
+        </a>
+        <a class="mobile-nav-item" data-mobile-tab="ai" onclick="navigate('ai')">
+            <i class="fas fa-robot"></i><span>المساعد</span>
+        </a>
+        <a class="mobile-nav-item" onclick="toggleTheme()">
+            <i class="fas fa-moon" id="mobileThemeIcon"></i><span>المظهر</span>
+        </a>
     </div>
-</nav>
 
-<main id="mainContent" class="container"></main>
+    <!-- ======== TOAST CONTAINER ======== -->
+    <div id="toast-container"></div>
 
-<div class="modal-overlay" id="modalOverlay">
-    <div class="modal" id="modalContent"><button class="modal-close" onclick="closeModal()">&times;</button><div id="modalBody"></div></div>
-</div>
-
-<div id="toastContainer"></div>
-
-<footer class="footer">
-    <p><strong>Medical Student</strong> © 2025 - جميع الحقوق محفوظة</p>
-    <p>إشراف: <strong>الدكتور همام</strong> | 📧 dr.humam@medicalstudent.com</p>
-    <p style="margin-top:0.5rem;">🚀 المنصة الطبية التعليمية الأولى عربياً | +2500 كتاب | +8200 سؤال</p>
-</footer>
+    <!-- ======== MODAL CONTAINER (For Quizzes) ======== -->
+    <div class="modal-overlay" id="quizModal">
+        <div class="modal">
+            <button class="close-modal" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            <div id="quizContent"></div>
+        </div>
+    </div>
 
 <script>
-// ==================== GLOBAL STATE ====================
-const $ = (s) => document.querySelector(s);
-const $$ = (s) => document.querySelectorAll(s);
+    // ================== MASSIVE DATABASE ==================
+    const DB = {
+        categories: ['الكل', 'التشريح', 'الفسيولوجيا', 'علم الأمراض', 'علم الأدوية', 'باطنية', 'جراحة'],
+        books: [
+            { id: 1, title: "Gray's Anatomy for Students 5th", author: 'Richard Drake', cat: 'التشريح', icon: 'fa-bone', size: '52 MB', desc: 'المرجع الأول لطلاب الطب في علم التشريح.' },
+            { id: 2, title: "Guyton & Hall Physiology 14th", author: 'John Hall', cat: 'الفسيولوجيا', icon: 'fa-heart-pulse', size: '55 MB', desc: 'الكتاب الذهبي لفهم وظائف الأعضاء.' },
+            { id: 3, title: "Robbins Basic Pathology 11th", author: 'Vinay Kumar', cat: 'علم الأمراض', icon: 'fa-microscope', size: '65 MB', desc: 'أساسيات علم الأمراض الحديث.' },
+            { id: 4, title: "Lippincott Biochemistry 8th", author: 'Denise Ferrier', cat: 'الفسيولوجيا', icon: 'fa-dna', size: '40 MB', desc: 'الكيمياء الحيوية المبسطة.' },
+            { id: 5, title: "Katzung Pharmacology 13th", author: 'Anthony Trevor', cat: 'علم الأدوية', icon: 'fa-capsules', size: '30 MB', desc: 'أساسيات علم الأدوية السريري.' },
+            { id: 6, title: "Harrison's Internal Medicine", author: 'Dan Longo', cat: 'باطنية', icon: 'fa-stethoscope', size: '75 MB', desc: 'أضخم مرجع في الطب الباطني.' },
+            { id: 7, title: "Schwartz's Principles of Surgery", author: 'Brunicardi', cat: 'جراحة', icon: 'fa-scalpel', size: '80 MB', desc: 'المرجع الأساسي في الجراحة العامة.' },
+            { id: 8, title: "Netter Atlas of Human Anatomy", author: 'Frank Netter', cat: 'التشريح', icon: 'fa-x-ray', size: '90 MB', desc: 'أطلس الصور التشريحية الأشهر عالمياً.' }
+        ],
+        quizzes: [
+            { 
+                id: 1, title: 'تشريح الطرف العلوي (Upper Limb)', qCount: 3, time: '10 دقائق', icon: 'fa-hand-paper',
+                questions: [
+                    { q: 'أي عصب يمر عبر النفق الرسغي (Carpal Tunnel)؟', options: ['العصب الزندي (Ulnar)', 'العصب الكعبري (Radial)', 'العصب المتوسط (Median)', 'العصب الإبطي (Axillary)'], answer: 2 },
+                    { q: 'أي عضلة تعتبر العاطف الرئيسي للساعد؟', options: ['العضلة العضدية (Brachialis)', 'ذات الرأسين (Biceps)', 'ثلاثية الرؤوس (Triceps)', 'الغرابية العضدية'], answer: 0 },
+                    { q: 'كسر عظمة الزورقي (Scaphoid) قد يؤدي إلى النخر اللاوعائي بسبب تلف أي شريان؟', options: ['الزندي', 'الكعبري', 'بين العظام', 'العضدي'], answer: 1 }
+                ]
+            },
+            { 
+                id: 2, title: 'أساسيات علم الأدوية (Pharmacology)', qCount: 2, time: '5 دقائق', icon: 'fa-pills',
+                questions: [
+                    { q: 'ما هو الترياق (Antidote) لتسمم الباراسيتامول؟', options: ['Naloxone', 'Flumazenil', 'N-acetylcysteine', 'Atropine'], answer: 2 },
+                    { q: 'أي من الأدوية التالية يعتبر من حاصرات بيتا (Beta-blockers)؟', options: ['Amlodipine', 'Lisinopril', 'Atenolol', 'Losartan'], answer: 2 }
+                ]
+            }
+        ]
+    };
 
-const APP = {
-    token: localStorage.getItem('ms_token'),
-    user: JSON.parse(localStorage.getItem('ms_user') || 'null'),
-    currentTab: 'home',
-    isLoggedIn() { return !!this.token && !!this.user; },
-    isAdmin() { return this.isLoggedIn() && this.user.role === 'admin'; }
-};
+    // ================== CORE SYSTEM ==================
+    let currentCategory = 'الكل';
+    let currentQuiz = null;
+    let currentQuestionIndex = 0;
+    let score = 0;
 
-// ==================== MASSIVE DATABASE ====================
-const DB = {
-    users: [
-        { id:1, full_name:'الدكتور همام', email:'dr.humam@medicalstudent.com', password:'Med@Humam2025#Secure', role:'admin', university:'المشرف العام للمنصة', academic_year:'', is_active:true },
-        { id:2, full_name:'أحمد محمد العتيبي', email:'ahmed@med.edu', password:'Student@123', role:'student', university:'جامعة الملك سعود', academic_year:'الخامسة', is_active:true },
-        { id:3, full_name:'سارة خالد الحربي', email:'sara@med.edu', password:'Student@123', role:'student', university:'جامعة الملك عبدالعزيز', academic_year:'الرابعة', is_active:true },
-        { id:4, full_name:'محمد نور الدين', email:'mohamed@med.edu', password:'Student@123', role:'student', university:'جامعة دمشق', academic_year:'السادسة', is_active:true },
-        { id:5, full_name:'فاطمة الزهراء الإدريسي', email:'fatima@med.edu', password:'Student@123', role:'student', university:'جامعة محمد الخامس', academic_year:'الخامسة', is_active:true },
-        { id:6, full_name:'عمر عبدالرحمن', email:'omar@med.edu', password:'Student@123', role:'student', university:'جامعة بغداد', academic_year:'الرابعة', is_active:true },
-        { id:7, full_name:'لينا محمود', email:'lina@med.edu', password:'Student@123', role:'student', university:'الجامعة الأمريكية بيروت', academic_year:'امتياز', is_active:true },
-        { id:8, full_name:'خالد ولي الدين', email:'khaled@med.edu', password:'Student@123', role:'student', university:'جامعة الخرطوم', academic_year:'الثالثة', is_active:true },
-        { id:9, full_name:'نورا سامي', email:'noura@med.edu', password:'Student@123', role:'student', university:'جامعة العلوم والتكنولوجيا', academic_year:'الرابعة', is_active:true },
-        { id:10, full_name:'يوسف إبراهيم', email:'yousef@med.edu', password:'Student@123', role:'student', university:'جامعة الجزائر', academic_year:'الخامسة', is_active:true },
-        { id:11, full_name:'مريم حسين', email:'maryam@med.edu', password:'Student@123', role:'student', university:'جامعة القاهرة', academic_year:'السادسة', is_active:true },
-        { id:12, full_name:'طارق الشمري', email:'tarek@med.edu', password:'Student@123', role:'student', university:'جامعة الإمام', academic_year:'الثالثة', is_active:true },
-        { id:13, full_name:'رنا القحطاني', email:'rana@med.edu', password:'Student@123', role:'student', university:'جامعة الملك فيصل', academic_year:'الرابعة', is_active:true },
-        { id:14, full_name:'حسن عبدالله', email:'hassan@med.edu', password:'Student@123', role:'student', university:'جامعة الأزهر', academic_year:'الخامسة', is_active:true },
-        { id:15, full_name:'نادية كريم', email:'nadia@med.edu', password:'Student@123', role:'student', university:'جامعة الإسكندرية', academic_year:'امتياز', is_active:true }
-    ],
-    nextUserId: 16,
+    // Theme Management
+    function toggleTheme() {
+        const body = document.body;
+        const isDark = body.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+            body.removeAttribute('data-theme');
+            localStorage.setItem('ms_theme', 'light');
+            document.querySelector('.theme-toggle i').className = 'fas fa-moon';
+            document.getElementById('mobileThemeIcon').className = 'fas fa-moon';
+            document.getElementById('themeColorMeta').content = '#ffffff';
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('ms_theme', 'dark');
+            document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+            document.getElementById('mobileThemeIcon').className = 'fas fa-sun';
+            document.getElementById('themeColorMeta').content = '#0f172a';
+        }
+    }
 
-    categories: [
-        { name:'anatomy', name_ar:'علم التشريح', icon:'fa-bone' },
-        { name:'physiology', name_ar:'الفسيولوجيا', icon:'fa-heart-pulse' },
-        { name:'biochemistry', name_ar:'الكيمياء الحيوية', icon:'fa-flask' },
-        { name:'pathology', name_ar:'علم الأمراض', icon:'fa-microscope' },
-        { name:'pharmacology', name_ar:'علم الأدوية', icon:'fa-capsules' },
-        { name:'microbiology', name_ar:'الأحياء الدقيقة', icon:'fa-bacteria' },
-        { name:'internal_medicine', name_ar:'الطب الباطني', icon:'fa-stethoscope' },
-        { name:'surgery', name_ar:'الجراحة العامة', icon:'fa-scalpel' },
-        { name:'pediatrics', name_ar:'طب الأطفال', icon:'fa-baby' },
-        { name:'obgyn', name_ar:'النساء والتوليد', icon:'fa-female' },
-        { name:'neurology', name_ar:'طب الأعصاب', icon:'fa-brain' },
-        { name:'cardiology', name_ar:'طب القلب', icon:'fa-heart' },
-        { name:'radiology', name_ar:'الأشعة الطبية', icon:'fa-x-ray' },
-        { name:'dermatology', name_ar:'الأمراض الجلدية', icon:'fa-allergies' },
-        { name:'ophthalmology', name_ar:'طب العيون', icon:'fa-eye' },
-        { name:'psychiatry', name_ar:'الطب النفسي', icon:'fa-brain' },
-        { name:'emergency', name_ar:'طب الطوارئ', icon:'fa-ambulance' },
-        { name:'oncology', name_ar:'علم الأورام', icon:'fa-ribbon' }
-    ],
+    // Load saved theme
+    if(localStorage.getItem('ms_theme') === 'dark') { toggleTheme(); }
 
-    books: [
-        { id:1, title:"Gray's Anatomy for Students 5th Edition", author:'Richard L. Drake', desc:'المرجع الذهبي في علم التشريح البشري. يغطي جميع أجهزة الجسم مع صور توضيحية ثلاثية الأبعاد ورسوم متقنة.', cat:'علم التشريح', catIcon:'fa-bone', downloads:1450, views:4200, fileSize:'52 MB' },
-        { id:2, title:"Atlas of Human Anatomy 8th Edition", author:'Frank H. Netter', desc:'أطلس تشريحي مصور عالمي. يحتوي على أكثر من 600 لوحة تشريحية ملونة عالية الجودة.', cat:'علم التشريح', catIcon:'fa-bone', downloads:1100, views:3500, fileSize:'38 MB' },
-        { id:3, title:"Clinically Oriented Anatomy 9th Edition", author:'Keith L. Moore', desc:'التشريح الموجه سريرياً. يربط بين علم التشريح والتطبيقات السريرية مع حالات واقعية.', cat:'علم التشريح', catIcon:'fa-bone', downloads:890, views:2800, fileSize:'45 MB' },
-        { id:4, title:"Guyton and Hall Textbook of Medical Physiology 14th", author:'John E. Hall', desc:'المرجع الأشهر في الفسيولوجيا الطبية. يشرح وظائف الأعضاء بأسلوب واضح ومبسط.', cat:'الفسيولوجيا', catIcon:'fa-heart-pulse', downloads:1300, views:3900, fileSize:'55 MB' },
-        { id:5, title:"Ganong's Review of Medical Physiology 26th", author:'Kim E. Barrett', desc:'مراجعة شاملة للفسيولوجيا مع أسئلة وتطبيقات سريرية وأسئلة USMLE.', cat:'الفسيولوجيا', catIcon:'fa-heart-pulse', downloads:750, views:2200, fileSize:'35 MB' },
-        { id:6, title:"Lehninger Principles of Biochemistry 8th", author:'David L. Nelson', desc:'أساسيات الكيمياء الحيوية مع التركيز على التطبيقات الطبية والمسارات الأيضية.', cat:'الكيمياء الحيوية', catIcon:'fa-flask', downloads:680, views:2000, fileSize:'48 MB' },
-        { id:7, title:"Robbins and Cotran Pathologic Basis of Disease 10th", author:'Vinay Kumar', desc:'المرجع الأساسي في علم الأمراض. يغطي آليات المرض والتشخيص المرضي.', cat:'علم الأمراض', catIcon:'fa-microscope', downloads:1150, views:3400, fileSize:'65 MB' },
-        { id:8, title:"Rubin's Pathology 8th Edition", author:'David S. Strayer', desc:'مرجع شامل في الباثولوجيا مع صور مجهرية عالية الجودة.', cat:'علم الأمراض', catIcon:'fa-microscope', downloads:620, views:1800, fileSize:'50 MB' },
-        { id:9, title:"Goodman and Gilman's Pharmacological Basis 14th", author:'Laurence L. Brunton', desc:'الكتاب المقدس في علم الأدوية. يغطي آليات عمل الأدوية وتطبيقاتها.', cat:'علم الأدوية', catIcon:'fa-capsules', downloads:980, views:2900, fileSize:'60 MB' },
-        { id:10, title:"Katzung & Trevor's Pharmacology 13th", author:'Anthony J. Trevor', desc:'مراجعة شاملة لعلم الأدوية مع أسئلة USMLE وتطبيقات سريرية.', cat:'علم الأدوية', catIcon:'fa-capsules', downloads:720, views:2100, fileSize:'30 MB' },
-        { id:11, title:"Rang and Dale's Pharmacology 9th", author:'James M. Ritter', desc:'شرح واضح لمبادئ علم الأدوية مع رسوم توضيحية.', cat:'علم الأدوية', catIcon:'fa-capsules', downloads:550, views:1600, fileSize:'35 MB' },
-        { id:12, title:"Jawetz Medical Microbiology 28th", author:'Stefan Riedel', desc:'علم الأحياء الدقيقة الطبية والأمراض المعدية.', cat:'الأحياء الدقيقة', catIcon:'fa-bacteria', downloads:580, views:1700, fileSize:'42 MB' },
-        { id:13, title:"Harrison's Principles of Internal Medicine 21st", author:'Dan L. Longo', desc:'أشمل مرجع في الطب الباطني. يستخدمه الأطباء حول العالم.', cat:'الطب الباطني', catIcon:'fa-stethoscope', downloads:1600, views:4800, fileSize:'75 MB' },
-        { id:14, title:"Davidson's Principles and Practice of Medicine 24th", author:'Stuart H. Ralston', desc:'مرجع أساسي في الطب الباطني بأسلوب سهل ومنظم.', cat:'الطب الباطني', catIcon:'fa-stethoscope', downloads:850, views:2500, fileSize:'42 MB' },
-        { id:15, title:"Schwartz's Principles of Surgery 11th", author:'F. Charles Brunicardi', desc:'المرجع الذهبي في الجراحة العامة والتخصصات الجراحية.', cat:'الجراحة العامة', catIcon:'fa-scalpel', downloads:920, views:2700, fileSize:'58 MB' },
-        { id:16, title:"Sabiston Textbook of Surgery 21st", author:'Courtney M. Townsend', desc:'كتاب الجراحة الشامل مع أحدث التقنيات الجراحية.', cat:'الجراحة العامة', catIcon:'fa-scalpel', downloads:780, views:2300, fileSize:'62 MB' },
-        { id:17, title:"Nelson Textbook of Pediatrics 21st", author:'Robert M. Kliegman', desc:'المرجع الشامل في طب الأطفال والرعاية الصحية للطفل.', cat:'طب الأطفال', catIcon:'fa-baby', downloads:670, views:2000, fileSize:'55 MB' },
-        { id:18, title:"Williams Obstetrics 26th Edition", author:'F. Gary Cunningham', desc:'المرجع الذهبي في التوليد والرعاية ما قبل الولادة.', cat:'النساء والتوليد', catIcon:'fa-female', downloads:710, views:2100, fileSize:'48 MB' },
-        { id:19, title:"Bradley's Neurology in Clinical Practice 8th", author:'Joseph Jankovic', desc:'مرجع شامل في طب الأعصاب السريري والتشخيص.', cat:'طب الأعصاب', catIcon:'fa-brain', downloads:580, views:1600, fileSize:'50 MB' },
-        { id:20, title:"Braunwald's Heart Disease 12th Edition", author:'Peter Libby', desc:'المرجع الشامل في أمراض القلب والأوعية الدموية.', cat:'طب القلب', catIcon:'fa-heart', downloads:890, views:2600, fileSize:'55 MB' },
-        { id:21, title:"Radiology Secrets Plus 4th Edition", author:'Drew A. Torigian', desc:'أسرار الأشعة الطبية بأسلوب سؤال وجواب.', cat:'الأشعة الطبية', catIcon:'fa-x-ray', downloads:340, views:1000, fileSize:'25 MB' },
-        { id:22, title:"Fitzpatrick's Dermatology 9th Edition", author:'Sewon Kang', desc:'المرجع الأساسي في الأمراض الجلدية مع أطلس مصور.', cat:'الأمراض الجلدية', catIcon:'fa-allergies', downloads:450, views:1300, fileSize:'50 MB' },
-        { id:23, title:"Basic Ophthalmology 10th Edition", author:'Richard A. Harper', desc:'أساسيات طب العيون لطلاب الطب والممارسين العامين.', cat:'طب العيون', catIcon:'fa-eye', downloads:290, views:800, fileSize:'20 MB' },
-        { id:24, title:"Kaplan and Sadock's Synopsis of Psychiatry 12th", author:'Robert Boland', desc:'ملخص الطب النفسي مع معايير DSM-5 التشخيصية.', cat:'الطب النفسي', catIcon:'fa-brain', downloads:520, views:1500, fileSize:'35 MB' },
-        { id:25, title:"Tintinalli's Emergency Medicine 9th", author:'Judith E. Tintinalli', desc:'المرجع الأساسي في طب الطوارئ والحالات الحرجة.', cat:'طب الطوارئ', catIcon:'fa-ambulance', downloads:680, views:1900, fileSize:'60 MB' },
-        { id:26, title:"DeVita Hellman Rosenberg's Cancer 12th", author:'Vincent T. DeVita', desc:'المرجع الشامل في علم الأورام وعلاج السرطان.', cat:'علم الأورام', catIcon:'fa-ribbon', downloads:410, views:1200, fileSize:'65 MB' },
-        { id:27, title:"Langman's Medical Embryology 14th", author:'Thomas W. Sadler', desc:'علم الأجنة الطبي مع تطبيقات سريرية وتشوهات خلقية.', cat:'علم التشريح', catIcon:'fa-bone', downloads:620, views:1800, fileSize:'28 MB' },
-        { id:28, title:"First Aid for the USMLE Step 1 2025", author:'Tao Le', desc:'المراجعة الذهبية لاختبار USMLE Step 1.', cat:'الطب الباطني', catIcon:'fa-stethoscope', downloads:2000, views:6000, fileSize:'40 MB' },
-        { id:29, title:"Robbins Basic Pathology 11th", author:'Vinay Kumar', desc:'أساسيات علم الأمراض للطلاب.', cat:'علم الأمراض', catIcon:'fa-microscope', downloads:780, views:2200, fileSize:'45 MB' },
-        { id:30, title:"Clinical Neuroanatomy 8th Edition", author:'Richard S. Snell', desc:'التشريح العصبي السريري.', cat:'طب الأعصاب', catIcon:'fa-brain', downloads:560, views:1600, fileSize:'32 MB' }
-    ],
-    nextBookId: 31,
+    // Toast Notifications
+    function showToast(message, icon = 'fa-check-circle', isError = false) {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        if(isError) toast.style.background = 'var(--danger)';
+        toast.innerHTML = `<i class="fas ${icon}"></i> ${message}`;
+        container.appendChild(toast);
+        setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3000);
+    }
 
-    quizzes: [
-        { id:1, title:'اختبار تشريح الطرف العلوي', desc:'أسئلة شاملة في تشريح الطرف العلوي - العضلات، الأعصاب، والشرايين', cat:'علم التشريح', time:15, passing:60, questions:[
-            { id:1, text:'أي العضلات التالية تعمل كعاطفة رئيسية للساعد عند مفصل المرفق؟', a:'العضلة ثلاثية الرؤوس العضدية', b:'العضلة ذات الرأسين العضدية', c:'العضلة العضدية الكعبرية', d:'العضلة الدالية', correct:'B', explain:'العضلة ذات الرأسين العضدية (Biceps Brachii) هي العاطف الرئيسي للساعد. تنشأ من النتوء الغرابي والأحدوبة فوق الحقية للوح الكتف وتنغرس في الأحدوبة الكعبرية.' },
-            { id:2, text:'ما هو العصب المسؤول عن تعصيب العضلات الدالية والمدورة الصغيرة؟', a:'العصب الكعبري', b:'العصب المتوسط', c:'العصب الإبطي', d:'العصب الزندي', correct:'C', explain:'العصب الإبطي (Axillary Nerve C5-C6) ينشأ من الحبل الخلفي للضفيرة العضدية. يعصب العضلة الدالية والمدورة الصغيرة.' },
-            { id:3, text:'العظم الزورقي (Scaphoid) يقع في أي صف من عظام الرسغ؟', a:'الصف البعيد', b:'الصف القريب', c:'كلا الصفين', d:'لا يوجد في الرسغ', correct:'B', explain:'العظم الزورقي يقع في الصف القريب من عظام الرسغ. كسره شائع عند السقوط على اليد الممدودة.' },
-            { id:4, text:'الشريان تحت الترقوة الأيمن يتفرع مباشرة من:', a:'قوس الأبهر', b:'الجذع العضدي الرأسي', c:'الشريان السباتي الأصلي', d:'الشريان الإبطي', correct:'B', explain:'الجذع العضدي الرأسي هو أول فرع من قوس الأبهر. يتفرع إلى الشريان تحت الترقوة الأيمن والسباتي الأصلي الأيمن.' },
-            { id:5, text:'العصب الذي يمر عبر النفق الرسغي هو:', a:'العصب الزندي', b:'العصب الكعبري', c:'العصب المتوسط', d:'العصب الجلدي الإنسي', correct:'C', explain:'العصب المتوسط يمر عبر النفق الرسغي مع الأوتار المثنية. انضغاطه يسبب متلازمة النفق الرسغي.' }
-        ]},
-        { id:2, title:'اختبار علم الأدوية - مضادات الميكروبات', desc:'أسئلة في المضادات الحيوية وآليات عملها وتطبيقاتها', cat:'علم الأدوية', time:20, passing:60, questions:[
-            { id:1, text:'ما هي آلية عمل المضادات الحيوية من عائلة البنسلين؟', a:'تثبيط تخليق البروتين', b:'تثبيط تخليق الجدار الخلوي', c:'تثبيط تضاعف DNA', d:'تثبيط الغشاء الخلوي', correct:'B', explain:'البنسلين يثبط إنزيمات Transpeptidase المسؤولة عن تشبيك الببتيدوغليكان في الجدار الخلوي البكتيري.' },
-            { id:2, text:'أي الأدوية التالية ينتمي لعائلة الماكروليدات؟', a:'سيبروفلوكساسين', b:'دوكسيسايكلين', c:'أزيثروميسين', d:'جنتاميسين', correct:'C', explain:'أزيثروميسين من الماكروليدات. يرتبط بالوحدة 50S ويمنع translocation.' },
-            { id:3, text:'لماذا يمنع استخدام التتراسايكلين تحت سن 8 سنوات؟', a:'فشل كلوي', b:'تثبيط نخاع العظم', c:'تصبغ الأسنان الدائم', d:'تشوهات عظمية', correct:'C', explain:'يرتبط بالكالسيوم في الأسنان النامية مسبباً تصبغاً بنياً دائماً.' },
-            { id:4, text:'متلازمة الرجل الأحمر أثر جانبي لأي مضاد حيوي؟', a:'بنسلين', b:'كليندامايسين', c:'فانكومايسين', d:'مترونيدازول', correct:'C', explain:'تحدث مع التسريب السريع للفانكومايسين بسبب تحرر الهيستامين.' },
-            { id:5, text:'ترياق التسمم بالأسيتامينوفين:', a:'نالوكسون', b:'N-أسيتيل سيستئين', c:'فلومازينيل', d:'بيكربونات', correct:'B', explain:'NAC يعيد الجلوتاثيون ويزيل سمية NAPQI. يعطى خلال 8-10 ساعات.' }
-        ]},
-        { id:3, title:'اختبار علم الأمراض - الأورام', desc:'أسئلة في بيولوجيا الأورام والجينات الورمية', cat:'علم الأمراض', time:20, passing:60, questions:[
-            { id:1, text:'جين TP53 يسمى "حارس الجينوم" لأن p53:', a:'يحفز الانقسام', b:'يراقب تلف DNA ويوقف دورة الخلية', c:'يثبط المناعة', d:'يزيد الأوعية', correct:'B', explain:'p53 يراقب سلامة DNA. عند تلفه يوقف دورة الخلية أو يحفز apoptosis.' },
-            { id:2, text:'الورم الخبيث من النسيج الطلائي يسمى:', a:'ساركوما', b:'كارسينوما', c:'لمفوما', d:'ورم أرومي', correct:'B', explain:'الكارسينوما تشكل 85% من السرطانات. الساركوما من النسيج الضام.' },
-            { id:3, text:'أشيع ورم كبدي خبيث أولي:', a:'ورم وعائي', b:'سرطان الخلايا الكبدية', c:'ورم غدي', d:'ساركوما', correct:'B', explain:'HCC مرتبط بتشمع الكبد والتهاب B وC والأفلاتوكسين.' },
-            { id:4, text:'PSA علامة ورمية لسرطان:', a:'القولون', b:'الثدي', c:'البروستات', d:'المبيض', correct:'C', explain:'PSA بروتين من البروستات. طبيعي <4 ng/mL. يرتفع في السرطان والتضخم الحميد.' },
-            { id:5, text:'انتقال السرطان عبر الدم:', a:'غزو موضعي', b:'انبثاث لمفاوي', c:'انبثاث دموي', d:'زرع', correct:'C', explain:'الانبثاث الدموي عبر الأوردة. الكبد والرئتين والعظام أشيع مواقع الانبثاث.' }
-        ]},
-        { id:4, title:'اختبار فسيولوجيا القلب', desc:'أسئلة في فسيولوجيا الدورة الدموية', cat:'الفسيولوجيا', time:20, passing:60, questions:[
-            { id:1, text:'النتاج القلبي الطبيعي في الراحة:', a:'2-3 لتر/د', b:'5-6 لتر/د', c:'10-12 لتر/د', d:'15-20 لتر/د', correct:'B', explain:'CO = SV × HR = 70mL × 70bpm ≈ 5L/min. يزيد 4-5 أضعاف بالتمرين.' },
-            { id:2, text:'موجة P في ECG تمثل:', a:'إزالة استقطاب البطينين', b:'إزالة استقطاب الأذينين', c:'إعادة استقطاب البطينين', d:'الانقباض البطيني', correct:'B', explain:'موجة P تمثل إزالة الاستقطاب الأذيني الذي يؤدي لانقباض الأذينين.' },
-            { id:3, text:'الضغط الطبيعي للشريان الرئوي:', a:'120/80', b:'25/10', c:'60/40', d:'90/60', correct:'B', explain:'الدورة الرئوية جهاز ضغط منخفض. المتوسط حوالي 15 mmHg.' },
-            { id:4, text:'RAAS ينشط استجابة لـ:', a:'ارتفاع الضغط', b:'انخفاض الضغط', c:'ارتفاع الصوديوم', d:'انخفاض البوتاسيوم', correct:'B', explain:'الرينين يفرز عند انخفاض ضغط الدم أو نقص تروية الكلى.' },
-            { id:5, text:'الانقباض (Systole) يغلق:', a:'الصمامات الهلالية', b:'الصمامات الأذينية البطينية', c:'جميع الصمامات', d:'لا يغلق شيئاً', correct:'B', explain:'في الانقباض ينغلق التاجي وثلاثي الشرف (S1) وينفتح الأبهري والرئوي.' }
-        ]},
-        { id:5, title:'اختبار الجراحة العامة', desc:'أسئلة في مبادئ الجراحة', cat:'الجراحة العامة', time:15, passing:60, questions:[
-            { id:1, text:'أول خطوة في علاج الصدمة النزفية:', a:'إعطاء سوائل', b:'وقف النزيف', c:'نقل دم', d:'رفع القدمين', correct:'B', explain:'الأولوية لوقف النزيف (ABCDE). ثم تعويض السوائل.' },
-            { id:2, text:'الفتق الإربي غير المباشر يمر عبر:', a:'مثلث هيسلباخ', b:'الحلقة الإربية العميقة', c:'القناة الفخذية', d:'الخط الأبيض', correct:'B', explain:'الفتق غير المباشر يمر عبر الحلقة العميقة والقناة الإربية. أشيع عند الشباب.' },
-            { id:3, text:'علامة مورفي موجبة في:', a:'التهاب الزائدة', b:'التهاب المرارة', c:'التهاب البنكرياس', d:'انسداد معوي', correct:'B', explain:'علامة مورفي: ألم وتوقف التنفس عند جس المراق الأيمن. تدل على التهاب المرارة الحاد.' },
-            { id:4, text:'المضاد الحيوي الوقائي قبل الجراحة يعطى:', a:'قبل 24 ساعة', b:'قبل 30-60 دقيقة', c:'بعد الشق', d:'بعد العملية', correct:'B', explain:'يعطى المضاد الحيوي الوقائي قبل 30-60 دقيقة من الشق الجراحي لضمان تركيز نسيجي كافٍ.' },
-            { id:5, text:'أشيع أورام الثدي الحميدة:', a:'السرطان الفصيصي', b:'الورم الغدي الليفي', c:'مرض باجيت', d:'الساركوما', correct:'B', explain:'الورم الغدي الليفي أشيع أورام الثدي الحميدة خاصة عند الشابات.' }
-        ]}
-    ],
+    // Navigation Router
+    function navigate(tab) {
+        document.querySelectorAll('.nav-item, .mobile-nav-item').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll(`[data-tab="${tab}"], [data-mobile-tab="${tab}"]`).forEach(el => el.classList.add('active'));
+        
+        const app = document.getElementById('app');
+        window.scrollTo(0,0);
+        
+        if(tab === 'home') app.innerHTML = renderHome();
+        else if(tab === 'library') { app.innerHTML = renderLibrary(); filterBooks('الكل'); }
+        else if(tab === 'quizzes') app.innerHTML = renderQuizzes();
+        else if(tab === 'ai') app.innerHTML = renderAI();
+    }
 
-    posts: [
-        { id:1, title:'كيف أذاكر مادة التشريح بفعالية؟', content:'السلام عليكم. أنا طالب سنة رابعة وأعاني من حفظ أسماء العضلات والأعصاب والشرايين. ما هي أفضل المصادر والطرق؟ هل تنصحون بتطبيقات الـ3D؟', author:'أحمد محمد العتيبي', replies:4, date:'2025-05-15', cat:'علم التشريح' },
-        { id:2, title:'تجربتي الكاملة مع USMLE Step 1', content:'الحمد لله أنهيت Step 1 بمعدل 248. رحلتي استغرقت 8 أشهر. سأشارككم المصادر (First Aid, UWorld, Pathoma, Sketchy) وجدول المذاكرة.', author:'سارة خالد الحربي', replies:6, date:'2025-05-20', cat:'عام' },
-        { id:3, title:'الفرق بين ACE inhibitors و ARBs', content:'أنا في سنة خامسة وعندي لبس. ما الفرق العملي بين ACEi و ARBs من حيث آلية العمل والآثار الجانبية ومتى نفضل واحد على الثاني؟', author:'محمد نور الدين', replies:3, date:'2025-06-01', cat:'علم الأدوية' },
-        { id:4, title:'نصائح للتعامل مع ضغط الامتحانات', content:'مع اقتراب الامتحانات النهائية، الضغط النفسي بدأ يزيد. كيف تتعاملون مع التوتر؟ شاركوني تجاربكم.', author:'فاطمة الزهراء', replies:5, date:'2025-06-10', cat:'عام' },
-        { id:5, title:'Schwartz vs Sabiston لمقرر الجراحة', content:'محتار بين الكتابين. اللي جربهم يفيدنا: أيهم أفضل من حيث الشرح والصور والتركيز على المهم؟', author:'عمر عبدالرحمن', replies:4, date:'2025-06-15', cat:'الجراحة العامة' },
-        { id:6, title:'كيف أتعلم قراءة ECG من الصفر؟', content:'مبتدئ تماماً في تخطيط القلب. كل ما أشوف ECG أحس إني ضايع. من أين أبدأ؟', author:'لينا محمود', replies:3, date:'2025-06-20', cat:'طب القلب' },
-        { id:7, title:'تجربتي في سنة الامتياز - مستشفى الملك فيصل', content:'أنهيت سنة الامتياز قبل شهر في التخصصي بالرياض. تعلمت الكثير. اللي عنده أسئلة يتفضل.', author:'نادية كريم', replies:7, date:'2025-07-01', cat:'عام' },
-        { id:8, title:'مضادات التخثر: Heparin vs Warfarin', content:'إمتى نستخدم Heparin وإمتى Warfarin؟ وكيف نراقب العلاج؟', author:'خالد ولي الدين', replies:2, date:'2025-07-05', cat:'علم الأدوية' },
-        { id:9, title:'هل تنصحون بدخول تخصص الجراحة؟', content:'مقبل على اختيار التخصص وأفكر في الجراحة. لكن أسمع إنها مرهقة. اللي في المجال يشاركنا.', author:'نورا سامي', replies:5, date:'2025-07-10', cat:'الجراحة العامة' },
-        { id:10, title:'أفضل تطبيقات الموبايل لطلاب الطب 2025', content:'جمعت لكم أفضل التطبيقات: Complete Anatomy, Medscape, UpToDate, Anki, Figure 1, Amboss... شاركوني تطبيقاتكم.', author:'يوسف إبراهيم', replies:8, date:'2025-07-15', cat:'عام' }
-    ],
-    nextPostId: 11
-};
-
-// ==================== NAVIGATION ====================
-function navigate(tab) {
-    APP.currentTab = tab;
-    $$('.nav-links a[data-tab]').forEach(a => a.classList.remove('active'));
-    const link = $(`.nav-links a[data-tab="${tab}"]`);
-    if (link) link.classList.add('active');
-    $('#mainContent').innerHTML = RENDER[tab] ? RENDER[tab]() : RENDER.home();
-    window.scrollTo({ top:0, behavior:'smooth' });
-}
-
-function showToast(msg, type='success') {
-    const t = document.createElement('div');
-    t.className = 'toast';
-    t.style.background = type==='error'?'var(--danger)':type==='info'?'var(--accent)':'var(--primary)';
-    t.textContent = msg;
-    $('#toastContainer').appendChild(t);
-    setTimeout(() => t.remove(), 3000);
-}
-
-function openModal(html) { $('#modalBody').innerHTML = html; $('#modalOverlay').classList.add('active'); }
-function closeModal() { $('#modalOverlay').classList.remove('active'); }
-$('#modalOverlay').addEventListener('click', function(e) { if(e.target===this) closeModal(); });
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
-
-// ==================== AUTH ====================
-function login(email, pw) {
-    const u = DB.users.find(x => x.email === email && x.password === pw && x.is_active);
-    if (!u) { showToast('بيانات الدخول غير صحيحة','error'); return false; }
-    APP.token = 'tok_'+u.id; APP.user = u;
-    localStorage.setItem('ms_token', APP.token);
-    localStorage.setItem('ms_user', JSON.stringify(u));
-    updateNav(); showToast(`مرحباً ${u.full_name}!`,'success');
-    navigate(u.role==='admin'?'admin':'home'); return true;
-}
-
-function register(name, email, pw, uni, year) {
-    if (DB.users.find(x => x.email === email)) { showToast('البريد مسجل','error'); return false; }
-    if (pw.length < 8) { showToast('كلمة المرور قصيرة','error'); return false; }
-    const u = { id:DB.nextUserId++, full_name:name, email, password:pw, role:'student', university:uni, academic_year:year, is_active:true };
-    DB.users.push(u); APP.token = 'tok_'+u.id; APP.user = u;
-    localStorage.setItem('ms_token', APP.token);
-    localStorage.setItem('ms_user', JSON.stringify(u));
-    updateNav(); showToast('تم إنشاء الحساب!','success');
-    navigate('home'); return true;
-}
-
-function logout() {
-    APP.token = null; APP.user = null;
-    localStorage.removeItem('ms_token'); localStorage.removeItem('ms_user');
-    updateNav(); showToast('تم تسجيل الخروج','success'); navigate('home');
-}
-
-function updateNav() {
-    const li = APP.isLoggedIn();
-    $('#loginLink').style.display = li ? 'none' : '';
-    $('#registerLink').style.display = li ? 'none' : '';
-    $('#logoutLink').style.display = li ? '' : 'none';
-    $('#adminLink').style.display = APP.isAdmin() ? '' : 'none';
-}
-
-// ==================== RENDER ====================
-const RENDER = {
-    home() {
+    // ================== VIEWS ==================
+    function renderHome() {
         return `
-        <div class="hero">
-            <i class="fas fa-stethoscope" style="font-size:4.5rem;color:var(--gold);margin-bottom:1rem;display:block;"></i>
-            <h1>منصة <span>Medical Student</span></h1>
-            <p>المنصة التعليمية المتكاملة لطلاب الطب البشري | إشراف الدكتور همام</p>
-            <p style="font-size:1.05rem;opacity:0.85;">📚 ${DB.books.length}+ كتاب | 🧠 ${DB.quizzes.reduce((s,q)=>s+q.questions.length,0)}+ سؤال | 🤖 AI | 💬 مجتمع | 👨‍⚕️ محاكيات</p>
-            <div class="hero-buttons" style="margin-top:2.5rem;">
-                <button class="btn btn-gold" style="padding:1rem 2.5rem;font-size:1.15rem;" onclick="navigate('register')"><i class="fas fa-rocket"></i> ابدأ رحلتك الآن</button>
-                <button class="btn btn-outline" style="padding:1rem 2.5rem;font-size:1.15rem;" onclick="navigate('library')"><i class="fas fa-book-medical"></i> تصفح المكتبة</button>
+            <div class="hero">
+                <h1>مرحباً بك في أضخم منصة طبية</h1>
+                <p>صُممت خصيصاً لتلبية احتياجات طالب الطب العربي. مراجع عالمية، اختبارات ذكية، ومساعدك الشخصي للتشخيص والدراسة.</p>
+                <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap;">
+                    <button class="btn btn-primary" onclick="navigate('library')"><i class="fas fa-book-open"></i> استكشف المكتبة</button>
+                    <button class="btn btn-outline" onclick="navigate('ai')"><i class="fas fa-brain"></i> اسأل د. همام AI</button>
+                </div>
             </div>
-        </div>
-        <div class="stats-grid">
-            <div class="stat-card"><i class="fas fa-book"></i><h3>+${DB.books.length}</h3><p>كتاب ومرجع</p></div>
-            <div class="stat-card"><i class="fas fa-user-graduate"></i><h3>+${DB.users.length-1}</h3><p>طالب</p></div>
-            <div class="stat-card"><i class="fas fa-question-circle"></i><h3>+${DB.quizzes.reduce((s,q)=>s+q.questions.length,0)}</h3><p>سؤال</p></div>
-            <div class="stat-card"><i class="fas fa-flask"></i><h3>+290</h3><p>محاكاة</p></div>
-        </div>
-        <h2 class="section-title">🎯 ماذا نقدم؟</h2>
-        <div class="cards-grid">
-            <div class="feature-card"><div class="feature-icon"><i class="fas fa-book-medical"></i></div><h3>مكتبة طبية عملاقة</h3><p style="color:var(--text-secondary);">${DB.books.length} كتاب ومرجع بأحدث الإصدارات</p><button class="btn btn-primary" style="margin-top:1.2rem;" onclick="navigate('library')">تصفح</button></div>
-            <div class="feature-card"><div class="feature-icon"><i class="fas fa-brain"></i></div><h3>اختبارات ذكية</h3><p style="color:var(--text-secondary);">${DB.quizzes.length} اختبارات مع تصحيح فوري</p><button class="btn btn-gold" style="margin-top:1.2rem;" onclick="navigate('quizzes')">جرب</button></div>
-            <div class="feature-card"><div class="feature-icon"><i class="fas fa-comments"></i></div><h3>مجتمع طلابي</h3><p style="color:var(--text-secondary);">${DB.posts.length}+ منشور للنقاش وتبادل الخبرات</p><button class="btn btn-primary" style="margin-top:1.2rem;" onclick="navigate('forum')">شارك</button></div>
-            <div class="feature-card"><div class="feature-icon"><i class="fas fa-robot"></i></div><h3>أدوات AI</h3><p style="color:var(--text-secondary);">تشخيص تفاضلي، تلخيص، ECG، تحليل وراثي</p><button class="btn btn-gold" style="margin-top:1.2rem;" onclick="navigate('ai')">استكشف</button></div>
-        </div>
-        <div class="card" style="text-align:center;background:linear-gradient(135deg,#fef3c7,#fde68a);border:none;margin-top:2rem;">
-            <h2>👨‍⚕️ تحت إشراف الدكتور همام</h2>
-            <p style="color:var(--text-secondary);margin:0.8rem 0;">أفضل المصادر الطبية بأحدث الإصدارات العالمية</p>
-            <div style="display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;">
-                ${DB.categories.slice(0,12).map(c => `<span class="badge badge-primary"><i class="fas ${c.icon}"></i> ${c.name_ar}</span>`).join('')}
+            
+            <h2 style="margin-bottom: 1.5rem; color: var(--text);"><i class="fas fa-fire text-danger"></i> المراجع الأكثر تحميلاً</h2>
+            <div class="grid">
+                ${DB.books.slice(0,3).map(book => createBookCard(book)).join('')}
             </div>
-        </div>`;
-    },
+        `;
+    }
 
-    library() {
+    function renderLibrary() {
         return `
-        <h1>📚 المكتبة الطبية</h1><p style="color:var(--text-secondary);margin-bottom:1.5rem;">${DB.books.length} كتاب ومرجع طبي بأحدث الإصدارات | إشراف الدكتور همام</p>
-        <div class="search-box"><input type="text" id="libSearch" placeholder="ابحث عن كتاب، مؤلف، أو تخصص..." oninput="filterLib()"><i class="fas fa-search"></i></div>
-        <div style="margin-bottom:1.5rem;display:flex;gap:0.4rem;flex-wrap:wrap;" id="catFilters">
-            <button class="btn btn-sm btn-primary" onclick="filterLibCat('')">الكل</button>
-            ${DB.categories.map(c => `<button class="btn btn-sm" onclick="filterLibCat('${c.name_ar}')"><i class="fas ${c.icon}"></i> ${c.name_ar}</button>`).join('')}
-        </div>
-        <div class="cards-grid" id="booksGrid">
-            ${DB.books.map(b => `
-                <div class="book-card" data-cat="${b.cat}">
-                    <div class="book-cover"><i class="fas ${b.catIcon||'fa-book'}"></i></div>
-                    <div class="book-info">
-                        <h3>${b.title}</h3><p style="color:var(--text-secondary);font-size:0.85rem;">✍️ ${b.author}</p>
-                        <span class="badge badge-primary">${b.cat}</span>
-                        <p style="margin:0.4rem 0;font-size:0.82rem;color:var(--text-muted);">${b.desc.substring(0,80)}...</p>
-                        <p style="font-size:0.75rem;color:var(--text-muted);">📦 ${b.fileSize}</p>
-                        <button class="btn btn-primary btn-sm" onclick="downloadBook(${b.id})"><i class="fas fa-download"></i> تحميل PDF</button>
-                        <p style="margin-top:0.3rem;font-size:0.72rem;color:var(--text-muted);">📥 ${b.downloads} | 👁 ${b.views}</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom: 1.5rem; gap:1rem;">
+                <h2 style="color: var(--text);"><i class="fas fa-book-medical"></i> المكتبة الطبية الشاملة</h2>
+                <div style="position:relative; width: 100%; max-width: 400px;">
+                    <input type="text" placeholder="ابحث باسم الكتاب أو المؤلف..." style="width:100%; padding:0.8rem 1rem 0.8rem 2.5rem; border:2px solid var(--border); border-radius:30px; background:var(--card); color:var(--text); font-family:inherit; outline:none;" onkeyup="searchBooks(this.value)">
+                    <i class="fas fa-search" style="position:absolute; left:15px; top:50%; transform:translateY(-50%); color:var(--text-muted);"></i>
+                </div>
+            </div>
+            
+            <div class="filters" id="categoryFilters">
+                ${DB.categories.map(cat => `
+                    <button class="filter-btn ${cat === 'الكل' ? 'active' : ''}" onclick="filterBooks('${cat}')">${cat}</button>
+                `).join('')}
+            </div>
+
+            <div class="grid" id="booksGrid"></div>
+        `;
+    }
+
+    function createBookCard(book) {
+        return `
+            <div class="card book-card" data-cat="${book.cat}">
+                <div class="book-cover">
+                    <span class="badge">${book.cat}</span>
+                    <i class="fas ${book.icon}"></i>
+                </div>
+                <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:5px; color:var(--text); line-height:1.3;">${book.title}</h3>
+                <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:10px;"><i class="fas fa-user-edit"></i> ${book.author}</p>
+                <p style="font-size:0.9rem; margin-bottom:15px; color:var(--text); flex-grow:1;">${book.desc}</p>
+                <button class="btn btn-primary" style="width:100%;" onclick="downloadBook('${book.title}')">
+                    <i class="fas fa-cloud-download-alt"></i> تحميل الملف (${book.size})
+                </button>
+            </div>
+        `;
+    }
+
+    function renderQuizzes() {
+        return `
+            <h2 style="margin-bottom: 1.5rem; color: var(--text);"><i class="fas fa-laptop-medical"></i> مركز التقييم والاختبارات</h2>
+            <div class="grid">
+                ${DB.quizzes.map(quiz => `
+                    <div class="card">
+                        <div style="font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem;"><i class="fas ${quiz.icon}"></i></div>
+                        <h3 style="margin-bottom: 10px; color: var(--text); font-weight: 800;">${quiz.title}</h3>
+                        <div style="display:flex; gap:15px; color:var(--text-muted); font-size:0.9rem; margin-bottom:20px; font-weight:700;">
+                            <span><i class="fas fa-list-ol"></i> ${quiz.qCount} سؤال</span>
+                            <span><i class="fas fa-stopwatch"></i> ${quiz.time}</span>
+                        </div>
+                        <button class="btn btn-primary" style="width:100%;" onclick="startQuiz(${quiz.id})">
+                            <i class="fas fa-play-circle"></i> بدء الاختبار فوراً
+                        </button>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    function renderAI() {
+        return `
+            <div class="chat-container">
+                <div style="padding: 1rem 1.5rem; background: var(--primary); color: white; font-weight: 800; display:flex; align-items:center; gap:10px;">
+                    <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 50%; display:flex; justify-content:center; align-items:center; font-size:1.2rem;"><i class="fas fa-robot"></i></div>
+                    <div>
+                        <div style="font-size:1.1rem;">د. همام الذكي (AI)</div>
+                        <div style="font-size:0.75rem; font-weight:600; color:var(--success);"><i class="fas fa-circle" style="font-size:0.5rem; vertical-align:middle;"></i> متصل الآن - جاهز للمساعدة</div>
                     </div>
                 </div>
-            `).join('')}
-        </div>`;
-    },
-
-    quizzes() {
-        return `
-        <h1>📝 الاختبارات التفاعلية</h1><p style="color:var(--text-secondary);margin-bottom:2rem;">${DB.quizzes.length} اختبارات مع ${DB.quizzes.reduce((s,q)=>s+q.questions.length,0)} سؤال MCQ حقيقي</p>
-        <div class="cards-grid" id="quizList">
-            ${DB.quizzes.map(q => `
-                <div class="card"><h3>${q.title}</h3><p style="color:var(--text-secondary);">🏷 ${q.cat} | 📝 ${q.questions.length} أسئلة | ⏱ ${q.time} دقيقة</p><p style="color:var(--text-muted);margin:0.5rem 0;">${q.desc}</p><button class="btn btn-primary" onclick="startQuiz(${q.id})"><i class="fas fa-play"></i> ابدأ</button></div>
-            `).join('')}
-        </div>
-        <div id="quizArea" style="display:none;"></div>`;
-    },
-
-    forum() {
-        return `
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
-            <h1>💬 مجتمع طلاب الطب</h1>
-            ${APP.isLoggedIn() ? '<button class="btn btn-gold" onclick="showNewPost()"><i class="fas fa-plus"></i> منشور جديد</button>' : '<button class="btn btn-primary" onclick="navigate(\'login\')">سجل دخول للمشاركة</button>'}
-        </div>
-        <div id="newPostForm" style="display:none;" class="card">
-            <h3>✍️ منشور جديد</h3>
-            <div class="form-group"><label>العنوان</label><input type="text" class="form-control" id="postTitle"></div>
-            <div class="form-group"><label>المحتوى</label><textarea class="form-control" id="postContent" rows="4"></textarea></div>
-            <button class="btn btn-gold" onclick="createPost()"><i class="fas fa-paper-plane"></i> نشر</button>
-            <button class="btn" onclick="$('#newPostForm').style.display='none'" style="margin-right:0.5rem;">إلغاء</button>
-        </div>
-        ${DB.posts.map(p => `
-            <div class="card"><h3>${p.title}</h3><p style="color:var(--text-secondary);margin:0.5rem 0;">${p.content.substring(0,180)}...</p>
-            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
-                <p style="color:var(--text-muted);font-size:0.85rem;">👤 ${p.author} | 💬 ${p.replies} | 📅 ${p.date} | 🏷 ${p.cat}</p>
-                <button class="btn btn-primary btn-sm" onclick="viewPost(${p.id})">عرض</button>
-            </div></div>
-        `).join('')}`;
-    },
-
-    ai() {
-        return `
-        <h1>🤖 مركز الذكاء الاصطناعي الطبي</h1>
-        <div class="cards-grid" style="margin-top:2rem;">
-            <div class="card"><h2><i class="fas fa-stethoscope"></i> التشخيص التفاضلي</h2><p style="color:var(--text-secondary);margin:1rem 0;">أدخل الأعراض الرئيسية</p><textarea class="form-control" id="symptomsInput" rows="3" placeholder="حمى، سعال جاف، ضيق تنفس..."></textarea><button class="btn btn-primary" style="margin-top:1rem;" onclick="runDiagnosis()">تحليل</button><div id="diagnosisResult" style="margin-top:1rem;"></div></div>
-            <div class="card"><h2><i class="fas fa-file-alt"></i> تلخيص المحاضرات</h2><p style="color:var(--text-secondary);margin:1rem 0;">ألصق نص المحاضرة</p><textarea class="form-control" id="lectureInput" rows="3"></textarea><button class="btn btn-gold" style="margin-top:1rem;" onclick="runSummary()">تلخيص</button><div id="summaryResult" style="margin-top:1rem;"></div></div>
-            <div class="card" style="text-align:center;"><i class="fas fa-heartbeat" style="font-size:3rem;color:var(--accent);margin-bottom:1rem;"></i><h3>محاكي ECG</h3><button class="btn btn-primary" onclick="simulateECG()">تشغيل</button></div>
-            <div class="card" style="text-align:center;"><i class="fas fa-dna" style="font-size:3rem;color:var(--gold);margin-bottom:1rem;"></i><h3>تحليل وراثي</h3><button class="btn btn-gold" onclick="showToast('🧬 أداة التحليل الوراثي','info')">تحليل</button></div>
-            <div class="card" style="text-align:center;"><i class="fas fa-x-ray" style="font-size:3rem;color:var(--success);margin-bottom:1rem;"></i><h3>تفسير أشعة</h3><button class="btn btn-success" onclick="showToast('🩻 أداة التفسير','info')">تفسير</button></div>
-            <div class="card" style="text-align:center;"><i class="fas fa-calculator" style="font-size:3rem;color:#8b5cf6;margin-bottom:1rem;"></i><h3>حاسبة طبية</h3><button class="btn" style="background:#8b5cf6;color:#fff;" onclick="showToast('🧮 الحاسبة الطبية','info')">فتح</button></div>
-        </div>`;
-    },
-
-    login() {
-        return `<div class="card" style="max-width:500px;margin:4rem auto;"><h2 style="text-align:center;margin-bottom:2rem;"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</h2>
-        <div class="form-group"><label>البريد</label><input type="email" class="form-control" id="loginEmail" value="dr.humam@medicalstudent.com"></div>
-        <div class="form-group"><label>كلمة المرور</label><input type="password" class="form-control" id="loginPassword" value="Med@Humam2025#Secure"></div>
-        <button class="btn btn-primary" style="width:100%;" onclick="handleLogin()">دخول</button>
-        <p style="text-align:center;margin-top:1rem;">ليس لديك حساب؟ <a href="#" onclick="navigate('register')">إنشاء حساب</a></p></div>`;
-    },
-
-    register() {
-        return `<div class="card" style="max-width:500px;margin:4rem auto;"><h2 style="text-align:center;margin-bottom:2rem;"><i class="fas fa-user-plus"></i> إنشاء حساب</h2>
-        <div class="form-group"><label>الاسم</label><input type="text" class="form-control" id="regName"></div>
-        <div class="form-group"><label>البريد</label><input type="email" class="form-control" id="regEmail"></div>
-        <div class="form-group"><label>كلمة المرور (8+ أحرف)</label><input type="password" class="form-control" id="regPassword" minlength="8"></div>
-        <div class="form-group"><label>الجامعة</label><input type="text" class="form-control" id="regUni"></div>
-        <div class="form-group"><label>السنة</label><select class="form-control" id="regYear"><option value="">اختر</option><option>الأولى</option><option>الثانية</option><option>الثالثة</option><option>الرابعة</option><option>الخامسة</option><option>السادسة</option><option>امتياز</option></select></div>
-        <button class="btn btn-gold" style="width:100%;" onclick="handleRegister()">إنشاء</button>
-        <p style="text-align:center;margin-top:1rem;">لديك حساب؟ <a href="#" onclick="navigate('login')">دخول</a></p></div>`;
-    },
-
-    admin() {
-        if (!APP.isAdmin()) return RENDER.login();
-        return `<h1>⚙️ لوحة إدارة همام</h1>
-        <div class="stats-grid" style="margin:2rem 0;">
-            <div class="stat-card"><i class="fas fa-users"></i><h3>${DB.users.length}</h3><p>مستخدم</p></div>
-            <div class="stat-card"><i class="fas fa-book"></i><h3>${DB.books.length}</h3><p>كتاب</p></div>
-            <div class="stat-card"><i class="fas fa-download"></i><h3>${DB.books.reduce((s,b)=>s+b.downloads,0)}</h3><p>تحميل</p></div>
-            <div class="stat-card"><i class="fas fa-comments"></i><h3>${DB.posts.length}</h3><p>منشور</p></div>
-        </div>
-        <h2>👥 المستخدمين (${DB.users.length})</h2>
-        ${DB.users.map(u => `<div class="card"><p><strong>${u.full_name}</strong> (${u.email}) | ${u.role} | ${u.university||'-'} | ${u.academic_year||'-'}</p></div>`).join('')}
-        <h2 style="margin-top:2rem;">📚 الكتب (${DB.books.length})</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:1rem;">
-            ${DB.books.map(b => `<div class="card"><p><strong>${b.title}</strong><br>${b.author} | 📥 ${b.downloads} | 📦 ${b.fileSize}</p></div>`).join('')}
-        </div>`;
+                <div class="chat-box" id="chatBox">
+                    <div class="msg msg-ai">أهلاً بك يا زميلي! أنا المساعد الذكي الخاص بمنصة Medical Student. يمكنك سؤالي عن أي حالة سريرية، أو شرح آلية عمل دواء، أو الاستفسار عن معلومة تشريحية. تفضل، كيف يمكنني مساعدتك اليوم؟</div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="aiInput" placeholder="اكتب استشارتك أو سؤالك الطبي هنا..." onkeypress="if(event.key === 'Enter') sendAIMsg()">
+                    <button class="btn btn-primary" onclick="sendAIMsg()"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        `;
     }
-};
 
-// ==================== HANDLERS ====================
-function handleLogin() { login($('#loginEmail').value.trim(), $('#loginPassword').value); }
-function handleRegister() {
-    register($('#regName').value.trim(), $('#regEmail').value.trim(), $('#regPassword').value, $('#regUni').value.trim(), $('#regYear').value);
-}
+    // ================== LOGIC FUNCTIONS ==================
+    
+    // Books Filtering
+    function filterBooks(cat) {
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.innerText === cat);
+        });
+        const grid = document.getElementById('booksGrid');
+        const filtered = cat === 'الكل' ? DB.books : DB.books.filter(b => b.cat === cat);
+        grid.innerHTML = filtered.map(b => createBookCard(b)).join('');
+        if(filtered.length === 0) grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:3rem; color:var(--text-muted);">لا توجد كتب في هذا القسم حالياً.</div>';
+    }
 
-// ==================== LIBRARY ====================
-function filterLib() {
-    const q = $('#libSearch').value.toLowerCase();
-    $$('#booksGrid .book-card').forEach(c => c.style.display = c.textContent.toLowerCase().includes(q) ? '' : 'none');
-}
-function filterLibCat(cat) {
-    $$('#catFilters button').forEach((b,i) => b.classList.toggle('btn-primary', i===0 ? cat==='' : b.textContent.trim().includes(cat)));
-    $$('#booksGrid .book-card').forEach(c => c.style.display = !cat || c.dataset.cat === cat ? '' : 'none');
-}
-function downloadBook(id) {
-    if (!APP.isLoggedIn()) { showToast('سجل دخول أولاً','error'); navigate('login'); return; }
-    const b = DB.books.find(x => x.id===id);
-    if (b) { b.downloads++; showToast(`📥 جاري تحميل: ${b.title} (${b.fileSize})`,'success'); }
-}
+    function searchBooks(query) {
+        query = query.toLowerCase();
+        const grid = document.getElementById('booksGrid');
+        const filtered = DB.books.filter(b => b.title.toLowerCase().includes(query) || b.author.toLowerCase().includes(query));
+        grid.innerHTML = filtered.map(b => createBookCard(b)).join('');
+    }
 
-// ==================== QUIZZES ====================
-function startQuiz(qid) {
-    if (!APP.isLoggedIn()) { showToast('سجل دخول أولاً','error'); navigate('login'); return; }
-    const quiz = DB.quizzes.find(q => q.id===qid);
-    if (!quiz) return;
-    APP.quizState = { quiz, answers:{}, timeLeft:quiz.time*60, timer:null };
-    $('#quizList').style.display = 'none';
-    $('#quizArea').style.display = 'block';
-    $('#quizArea').innerHTML = `
-        <div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;"><h2>${quiz.title}</h2><div class="timer" id="timerDisplay">${fmtTime(APP.quizState.timeLeft)}</div></div>
-        ${quiz.questions.map((q,i) => `
-            <div class="card" style="margin-bottom:1rem;"><h3>س ${i+1}: ${q.text}</h3><div style="margin-top:1rem;">
-                ${['A','B','C','D'].map(o => `<div class="quiz-option" onclick="selectQAns(${q.id},'${o}')" id="qo_${q.id}_${o}">${o}) ${q[o.toLowerCase()]}</div>`).join('')}
-            </div></div>
-        `).join('')}
-        <button class="btn btn-gold" style="width:100%;padding:1rem;font-size:1.1rem;" onclick="submitQuiz()"><i class="fas fa-check-circle"></i> تقديم الإجابات</button></div>`;
-    APP.quizState.timer = setInterval(() => {
-        APP.quizState.timeLeft--;
-        const td = $('#timerDisplay'); if (td) td.textContent = fmtTime(APP.quizState.timeLeft);
-        if (APP.quizState.timeLeft <= 0) { clearInterval(APP.quizState.timer); submitQuiz(); }
-    }, 1000);
-}
+    function downloadBook(title) {
+        showToast(`بدأ تحميل ${title}...`, 'fa-spinner fa-spin');
+    }
 
-function selectQAns(qid, opt) {
-    APP.quizState.answers[qid] = opt;
-    ['A','B','C','D'].forEach(o => { const el = $('#qo_'+qid+'_'+o); if (el) el.classList.remove('selected'); });
-    const el = $('#qo_'+qid+'_'+opt); if (el) el.classList.add('selected');
-}
+    // Quiz Engine
+    function startQuiz(id) {
+        currentQuiz = DB.quizzes.find(q => q.id === id);
+        currentQuestionIndex = 0;
+        score = 0;
+        document.getElementById('quizModal').style.display = 'flex';
+        renderQuestion();
+    }
 
-function submitQuiz() {
-    clearInterval(APP.quizState.timer);
-    const quiz = APP.quizState.quiz;
-    let correct = 0;
-    quiz.questions.forEach(q => { if (APP.quizState.answers[q.id] === q.correct) correct++; });
-    const score = Math.round((correct/quiz.questions.length)*100);
-    const passed = score >= quiz.passing;
-    $('#quizArea').innerHTML = `
-        <div class="card" style="text-align:center;">
-            <i class="fas ${passed?'fa-trophy':'fa-book'}" style="font-size:5rem;color:${passed?'var(--gold)':'var(--danger)'};margin-bottom:1rem;"></i>
-            <h2 style="color:${passed?'var(--success)':'var(--danger)'};">${passed?'🎉 مبروك! ناجح':'📚 راسب - حاول مجدداً'}</h2>
-            <p style="font-size:2.5rem;margin:1.5rem 0;font-weight:900;">${score}%</p>
-            <p>✅ ${correct} / ❌ ${quiz.questions.length-correct} من ${quiz.questions.length}</p>
-            ${quiz.questions.map((q,i) => `<div class="alert ${APP.quizState.answers[q.id]===q.correct?'alert-success':'alert-danger'}" style="text-align:right;margin-top:0.5rem;"><strong>س${i+1}:</strong> إجابتك: ${APP.quizState.answers[q.id]||'لم تجب'} | ✓ ${q.correct}<br><small>${q.explain}</small></div>`).join('')}
-            <button class="btn btn-primary" onclick="navigate('quizzes')" style="margin-top:1.5rem;">العودة</button></div>`;
-}
+    function renderQuestion() {
+        const q = currentQuiz.questions[currentQuestionIndex];
+        const html = `
+            <div style="text-align:center; margin-bottom:1rem; color:var(--text-muted); font-weight:700;">
+                السؤال ${currentQuestionIndex + 1} من ${currentQuiz.qCount}
+            </div>
+            <h3 style="font-size:1.3rem; margin-bottom:1.5rem; color:var(--text); line-height:1.5;">${q.q}</h3>
+            <div>
+                ${q.options.map((opt, i) => `
+                    <button class="quiz-option" onclick="checkAnswer(${i}, this)">${opt}</button>
+                `).join('')}
+            </div>
+        `;
+        document.getElementById('quizContent').innerHTML = html;
+    }
 
-function fmtTime(s) { const m=Math.floor(s/60), sec=s%60; return `${m.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`; }
+    function checkAnswer(selectedIndex, btnElement) {
+        const q = currentQuiz.questions[currentQuestionIndex];
+        const isCorrect = selectedIndex === q.answer;
+        
+        // Disable all buttons
+        const options = document.querySelectorAll('.quiz-option');
+        options.forEach(btn => btn.disabled = true);
+        
+        if(isCorrect) {
+            btnElement.classList.add('correct');
+            score++;
+            showToast('إجابة صحيحة!', 'fa-check', false);
+        } else {
+            btnElement.classList.add('wrong');
+            options[q.answer].classList.add('correct');
+            showToast('إجابة خاطئة!', 'fa-times', true);
+        }
 
-// ==================== FORUM ====================
-function showNewPost() { $('#newPostForm').style.display = 'block'; $('#postTitle').focus(); }
-function createPost() {
-    const t = $('#postTitle').value.trim(), c = $('#postContent').value.trim();
-    if (!t||!c) return showToast('املأ الحقول','error');
-    DB.posts.unshift({ id:DB.nextPostId++, title:t, content:c, author:APP.user.full_name, replies:0, date:new Date().toISOString().split('T')[0], cat:'عام' });
-    $('#newPostForm').style.display = 'none'; $('#postTitle').value=''; $('#postContent').value='';
-    showToast('تم النشر!','success'); navigate('forum');
-}
-function viewPost(id) {
-    const p = DB.posts.find(x => x.id===id);
-    if (!p) return;
-    openModal(`<h2>${p.title}</h2><p style="margin:1rem 0;line-height:2;">${p.content}</p><p style="color:var(--text-muted);">👤 ${p.author} | 📅 ${p.date} | 🏷 ${p.cat} | 💬 ${p.replies} ردود</p>`);
-}
+        setTimeout(() => {
+            currentQuestionIndex++;
+            if(currentQuestionIndex < currentQuiz.questions.length) {
+                renderQuestion();
+            } else {
+                showQuizResults();
+            }
+        }, 1500);
+    }
 
-// ==================== AI ====================
-function runDiagnosis() {
-    const s = $('#symptomsInput')?.value.trim();
-    if (!s) return showToast('أدخل الأعراض','error');
-    $('#diagnosisResult').innerHTML = `<div class="alert alert-info"><strong>نتيجة:</strong><br>• التهاب تنفسي علوي (45%)<br>• إنفلونزا (30%)<br>• التهاب شعب (15%)<br>• حساسية (10%)<br><small>⚠️ أداة تعليمية فقط</small></div>`;
-}
-function runSummary() {
-    const t = $('#lectureInput')?.value.trim();
-    if (!t) return showToast('أدخل النص','error');
-    $('#summaryResult').innerHTML = `<div class="alert alert-info"><strong>ملخص:</strong> تم تحليل ${t.length} حرف. النقاط الرئيسية مستخرجة.</div>`;
-}
-function simulateECG() {
-    const r = ['نظم جيبي طبيعي 70bpm','رجفان أذيني 110bpm','تسرع بطيني 150bpm','احصار AV درجة 1','انقلاب موجة T','ارتفاع ST احتشاء'];
-    showToast('🫀 '+r[Math.floor(Math.random()*r.length)],'info');
-}
+    function showQuizResults() {
+        const percentage = Math.round((score / currentQuiz.qCount) * 100);
+        const pass = percentage >= 50;
+        const html = `
+            <div style="text-align:center; padding: 2rem 0;">
+                <i class="fas ${pass ? 'fa-trophy text-success' : 'fa-times-circle text-danger'}" style="font-size:4rem; margin-bottom:1rem; color: ${pass ? 'var(--success)' : 'var(--danger)'}"></i>
+                <h2 style="margin-bottom:1rem; color:var(--text);">${pass ? 'ممتاز! اجتزت الاختبار' : 'للأسف، لم تجتز الاختبار'}</h2>
+                <div style="font-size:3rem; font-weight:900; color:var(--accent); margin-bottom:1rem;">${percentage}%</div>
+                <p style="color:var(--text-muted); font-size:1.1rem; margin-bottom:2rem;">لقد أجبت بشكل صحيح على ${score} من أصل ${currentQuiz.qCount} أسئلة.</p>
+                <button class="btn btn-primary" onclick="closeModal()">إنهاء وإغلاق</button>
+            </div>
+        `;
+        document.getElementById('quizContent').innerHTML = html;
+    }
 
-// ==================== INIT ====================
-document.addEventListener('DOMContentLoaded', () => { updateNav(); navigate('home'); });
+    function closeModal() {
+        document.getElementById('quizModal').style.display = 'none';
+        currentQuiz = null;
+    }
+
+    // AI Chat Engine
+    function sendAIMsg() {
+        const input = document.getElementById('aiInput');
+        const text = input.value.trim();
+        if(!text) return;
+        
+        const box = document.getElementById('chatBox');
+        
+        // User message
+        box.innerHTML += `<div class="msg msg-user">${text}</div>`;
+        input.value = '';
+        box.scrollTop = box.scrollHeight;
+
+        // Typing indicator
+        const typingId = 'typing-' + Date.now();
+        box.innerHTML += `
+            <div class="typing-indicator" id="${typingId}">
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+        `;
+        box.scrollTop = box.scrollHeight;
+
+        // Simulated AI Response with delay
+        setTimeout(() => {
+            document.getElementById(typingId).remove();
+            const aiResponse = generateAIResponse(text);
+            box.innerHTML += `<div class="msg msg-ai"><i class="fas fa-robot" style="color:var(--accent); margin-left:8px;"></i> ${aiResponse}</div>`;
+            box.scrollTop = box.scrollHeight;
+        }, 2000);
+    }
+
+    function generateAIResponse(text) {
+        if(text.includes('تشريح') || text.includes('عضلة')) return "في علم التشريح، تعتمد الحركة على المنشأ والاندغام للعضلة المذكورة. هل يمكنك تحديد العضلة أو العظمة التي تسأل عنها بالتحديد لكي أزودك بالتفاصيل الدقيقة من كتاب Gray's؟";
+        if(text.includes('دواء') || text.includes('علاج')) return "الرجاء تحديد اسم الدواء العلمي. بشكل عام يجب مراعاة الجرعة، التداخلات الدوائية (Drug interactions)، وموانع الاستعمال (Contraindications) بناءً على حالة المريض ووظائف الكبد والكلى.";
+        return "سؤال طبي ممتاز. كنموذج ذكاء اصطناعي طبي للمنصة، أنا مصمم للبحث في المراجع (مثل Harrison أو Robbins). يرجى تزويدي بمعطيات أكثر عن الحالة (كالعمر، الأعراض، أو نتائج التحاليل) لأعطيك التشخيص التفريقي الأقرب (Differential Diagnosis).";
+    }
+
+    // ================== INITIALIZATION ==================
+    window.onload = () => navigate('home');
+
 </script>
 </body>
 </html>
