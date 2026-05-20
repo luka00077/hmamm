@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Medical Student | همام - منصة طلاب الطب المتكاملة</title>
+  <!-- Fonts: Elegant & Readable -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #d6d2c4;  /* خلفية خارجية رمادية دافئة */
+      font-family: 'Cairo', sans-serif;
+      color: #2c2b28;
+      line-height: 1.55;
+    }
+
+    /* حاوية الموقع الرئيسية - أنيقة وحديثة بلمسة كلاسيكية */
+    .main-palace {
+      max-width: 1400px;
+      margin: 2rem auto;
+      background: #ffffff;
+      box-shadow: 0 25px 45px -12px rgba(0,0,0,0.35), 0 1px 2px rgba(0,0,0,0.05);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.2s;
+    }
+
+    /* الهيدر - نظيف واحترافي */
+    .pro-header {
+      padding: 1.6rem 2rem 1rem;
+      background: #fefcf7;
+      border-bottom: 1px solid #e9e2d4;
+      text-align: center;
+    }
+
+    .site-name {
+      font-size: 2.6rem;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      color: #2b2b2b;
+      letter-spacing: -0.5px;
+    }
+
+    .site-name span {
+      font-weight: 400;
+      color: #a3845c;
+    }
+
+    .owner-line {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      font-family: monospace;
+      letter-spacing: 1px;
+      color: #7d6e53;
+      border-top: 1px solid #ece3d7;
+      display: inline-block;
+      padding-top: 10px;
+    }
+
+    .owner-line i {
+      margin: 0 6px;
+      color: #b49162;
+    }
+
+    /* شريط التنقل - انيق */
+    .nav-bar {
+      background: #f5f2ea;
+      border-bottom: 1px solid #e0d6c8;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.2rem;
+      padding: 0.6rem 1rem;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.65rem 1.7rem;
+      margin: 0 0.1rem;
+      font-family: 'Cairo', sans-serif;
+      color: #4a4133;
+      cursor: pointer;
+      transition: 0.2s;
+      border-radius: 40px;
+    }
+
+    .nav-btn i {
+      margin-left: 8px;
+    }
+
+    .nav-btn.active {
+      background: #2c2b28;
+      color: #fef5e6;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .nav-btn:hover:not(.active) {
+      background: #e7dfd1;
+      color: #1f1c16;
+    }
+
+    /* منطقة المحتوى */
+    .content-zone {
+      padding: 2rem 2.2rem;
+      background: #ffffff;
+      min-height: 580px;
+    }
+
+    /* بطاقات الخدمات */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.8rem;
+      margin: 2rem 0;
+    }
+
+    .service-card {
+      background: #fefcf9;
+      border-radius: 24px;
+      padding: 1.5rem;
+      border: 1px solid #ede6db;
+      transition: all 0.25s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: #cfc2ae;
+      box-shadow: 0 15px 25px -12px rgba(0,0,0,0.1);
+    }
+
+    .card-icon {
+      font-size: 2.3rem;
+      color: #a88960;
+      margin-bottom: 14px;
+    }
+
+    .service-card h3 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      border-right: 4px solid #cfb688;
+      padding-right: 12px;
+      margin-bottom: 0.8rem;
+    }
+
+    .service-card p {
+      color: #5a5448;
+      margin-bottom: 1rem;
+      font-size: 0.88rem;
+    }
+
+    .btn-solid {
+      display: inline-block;
+      background: #f3ede2;
+      border: 1px solid #cdc0aa;
+      padding: 0.4rem 1.2rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #4d3f2c;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.2s;
+      border-radius: 30px;
+    }
+
+    .btn-solid i {
+      margin-left: 5px;
+    }
+
+    .btn-solid:hover {
+      background: #e5daca;
+      border-color: #b2966e;
+    }
+
+    /* list styles */
+    .benefits-list {
+      list-style: none;
+      padding: 0;
+    }
+    .benefits-list li {
+      margin-bottom: 12px;
+      padding-right: 1.8rem;
+      position: relative;
+      font-weight: 500;
+    }
+    .benefits-list li:before {
+      content: "▹";
+      position: absolute;
+      right: 0;
+      color: #b28b54;
+      font-weight: bold;
+    }
+
+    .highlight-box {
+      background: #faf7f0;
+      border-radius: 28px;
+      padding: 1.4rem;
+      margin-top: 2rem;
+      border-right: 8px solid #aa8860;
+    }
+
+    hr.divider-clean {
+      border: none;
+      height: 1px;
+      background: #e9e0d4;
+      margin: 2rem 0;
+    }
+
+    footer {
+      background: #f7f4ec;
+      padding: 1.2rem;
+      text-align: center;
+      border-top: 1px solid #e3dacd;
+      color: #6a5e4b;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 750px) {
+      .main-palace {
+        margin: 0.8rem;
+        border-radius: 16px;
+      }
+      .site-name {
+        font-size: 1.9rem;
+      }
+      .content-zone {
+        padding: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="main-palace">
+  <div class="pro-header">
+    <div class="site-name">📚 MEDICAL STUDENT <span>// بوابتك للاحتراف</span></div>
+    <div class="owner-line">
+      <i class="fas fa-feather-alt"></i>  صاحب المنصة: <strong style="color:#2c2418;">همام</strong>  <i class="fas fa-stethoscope"></i>  |  أكثر من 25 خدمة طبية متطورة
+    </div>
+  </div>
+
+  <div class="nav-bar" id="navBar">
+    <button class="nav-btn active" data-tab="home"><i class="fas fa-home"></i> الرئيسية</button>
+    <button class="nav-btn" data-tab="services"><i class="fas fa-cogs"></i> الميزات القوية</button>
+    <button class="nav-btn" data-tab="resources"><i class="fas fa-graduation-cap"></i> الشروحات</button>
+    <button class="nav-btn" data-tab="library"><i class="fas fa-database"></i> المكتبة الذهبية</button>
+  </div>
+
+  <div class="content-zone" id="mainContent">
+    <!-- ديناميكي -->
+  </div>
+
+  <footer>
+    <i class="fas fa-brain"></i> Medical Student – التميز لطلاب الطب | جميع الحقوق محفوظة © 2025 | بتصميم وإشراف همام
+  </footer>
+</div>
+
+<script>
+  // ========== قاعدة بيانات المحتوى ==========
+  // قائمة تحتوي على أكثر من 20 ميزة/خدمة قوية موزعة على التبويبات
+
+  const TABS = {
+    home: `
+      <div>
+        <h2 style="font-size: 1.9rem; font-weight: 700; border-bottom: 2px solid #e4d9ca; display: inline-block;">⚡ منصة همام: قلب الطب النابض</h2>
+        <div class="highlight-box" style="margin-top: 20px;">
+          <p style="font-size: 1.05rem;">منصة متكاملة تجمع بين <strong>الخبرة السريرية والتقنيات التعليمية</strong>. هنا يجد طالب الطب أكثر من 25 ميزة فريدة: من محاكاة الحالات، إلى خطط الدراسة المخصصة، إلى بنوك الأسئلة الاحترافية.</p>
+        </div>
+        
+        <h3 style="margin: 28px 0 12px 0;"><i class="fas fa-medal"></i> أبرز 8 خدمات فورية:</h3>
+        <div class="feature-grid">
+          <div class="service-card"><i class="fas fa-microchip card-icon"></i><h3>تشخيص بالذكاء المساعد</h3><p>أداة تفاعلية لتحليل الأعراض وتوليد تشخيصات تفاضلية.</p><button class="btn-solid" onclick="alert('🔍 منصة التشخيص: ai.hamam-med.com | تواصل مع الدعم لتفعيل حسابك')">جرب الآن</button></div>
+          <div class="service-card"><i class="fas fa-calendar-week card-icon"></i><h3>جدول دراسي مخصص لك</h3><p>بناء خطة أسبوعية ذكية حسب مستوى تركيزك وأهدافك.</p><button class="btn-solid" onclick="alert('📅 سيصلك رابط لإنشاء خطتك خلال 24 ساعة')">اطلب الخطط</button></div>
+          <div class="service-card"><i class="fas fa-heartbeat card-icon"></i><h3>تفسير ECG احترافي</h3><p>دروس وتدريب على 150 نمط تخطيط قلب حقيقي.</p><button class="btn-solid" onclick="alert('❤️ رابط الدورة: ecg.hamam-academy.com')">ابدأ التدريب</button></div>
+          <div class="service-card"><i class="fas fa-users card-icon"></i><h3>مجموعات النقاش السريري</h3><p>لقاءات أسبوعية مع زملاء وأطباء متميزين بإشراف همام.</p><button class="btn-solid" onclick="alert('انضم إلى قناة التلغرام: t.me/medical_hamam')"><i class="fab fa-telegram"></i> انضم</button></div>
+        </div>
+        <hr class="divider-clean">
+        <div class="highlight-box"><i class="fas fa-quote-right"></i>  "همام يضع بين يديك خلاصة السنوات – استثمر وقتك في التعلم الفعال."</div>
+      </div>
+    `,
+    services: `
+      <h2 style="font-size: 1.8rem;"><i class="fas fa-crown"></i> أكثر من 20 ميزة قوية في مكان واحد</h2>
+      <div class="feature-grid">
+        <div class="service-card"><i class="fas fa-chalkboard-user card-icon"></i><h3>محاضرات تفاعلية مسجلة</h3><p>سلسلة "المنهج النظري الكامل" لكل مواد السنوات السريرية.</p><button class="btn-solid" onclick="alert('🎥 الروابط محمية، أرسل بريدك لاستلام المحاضرات')">طلب الوصول</button></div>
+        <div class="service-card"><i class="fas fa-question-circle card-icon"></i><h3>بنك أسئلة (5000 سؤال)</h3><p>أسئلة نمط USMLE والامتحانات العربية مع تحليل الأداء.</p><button class="btn-solid" onclick="alert('📊 نسخة تجريبية: 300 سؤال مجاني بعد التسجيل')">جرب البنك</button></div>
+        <div class="service-card"><i class="fas fa-file-alt card-icon"></i><h3>ملخصات التشخيص السريع</h3><p>أكثر من 200 ملخص لحالات طبية شائعة بأسلوب نقطي.</p><button class="btn-solid" onclick="alert('📁 سترسل الملفات PDF عبر البريد فوراً')">تحميل مجاني</button></div>
+        <div class="service-card"><i class="fas fa-head-side-medical card-icon"></i><h3>محاكي اتخاذ القرار</h3><p>سيناريوهات غرفة الطوارئ + تقييم لحظة بلحظة.</p><button class="btn-solid" onclick="alert('🚑 منصة المحاكاة: sim.medicalstudent.com | كود HAMAM2025')">ابدأ السيناريو</button></div>
+        <div class="service-card"><i class="fas fa-chart-line card-icon"></i><h3>تحليل تقدمك الأكاديمي</h3><p>لوحة تحكم شخصية تعرض نقاط القوة والضعف لديك.</p><button class="btn-solid" onclick="alert('📈 أرسل "تقرير" إلى support@hamam-med.com')">اطلب التقرير</button></div>
+        <div class="service-card"><i class="fas fa-diagnoses card-icon"></i><h3>دليل الأعراض والعلامات</h3><p>أكبر مكتبة إلكترونية للأعراض مع فيديوهات توضيحية.</p><button class="btn-solid" onclick="alert('🩺 تم تفعيل الرابط: symptoms.hamamlib.com')">تصفح الدليل</button></div>
+        <div class="service-card"><i class="fas fa-microscope card-icon"></i><h3>المختبر الافتراضي</h3><p>تحليل نتائج المختبر، تعليم تفسير CBC، غازات الدم وغيرها.</p><button class="btn-solid" onclick="alert('🧪 منصة المختبر: lab.hamam-edu.com')">بدء المحاكاة</button></div>
+        <div class="service-card"><i class="fas fa-brain card-icon"></i><h3>كورس علم الأعصاب المتقدم</h3><p>تشريح عصبي، آفات، وتخطيط أعصاب عملي.</p><button class="btn-solid" onclick="alert('🧠 يتم إرسال المحتوى خلال 24 ساعة')">طلب الكورس</button></div>
+        <div class="service-card"><i class="fas fa-laptop-medical card-icon"></i><h3>تطبيق جوال مجاني</h3><p>نسخة كاملة من المنصة للهواتف مع أوفلاين.</p><button class="btn-solid" onclick="alert('📱 رابط التحميل: medicalstudent.page.link/app')">تنزيل التطبيق</button></div>
+        <div class="service-card"><i class="fas fa-prescription-bottle card-icon"></i><h3>دليل الأدوية السريري</h3><p>جرعات، تداخلات، دواعي استعمال كل دواء في 3 ثوان.</p><button class="btn-solid" onclick="alert('💊 قاعدة بيانات الأدوية محدثة 2025')">البحث عن دواء</button></div>
+        <div class="service-card"><i class="fas fa-stethoscope card-icon"></i><h3>سلسلة "الفحص السريري"</h3><p>مقاطع فيديو لفحص أجهزة الجسم كاملاً.</p><button class="btn-solid" onclick="alert('📽️ قائمة التشغيل: youtube.com/@hamam_clinical')">شاهد الآن</button></div>
+        <div class="service-card"><i class="fas fa-book card-icon"></i><h3>ملخصات Robbins ملونة</h3><p>خرائط ذهنية لأهم الأمراض المرضية.</p><button class="btn-solid" onclick="alert('📘 تحميل مباشر: robbins.hamam-summary.com')">الحصول عليها</button></div>
+      </div>
+      <div class="highlight-box"><i class="fas fa-gem"></i>  <strong>إضافة مميزة:</strong> خدمة "اسأل همام" – إجابات مخصصة لأسئلتك الطبية خلال 24 ساعة. أرسل سؤالك إلى ask@hamam-med.com</div>
+    `,
+    resources: `
+      <h2 style="font-size: 1.8rem;"><i class="fas fa-video"></i> الشروحات الحصرية – منهج همام</h2>
+      <div class="feature-grid">
+        <div class="service-card"><i class="fas fa-heart card-icon"></i><h3>أمراض القلب بالتفصيل</h3><p>شرح أعراض، تخطيط، أدوية، وحالات إسعافية (PDF+ فيديو).</p><button class="btn-solid" onclick="alert('📥 تم إرسال الرابط إلى بريدك الافتراضي (تجريبي)')">تنزيل الشرح</button></div>
+        <div class="service-card"><i class="fas fa-lungs card-icon"></i><h3>أمراض الصدر والتنفس</h3><p>الربو، الالتهاب الرئوي، الانسداد الرئوي المزمن – خطط علاجية.</p><button class="btn-solid" onclick="alert('📚 حمل الملف: 340 صفحة بقلم همام')">احصل على الملف</button></div>
+        <div class="service-card"><i class="fas fa-kidneys card-icon"></i><h3>الكلية وارتفاع الضغط</h3><p>تفسير تحاليل وظائف الكلى وأمراض الكبيبات.</p><button class="btn-solid" onclick="alert('🧬 رابط الدورة التفاعلية متاح للأعضاء المسجلين')">ابدأ التعلم</button></div>
+        <div class="service-card"><i class="fas fa-bone card-icon"></i><h3>أمراض الروماتيزم</h3><p>التهاب المفاصل الروماتويدي، الذئبة الحمراء، تشخيص وعلاج.</p><button class="btn-solid" onclick="alert('🦴 محتوى قوي مع جداول مقارنة')">طلب المادة</button></div>
+        <div class="service-card"><i class="fas fa-flask card-icon"></i><h3>فارماكولوجيا الألم</h3><p>مسكنات، مخدرات موضعية، وأفيونيات بطريقة منهجية.</p><button class="btn-solid" onclick="alert('💊 ملف حصري من إعداد همام، أرسل بريدك')">تحميل الدليل</button></div>
+        <div class="service-card"><i class="fas fa-dna card-icon"></i><h3>الأمراض الوراثية الشائعة</h3><p>أنماط وراثة، أمثلة، واستشارة وراثية افتراضية.</p><button class="btn-solid" onclick="alert('🧬 محتوى محدث 2025 متوفر مجاناً')">المزيد</button></div>
+      </div>
+      <hr class="divider-clean">
+      <div class="highlight-box"><i class="fas fa-chalkboard"></i>  قناة التلغرام: <strong>شرح يومي لحالة طبية</strong> – انضم لمجتمع همام التعليمي. <button class="btn-solid" onclick="alert('رابط التلغرام: t.me/medical_hamam_daily')"><i class="fab fa-telegram"></i> انضم الآن</button></div>
+    `,
+    library: `
+      <h2 style="font-size: 1.8rem;"><i class="fas fa-landmark"></i> المكتبة الذهبية – مراجع كلاسيكية وحديثة</h2>
+      <div class="feature-grid">
+        <div class="service-card"><i class="fas fa-book-open card-icon"></i><h3>Gray's Anatomy 42nd</h3><p>أطلس تشريح كامل، نسخة عالية الوضوح.</p><button class="btn-solid" onclick="alert('📖 رابط التحميل: drive.google.com/grays_42_hamam')">تصفح الأطلس</button></div>
+        <div class="service-card"><i class="fas fa-book-medical card-icon"></i><h3>Harrison Manual 21e</h3><p>دليل الباطنية السريع – ملخص أهم الفصول.</p><button class="btn-solid" onclick="alert('📕 نسخة معلم بخط همام')">الحصول على الدليل</button></div>
+        <div class="service-card"><i class="fas fa-microscope card-icon"></i><h3>Robbins & Cotran Pathology</h3><p>صور ونصوص للباثولوجيا المرضية، نسخة 10th مع ملخصات.</p><button class="btn-solid" onclick="alert('📘 متوفر في المكتبة الرقمية للمنصة')">فتح المكتبة</button></div>
+        <div class="service-card"><i class="fas fa-capsules card-icon"></i><h3>Katzung Pharmacology</h3><p>أساسيات الدوائية – جداول فعالة للمراجعة النهائية.</p><button class="btn-solid" onclick="alert('💊 قريباً: سلسلة فيديوهات مع همام')">الإشعار المسبق</button></div>
+        <div class="service-card"><i class="fas fa-database card-icon"></i><h3>First Aid for the USMLE</h3><p>ملخص مع إضافات همام – خارطة طريق النجاح.</p><button class="btn-solid" onclick="alert('📇 رابط التحميل المحمي: usmle.hamam-lib.com')">طلب الرابط</button></div>
+        <div class="service-card"><i class="fas fa-file-powerpoint card-icon"></i><h3>مكتبة الشرائح المتميزة</h3><p>أكثر من 500 عرض تقديمي في 20 تخصص.</p><button class="btn-solid" onclick="alert('📂 سيتم إرسال قاعدة البيانات بعد التسجيل المجاني')">تصفح الشرائح</button></div>
+      </div>
+      <div class="highlight-box"><i class="fas fa-crown"></i>  باقة همام البلاتينية: تمنحك صلاحية الوصول إلى كل الكتب، خطط الدراسة، وجلسات خاصة – <button class="btn-solid" onclick="alert('للاشتراك: platinum@hamam-med.com | خصم 40% للطلاب')">استفسر الآن</button></div>
+    `
+  };
+
+  // JavaScript لإدارة التبويبات
+  const contentDiv = document.getElementById('mainContent');
+  const navButtons = document.querySelectorAll('.nav-btn');
+
+  function renderSection(sectionId) {
+    if (TABS[sectionId]) {
+      contentDiv.innerHTML = TABS[sectionId];
+    } else {
+      contentDiv.innerHTML = `<div class="highlight-box">⚠️ هذه الصفحة قيد التطوير من همام، تابع التحديثات.</div>`;
+    }
+  }
+
+  function setActiveTab(tabId) {
+    navButtons.forEach(btn => {
+      if (btn.getAttribute('data-tab') === tabId) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+    renderSection(tabId);
+  }
+
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.getAttribute('data-tab');
+      if (tab) setActiveTab(tab);
+    });
+  });
+
+  // تحميل الصفحة الرئيسية (home) أولاً
+  setActiveTab('home');
+</script>
+</body>
+</html>
