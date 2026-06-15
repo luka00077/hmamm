@@ -6,7 +6,7 @@
     <meta name="description" content="منصة همام الطبية الشاملة">
     <meta name="theme-color" content="#0f172a">
     <link rel="manifest" href="data:application/json,{'name':'منصة همام','short_name':'همام','start_url':'.','display':'standalone'}">
-    <title>منصة همام | Hammam Medical Platform - النسخة الاحترافية</title>
+    <title>منصة همام | Hammam Medical Platform - النسخة الاحترافية الكاملة</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
@@ -49,23 +49,16 @@
         .container { max-width: 1400px; margin: 0 auto; padding: 1rem 0.8rem 2rem; }
         
         /* ----- AUTH SCREEN GATE ----- */
-        .auth-gate {
-            display: flex; justify-content: center; align-items: center; min-height: 85vh; padding: 1rem;
-        }
-        .auth-card {
-            background: var(--card); width: 100%; max-width: 480px; padding: 2rem; border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-md); border: 2px solid var(--border);
-        }
+        .auth-gate { display: flex; justify-content: center; align-items: center; min-height: 85vh; padding: 1rem; }
+        .auth-card { background: var(--card); width: 100%; max-width: 480px; padding: 2rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-md); border: 2px solid var(--border); }
         .tabs-auth { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 1.5rem; }
         .tab-btn { flex: 1; text-align: center; padding: 0.6rem; font-weight: 700; cursor: pointer; border-bottom: 3px solid transparent; }
         .tab-btn.active { border-color: var(--accent); color: var(--accent); }
 
         /* ----- HERO ----- */
         .hero {
-            text-align: center; padding: 3rem 1rem;
-            background: linear-gradient(135deg, #0f172a, #1e3a5f, #1e40af);
-            border-radius: var(--radius-xl); color: #fff;
-            position: relative; overflow: hidden; margin-bottom: 1.5rem;
+            text-align: center; padding: 3rem 1rem; background: linear-gradient(135deg, #0f172a, #1e3a5f, #1e40af);
+            border-radius: var(--radius-xl); color: #fff; position: relative; overflow: hidden; margin-bottom: 1.5rem;
         }
         .hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 900; }
         .hero h1 span { color: var(--gold); }
@@ -104,14 +97,10 @@
         .badge-gold { background: #fef3c7; color: #92400e; }
         .badge-danger { background: #fee2e2; color: #991b1b; }
         
-        /* ----- PAGINATION ----- */
         .pagination { display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-top: 1.5rem; }
-
-        /* ----- MEDIA VIEWER ----- */
         .video-box iframe { width: 100%; aspect-ratio: 16/9; border-radius: var(--radius); border: none; }
         .atlas-img { width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius); background: #cbd5e1; }
         
-        /* ----- MODAL & TOAST ----- */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(4px); }
         .modal-overlay.active { display: flex; }
         .modal { background: var(--card); border-radius: var(--radius-xl); padding: 1.5rem; max-width: 650px; width: 95%; max-height: 90vh; overflow-y: auto; position: relative; }
@@ -129,8 +118,7 @@
 
 <nav class="navbar">
     <a href="#" class="navbar-brand" onclick="navigate('home')"><i class="fas fa-user-md"></i> منصة همام الطبية</a>
-    <div class="nav-links" id="navLinks">
-        </div>
+    <div class="nav-links" id="navLinks"></div>
 </nav>
 
 <main id="mainContent" class="container"></main>
@@ -153,7 +141,6 @@
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 const LS=(k,v)=>{ if(v!==undefined){localStorage.setItem(k,JSON.stringify(v)); return} return JSON.parse(localStorage.getItem(k))};
 
-// قنوات يوتيوب طبية حقيقية وروابط فيديو فعالة
 const BASE_YOUTUBE_IDS = [
     {id:'oHMmtqKgs50', title:'تشريح عضلة القلب وعمل الصمامات'},
     {id:'7XaftdE_h60', title:'آلية تدفق واعتلالات الدم الدقيقة'},
@@ -167,7 +154,6 @@ const BASE_YOUTUBE_IDS = [
 
 const CATS = ['علم التشريح', 'الفسيولوجيا', 'علم الأمراض', 'علم الأدوية', 'الجراحة العامة', 'الطب الباطني', 'طب الأطفال', 'طب القلب'];
 
-// توليد البيانات الضخمة ديناميكياً لضمان السرعة والضخامة المطلوبة (2000 كتاب، 200 اختبار، 500 فيديو، 1000 صورة)
 const DATA = {
     books: [], quizzes: [], videos: [], atlas: [],
     generate() {
@@ -219,10 +205,9 @@ const DATA = {
                 lecturer: `طاقم همام الأكاديمي`
             });
         }
-        // 4. توليد 1000 صورة أطلس تشريحي ومرضي
+        // 4. توليد 1000 صورة أطلس
         for(let i=1; i<=1000; i++) {
             let cat = CATS[i % CATS.length];
-            // مصفوفة صور طبية حقيقية عالية الجودة من خوادم ويكيميديا الطبية مجانية وفعالة
             let images = [
                 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Diagram_of_the_human_heart_%28cropped%29.svg',
                 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Human_skeleton_front_en.svg',
@@ -264,13 +249,11 @@ const STATE = {
 function saveUsers() { LS('db_users', DB.users); }
 function savePosts() { LS('db_posts', DB.posts); }
 
-// ==================== ROUTING & INTERFACE NAVIGATION ====================
+// ==================== ROUTING & NAV ====================
 function updateNav() {
     let html = '';
     if (!STATE.user) {
-        html = `
-            <a onclick="navigate('gate')" class="active"><i class="fas fa-lock"></i> تسجيل الدخول والاشتراك</a>
-        `;
+        html = `<a onclick="navigate('gate')" class="active"><i class="fas fa-lock"></i> تسجيل الدخول والاشتراك</a>`;
     } else {
         html = `
             <a onclick="navigate('home')" data-tab="home">🏠 الرئيسية</a>
@@ -284,12 +267,12 @@ function updateNav() {
             html += `<a onclick="navigate('supervisor')" data-tab="supervisor" style="color:var(--gold);">⚙️ لوحة الإشراف</a>`;
         }
         html += `
-            <button onclick="toggleTheme()">🌓</button>
-            <a onclick="logout()" style="color:var(--danger);"><i class="fas fa-door-open"></i> خروج (${STATE.user.name})</a>
+            <button onclick="toggleTheme()" style="padding: 0.2rem 0.5rem; margin-right:5px; border-radius:50%; background:rgba(255,255,255,0.1); border:none; color:white; cursor:pointer;">🌓</button>
+            <a onclick="logout()" style="color:var(--danger); margin-right:10px;"><i class="fas fa-door-open"></i> خروج (${STATE.user.name})</a>
         `;
     }
     $('#navLinks').innerHTML = html;
-    // Highlight Active
+    
     $$('.nav-links a').forEach(a => {
         if(a.getAttribute('onclick') && a.getAttribute('onclick').includes(STATE.currentTab)) a.classList.add('active');
         else a.classList.remove('active');
@@ -297,10 +280,9 @@ function updateNav() {
 }
 
 function navigate(tab) {
-    if (!STATE.user && tab !== 'gate') {
-        tab = 'gate';
-    }
+    if (!STATE.user && tab !== 'gate') { tab = 'gate'; }
     STATE.currentTab = tab;
+    if(tab !== 'quizzes') STATE.activeQuiz = null; 
     updateNav();
     renderContent();
     window.scrollTo(0,0);
@@ -330,15 +312,11 @@ function logout() {
     navigate('gate');
 }
 
-// ==================== RENDERING LOGIC (VIEWS) ====================
+// ==================== RENDERING VIEWS ====================
 function renderContent() {
     const main = $('#mainContent');
     main.innerHTML = '';
-
-    if (STATE.currentTab === 'gate') {
-        main.innerHTML = renderGateScreen();
-        return;
-    }
+    if (STATE.currentTab === 'gate') { main.innerHTML = renderGateScreen(); return; }
 
     switch(STATE.currentTab) {
         case 'home': main.innerHTML = renderHomeScreen(); break;
@@ -351,7 +329,6 @@ function renderContent() {
     }
 }
 
-// 1. GATE SCREEN (LOGIN & REGISTRATION BY ROLE)
 function renderGateScreen() {
     return `
     <div class="auth-gate">
@@ -359,10 +336,9 @@ function renderGateScreen() {
             <h2 style="text-align:center; margin-bottom:1rem; font-weight:900; color:var(--accent);">بوابة منصة همام الطبية</h2>
             <div class="tabs-auth">
                 <div class="tab-btn active" id="btnTabLogin" onclick="switchAuthTab('login')">تسجيل دخول</div>
-                <div class="tab-btn" id="btnTabReg" onclick="switchAuthTab('reg')">إنشاء حساب طالب</div>
+                <div class="tab-btn" id="btnTabReg" onclick="switchAuthTab('reg')">إنشاء حساب</div>
                 <div class="tab-btn" id="btnTabSuper" onclick="switchAuthTab('super')">تسجيل إشراف</div>
             </div>
-
             <form id="authForm" onsubmit="handleAuth(event)">
                 <div id="authFields">
                     <div style="margin-bottom:0.8rem;">
@@ -378,12 +354,11 @@ function renderGateScreen() {
             </form>
             <div style="margin-top:1rem; font-size:0.75rem; color:var(--text-secondary); line-height:1.4;">
                 <strong>بيانات تجريبية سريعة للدخول المباشر:</strong><br>
-                • حساب الطالب: student@hammam.com / كلمة المرور: Student2026<br>
-                • حساب المشرف: admin@hammam.com / كلمة المرور: Admin2026
+                • حساب الطالب: student@hammam.com / الباسورد: Student2026<br>
+                • حساب المشرف: admin@hammam.com / الباسورد: Admin2026
             </div>
         </div>
-    </div>
-    `;
+    </div>`;
 }
 
 let activeAuthMode = 'login';
@@ -400,8 +375,7 @@ function switchAuthTab(mode) {
             <div style="margin-bottom:0.8rem;">
                 <label style="font-size:0.8rem; font-weight:700;">كلمة المرور:</label>
                 <input type="password" id="authPass" class="form-control" required placeholder="******">
-            </div>
-        `;
+            </div>`;
         $('#authSubmitBtn').textContent = 'دخول المنصة';
     } else if(mode === 'reg') {
         $('#btnTabReg').classList.add('active');
@@ -421,9 +395,8 @@ function switchAuthTab(mode) {
             <div style="margin-bottom:0.8rem;">
                 <label style="font-size:0.8rem; font-weight:700;">كلمة المرور الجديدة:</label>
                 <input type="password" id="authPass" class="form-control" required placeholder="8 رموز على الأقل">
-            </div>
-        `;
-        $('#authSubmitBtn').textContent = 'إنشاء حساب طالب جديد وتفعيل الدخول';
+            </div>`;
+        $('#authSubmitBtn').textContent = 'إنشاء حساب طالب جديد';
     } else if(mode === 'super') {
         $('#btnTabSuper').classList.add('active');
         $('#authFields').innerHTML = `
@@ -432,7 +405,7 @@ function switchAuthTab(mode) {
                 <input type="text" id="authName" class="form-control" required placeholder="الأستاذ الدكتور همام">
             </div>
             <div style="margin-bottom:0.8rem;">
-                <label style="font-size:0.8rem; font-weight:700;">كود التفعيل الخاص بالهيئة التدريسية:</label>
+                <label style="font-size:0.8rem; font-weight:700;">كود التفعيل الخاص بالهيئة:</label>
                 <input type="text" id="authSuperKey" class="form-control" required placeholder="أدخل كود الإشراف المعطى لك">
                 <span style="font-size:0.65rem; color:var(--accent);">*للتجربة أدخل الكود: <strong>SUPER2026</strong></span>
             </div>
@@ -441,11 +414,10 @@ function switchAuthTab(mode) {
                 <input type="email" id="authEmail" class="form-control" required placeholder="doctor@hospital.com">
             </div>
             <div style="margin-bottom:0.8rem;">
-                <label style="font-size:0.8rem; font-weight:700;">كلمة المرور الخاصة بالمشرف:</label>
+                <label style="font-size:0.8rem; font-weight:700;">كلمة المرور:</label>
                 <input type="password" id="authPass" class="form-control" required placeholder="******">
-            </div>
-        `;
-        $('#authSubmitBtn').textContent = 'تسجيل الحساب كعضو هيئة إشراف';
+            </div>`;
+        $('#authSubmitBtn').textContent = 'تسجيل كعضو هيئة إشراف';
     }
 }
 
@@ -457,113 +429,79 @@ function handleAuth(e) {
     if(activeAuthMode === 'login') {
         let u = DB.users.find(x => x.email.toLowerCase() === email.toLowerCase() && x.pass === pass);
         if(u) {
-            STATE.user = u;
-            LS('app_user', u);
-            toast(`أهلاً بك مجدداً ${u.name}`, 'var(--success)');
-            navigate('home');
-        } else {
-            toast('عذراً، خطأ في البريد الإلكتروني أو كلمة المرور', 'var(--danger)');
-        }
+            STATE.user = u; LS('app_user', u);
+            toast(`أهلاً بك مجدداً ${u.name}`, 'var(--success)'); navigate('home');
+        } else { toast('عذراً، خطأ في البريد الإلكتروني أو كلمة المرور', 'var(--danger)'); }
     } else if(activeAuthMode === 'reg') {
         let name = $('#authName').value.trim();
-        if(DB.users.find(x => x.email.toLowerCase() === email.toLowerCase())) {
-            toast('البريد الإلكتروني مسجل مسبقاً!', 'var(--danger)');
-            return;
-        }
+        if(DB.users.find(x => x.email.toLowerCase() === email.toLowerCase())) { toast('البريد مسجل مسبقاً!', 'var(--danger)'); return; }
         let newUser = { email, pass, name, role: 'student', univ: $('#authUniv').value };
-        DB.users.push(newUser);
-        saveUsers();
-        STATE.user = newUser;
-        LS('app_user', newUser);
-        toast(`تم إنشاء حسابك وتفعيله بنجاح د. ${name}`, 'var(--success)');
-        navigate('home');
+        DB.users.push(newUser); saveUsers();
+        STATE.user = newUser; LS('app_user', newUser);
+        toast(`تم إنشاء الحساب بنجاح د. ${name}`, 'var(--success)'); navigate('home');
     } else if(activeAuthMode === 'super') {
         let name = $('#authName').value.trim();
-        let skey = $('#authSuperKey').value;
-        if(skey !== 'SUPER2026') {
-            toast('كود الإشراف المدخل غير صحيح! اتصل بالإدارة.', 'var(--danger)');
-            return;
-        }
-        if(DB.users.find(x => x.email.toLowerCase() === email.toLowerCase())) {
-            toast('البريد الإلكتروني مسجل مسبقاً!', 'var(--danger)');
-            return;
-        }
+        if($('#authSuperKey').value !== 'SUPER2026') { toast('كود الإشراف غير صحيح!', 'var(--danger)'); return; }
+        if(DB.users.find(x => x.email.toLowerCase() === email.toLowerCase())) { toast('البريد مسجل مسبقاً!', 'var(--danger)'); return; }
         let newUser = { email, pass, name, role: 'supervisor' };
-        DB.users.push(newUser);
-        saveUsers();
-        STATE.user = newUser;
-        LS('app_user', newUser);
-        toast(`تم اعتمادك كمشرف على المنصة: د. ${name}`, 'var(--success)');
-        navigate('home');
+        DB.users.push(newUser); saveUsers();
+        STATE.user = newUser; LS('app_user', newUser);
+        toast(`تم اعتمادك كمشرف: د. ${name}`, 'var(--success)'); navigate('home');
     }
 }
 
-// 2. HOME SCREEN VIEW
 function renderHomeScreen() {
     return `
     <div class="hero">
         <h1>منصة الدكتور <span>همام</span> الطبية الكبرى</h1>
-        <p>النسخة الشاملة والأولى عربياً المحاكية لقواعد البيانات الضخمة للاختبارات، المراجع الطبية الموثوقة، الأطلس التشريحي المصور والفيديوهات التعليمية الفعالة.</p>
-        <div>
-            <span class="badge badge-gold" style="font-size:0.9rem; padding:0.4rem 1rem;">أهلاً بك زميلنا: ${STATE.user.name} [رتبة: ${STATE.user.role === 'supervisor' ? 'مشرف المنصة' : 'طالب طب'}]</span>
-        </div>
+        <p>النسخة الشاملة والأولى عربياً المحاكية لقواعد البيانات الضخمة للاختبارات والمراجع الطبية الفعالة.</p>
+        <div><span class="badge badge-gold" style="font-size:0.9rem; padding:0.4rem 1rem;">مرحباً بك: ${STATE.user.name}</span></div>
     </div>
-
     <div class="stats-grid">
-        <div class="stat-card"><i class="fas fa-book-medical"></i><h3>2,000</h3><p>كتاب ومرجع طبي مرشف</p></div>
-        <div class="stat-card"><i class="fas fa-paste"></i><h3>200</h3><p>اختبار وتقييم موضوعي</p></div>
-        <div class="stat-card"><i class="fas fa-video"></i><h3>500</h3><p>محاضرة يوتيوب مدمجة</p></div>
-        <div class="stat-card"><i class="fas fa-images"></i><h3>1,000</h3><p>لوحة أطلس عالية الدقة</p></div>
+        <div class="stat-card"><i class="fas fa-book-medical"></i><h3>2,000</h3><p>كتاب ومرجع طبي</p></div>
+        <div class="stat-card"><i class="fas fa-paste"></i><h3>200</h3><p>اختبار محاكي</p></div>
+        <div class="stat-card"><i class="fas fa-video"></i><h3>500</h3><p>محاضرة فيديو فعالة</p></div>
+        <div class="stat-card"><i class="fas fa-images"></i><h3>1,000</h3><p>لوحة أطلس تشريحية</p></div>
     </div>
-
     <h2 style="margin:2rem 0 1rem; font-weight:800;">🎯 خيارات الوصول السريع الفورية</h2>
     <div class="cards-grid">
         <div class="card" style="cursor:pointer;" onclick="navigate('library')">
-            <h3 style="color:var(--accent); font-weight:800; margin-bottom:0.5rem;"><i class="fas fa-book"></i> تصفح المراجع الطبية</h3>
-            <p style="font-size:0.8rem; color:var(--text-secondary);">تحتوي المكتبة حالياً على 2000 مرجع كامل بروابط تحميل مباشرة لأشهر سلاسل كتب الطب البشري.</p>
+            <h3 style="color:var(--accent); font-weight:800; margin-bottom:0.5rem;"><i class="fas fa-book"></i> المكتبة الطبية</h3>
+            <p style="font-size:0.8rem; color:var(--text-secondary);">تصفح وحمل 2000 مرجع طبي عالمي بشكل فوري ومباشر.</p>
         </div>
         <div class="card" style="cursor:pointer;" onclick="navigate('quizzes')">
-            <h3 style="color:var(--gold); font-weight:800; margin-bottom:0.5rem;"><i class="fas fa-feather-alt"></i> بنك الأسئلة والاختبارات</h3>
-            <p style="font-size:0.8rem; color:var(--text-secondary);">اختبر معلوماتك السريرية والأكاديمية عبر 200 بنك أسئلة مقسمة حسب تخصصات الطب والجراحة والتشريح.</p>
+            <h3 style="color:var(--gold); font-weight:800; margin-bottom:0.5rem;"><i class="fas fa-feather-alt"></i> بنك الاختبارات</h3>
+            <p style="font-size:0.8rem; color:var(--text-secondary);">قيّم نفسك عبر 200 اختبار تفاعلي في كافة العلوم الطبية البشري.</p>
         </div>
         <div class="card" style="cursor:pointer;" onclick="navigate('videos')">
-            <h3 style="color:var(--danger); font-weight:800; margin-bottom:0.5rem;"><i class="fas fa-play-circle"></i> محاضرات مدمجة فعالة</h3>
-            <p style="font-size:0.8rem; color:var(--text-secondary);">شاهد 500 فيديو تعليمي منتقى من كبرى القنوات الأكاديمية العالمية مع ربط مباشر ومستمر بالـ API الخاص باليوتيوب.</p>
+            <h3 style="color:var(--danger); font-weight:800; margin-bottom:0.5rem;"><i class="fas fa-play-circle"></i> محاضرات مرئية</h3>
+            <p style="font-size:0.8rem; color:var(--text-secondary);">شاهد 500 فيديو تعليمي مدمج لشرح المعضلات الطبية والسريرية.</p>
         </div>
-    </div>
-    `;
+    </div>`;
 }
 
-// 3. LIBRARY VIEW WITH RENDERING OPTIMIZATION & PAGINATION (2000 items)
-let libSearchQuery = "";
-let libSelectedCat = "";
+// 3. LIBRARY VIEW
+let libSearchQuery = ""; let libSelectedCat = "";
 function renderLibraryScreen(target) {
     let filtered = DATA.books.filter(b => {
-        let matchQuery = b.title.toLowerCase().includes(libSearchQuery.toLowerCase()) || b.author.toLowerCase().includes(libSearchQuery.toLowerCase());
-        let matchCat = libSelectedCat === "" ? true : b.cat === libSelectedCat;
-        return matchQuery && matchCat;
+        let mQ = b.title.toLowerCase().includes(libSearchQuery.toLowerCase()) || b.author.toLowerCase().includes(libSearchQuery.toLowerCase());
+        let mC = libSelectedCat === "" ? true : b.cat === libSelectedCat;
+        return mQ && mC;
     });
-
     let totalPages = Math.ceil(filtered.length / STATE.perPage) || 1;
     if(STATE.pages.books > totalPages) STATE.pages.books = totalPages;
-    
     let start = (STATE.pages.books - 1) * STATE.perPage;
     let paginated = filtered.slice(start, start + STATE.perPage);
 
     let html = `
-        <h2 style="font-weight:900; margin-bottom:1rem;"><i class="fas fa-book"></i> المكتبة الطبية الضخمة (${DATA.books.length} مرجع متوفر حالياً)</h2>
+        <h2 style="font-weight:900; margin-bottom:1rem;"><i class="fas fa-book"></i> المكتبة الطبية الضخمة (${DATA.books.length} مرجع)</h2>
         <div class="search-container">
-            <input type="text" class="form-control" id="libSearchInput" placeholder="ابحث باسم الكتاب أو المؤلف في 2000 مرجع..." value="${libSearchQuery}" oninput="triggerLibSearch()">
-            <select class="form-control" style="width:200px;" onchange="triggerLibCatChange(this.value)">
-                <option value="">كل الأقسام الطبية</option>
+            <input type="text" class="form-control" id="libSearchInput" placeholder="ابحث في الكتب والمؤلفين..." value="${libSearchQuery}" oninput="libSearchQuery=this.value; STATE.pages.books=1; renderLibraryScreen($('#mainContent'))">
+            <select class="form-control" style="width:200px;" onchange="libSelectedCat=this.value; STATE.pages.books=1; renderLibraryScreen($('#mainContent'))">
+                <option value="">كل الأقسام</option>
                 ${CATS.map(c => `<option value="${c}" ${libSelectedCat===c?'selected':''}>${c}</option>`).join('')}
             </select>
         </div>
-        
-        <div style="margin-bottom:1rem; font-size:0.85rem; color:var(--text-secondary);">
-            تم العثور على <strong>${filtered.length}</strong> مرجع مطابق للبحث. يعرض الآن الصفحة ${STATE.pages.books} من ${totalPages}.
-        </div>
-
         <div class="cards-grid">
             ${paginated.map(b => `
                 <div class="card">
@@ -571,400 +509,242 @@ function renderLibraryScreen(target) {
                     <h4 style="font-weight:800; margin-top:1rem; min-height:44px; font-size:0.95rem;">${b.title}</h4>
                     <p style="font-size:0.75rem; color:var(--text-secondary); margin-bottom:0.5rem;">✍️ ${b.author}</p>
                     <div style="font-size:0.72rem; margin-bottom:0.8rem; background:rgba(0,0,0,0.03); padding:0.4rem; border-radius:4px;">
-                        📄 الحجم: ${b.fileSize} | 📦 الصفحات: ${b.pages} صفحة | ⭐ التقييم: ${b.rating}
+                        📄 الحجم: ${b.fileSize} | 📦 الصفحات: ${b.pages} | ⭐ التقييم: ${b.rating}
                     </div>
                     <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.7rem; color:var(--text-muted);"><i class="fas fa-download"></i> ${b.downloads} تحميل</span>
+                        <span style="font-size:0.7rem; color:var(--text-muted);"><i class="fas fa-download"></i> ${b.downloads}</span>
                         <a href="${b.link}" target="_blank" class="btn btn-success btn-sm"><i class="fas fa-file-download"></i> تحميل PDF حقيقي</a>
                     </div>
-                </div>
-            `).join('')}
-        </div>
-    `;
-
+                </div>`).join('')}
+        </div>`;
     html += renderPaginationControls('books', totalPages);
     target.innerHTML = html;
 }
 
-function triggerLibSearch() {
-    libSearchQuery = $('#libSearchInput').value;
-    STATE.pages.books = 1;
-    renderLibraryScreen($('#mainContent'));
-}
-function triggerLibCatChange(val) {
-    libSelectedCat = val;
-    STATE.pages.books = 1;
-    renderLibraryScreen($('#mainContent'));
-}
-
-// 4. QUIZZES SCREEN VIEW (200 items)
+// 4. QUIZZES SCREEN VIEW
 let quizSelectedCat = "";
 function renderQuizzesScreen(target) {
-    if (STATE.activeQuiz) {
-        renderActiveQuiz(target);
-        return;
-    }
+    if (STATE.activeQuiz) { target.innerHTML = renderActiveQuiz(); return; }
 
     let filtered = DATA.quizzes.filter(q => quizSelectedCat === "" ? true : q.cat === quizSelectedCat);
     let totalPages = Math.ceil(filtered.length / STATE.perPage) || 1;
+    if(STATE.pages.quizzes > totalPages) STATE.pages.quizzes = totalPages;
     let start = (STATE.pages.quizzes - 1) * STATE.perPage;
     let paginated = filtered.slice(start, start + STATE.perPage);
 
     let html = `
-        <h2 style="font-weight:900; margin-bottom:1rem;"><i class="fas fa-paste"></i> بنك الاختبارات والأسئلة الشامل (${DATA.quizzes.length} اختبار متاح)</h2>
-        <div class="search-container" style="max-width:350px; margin-right:0;">
-            <select class="form-control" onchange="triggerQuizCatChange(this.value)">
-                <option value="">كل التخصصات الطبية للاختبارات</option>
+        <h2 style="font-weight:900; margin-bottom:1rem;"><i class="fas fa-feather-alt"></i> بنك الاختبارات الطبية (${DATA.quizzes.length} اختبار متاح)</h2>
+        <div class="search-container">
+            <select class="form-control" onchange="quizSelectedCat=this.value; STATE.pages.quizzes=1; renderQuizzesScreen($('#mainContent'))">
+                <option value="">كل التخصصات الطبية</option>
                 ${CATS.map(c => `<option value="${c}" ${quizSelectedCat===c?'selected':''}>${c}</option>`).join('')}
             </select>
         </div>
-
         <div class="cards-grid">
             ${paginated.map(q => `
-                <div class="card" style="border-right: 4px solid var(--gold);">
+                <div class="card">
                     <span class="badge badge-gold" style="position:absolute; top:0.5rem; left:0.5rem;">${q.cat}</span>
-                    <h3 style="font-weight:800; margin-top:1rem; font-size:1rem;">${q.title}</h3>
-                    <p style="font-size:0.75rem; color:var(--text-secondary); margin:0.5rem 0 1rem;">يحتوي على ${q.questionsCount} أسئلة سريرية هامة مع التفسير العلمي الإرشادي.</p>
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.75rem; font-weight:700;"><i class="fas fa-clock"></i> الوقت: ${q.time} دقيقة</span>
-                        <button class="btn btn-primary btn-sm" onclick="startQuiz(${q.id})">ابدأ الفحص الآن</button>
-                    </div>
-                </div>
-            `).join('')}
-        </div>
-    `;
-
+                    <h4 style="font-weight:800; margin-top:1rem; margin-bottom:0.5rem;">${q.title}</h4>
+                    <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:1rem;">⏱ الوقت: ${q.time} دقيقة | ❓ الأسئلة: ${q.questionsCount}</p>
+                    <button onclick="startQuiz(${q.id})" class="btn btn-primary btn-sm" style="width:100%; justify-content:center;"><i class="fas fa-play"></i> بدء الاختبار التفاعلي</button>
+                </div>`).join('')}
+        </div>`;
     html += renderPaginationControls('quizzes', totalPages);
     target.innerHTML = html;
 }
 
-function triggerQuizCatChange(val) {
-    quizSelectedCat = val;
-    STATE.pages.quizzes = 1;
+function startQuiz(id) {
+    STATE.activeQuiz = DATA.quizzes.find(q => q.id === id);
+    STATE.answers = {};
     renderQuizzesScreen($('#mainContent'));
 }
 
-function startQuiz(id) {
-    let q = DATA.quizzes.find(x => x.id === id);
-    if(q) {
-        STATE.activeQuiz = q;
-        STATE.answers = {};
-        renderContent();
-    }
-}
-
-function renderActiveQuiz(target) {
+function renderActiveQuiz() {
     let q = STATE.activeQuiz;
-    let html = `
-        <div class="card" style="max-width:750px; margin: 0 auto;">
-            <div style="display:flex; justify-content:between; align-items:center; border-bottom:2px solid var(--border); padding-bottom:0.5rem; margin-bottom:1rem;">
-                <h2 style="font-weight:900; font-size:1.2rem; color:var(--accent);">${q.title}</h2>
-                <button class="btn btn-danger btn-sm" onclick="cancelQuiz()" style="margin-right:auto;">إلغاء وانسحاب</button>
-            </div>
-            
-            ${q.questions.map((item, idx) => `
-                <div style="margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px dashed var(--border);">
-                    <p style="font-weight:700; margin-bottom:0.6rem;">س${idx+1}: ${item.q}</p>
-                    <div style="display:grid; grid-template-columns: 1fr; gap:0.4rem;">
-                        <label style="font-size:0.82rem; padding:0.4rem; background:rgba(0,0,0,0.02); border-radius:4px; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
-                            <input type="radio" name="q_${idx}" value="a" onchange="saveAnswer(${idx}, 'a')"> أ) ${item.a}
-                        </label>
-                        <label style="font-size:0.82rem; padding:0.4rem; background:rgba(0,0,0,0.02); border-radius:4px; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
-                            <input type="radio" name="q_${idx}" value="b" onchange="saveAnswer(${idx}, 'b')"> ب) ${item.b}
-                        </label>
-                        <label style="font-size:0.82rem; padding:0.4rem; background:rgba(0,0,0,0.02); border-radius:4px; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
-                            <input type="radio" name="q_${idx}" value="c" onchange="saveAnswer(${idx}, 'c')"> ج) ${item.c}
-                        </label>
-                        <label style="font-size:0.82rem; padding:0.4rem; background:rgba(0,0,0,0.02); border-radius:4px; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
-                            <input type="radio" name="q_${idx}" value="d" onchange="saveAnswer(${idx}, 'd')"> د) ${item.d}
-                        </label>
+    return `
+        <div class="card" style="max-width:800px; margin:0 auto;">
+            <h2 style="font-weight:900; color:var(--accent); margin-bottom:1rem;">${q.title}</h2>
+            ${q.questions.map((quest, idx) => `
+                <div style="margin-bottom:1.5rem; border-bottom:1px solid var(--border); padding-bottom:1rem;">
+                    <p style="font-weight:700; margin-bottom:0.5rem;">س ${idx+1}: ${quest.q}</p>
+                    <div style="display:grid; grid-template-columns:1fr; gap:0.5rem;">
+                        <label style="cursor:pointer;"><input type="radio" name="q_${idx}" onclick="STATE.answers[${idx}]='a'"> أ) ${quest.a}</label>
+                        <label style="cursor:pointer;"><input type="radio" name="q_${idx}" onclick="STATE.answers[${idx}]='b'"> ب) ${quest.b}</label>
+                        <label style="cursor:pointer;"><input type="radio" name="q_${idx}" onclick="STATE.answers[${idx}]='c'"> ج) ${quest.c}</label>
+                        <label style="cursor:pointer;"><input type="radio" name="q_${idx}" onclick="STATE.answers[${idx}]='d'"> د) ${quest.d}</label>
                     </div>
-                </div>
-            `).join('')}
-
-            <button class="btn btn-success" style="width:100%; justify-content:center; padding:0.8rem;" onclick="submitQuizAnswers()">تسليم الإجابات وإنهاء الاختبار</button>
-        </div>
-    `;
-    target.innerHTML = html;
+                </div>`).join('')}
+            <div style="display:flex; gap:1rem;">
+                <button onclick="submitQuiz()" class="btn btn-success">إنهاء ورصد الدرجة</button>
+                <button onclick="STATE.activeQuiz=null; renderQuizzesScreen($('#mainContent'));" class="btn btn-danger">إلغاء واغلاق</button>
+            </div>
+        </div>`;
 }
 
-function saveAnswer(qIdx, letter) { STATE.answers[qIdx] = letter; }
-function cancelQuiz() { STATE.activeQuiz = null; renderContent(); }
-
-function submitQuizAnswers() {
-    let q = STATE.activeQuiz;
-    let correctCount = 0;
-    let reviewHtml = '';
-
-    q.questions.forEach((item, idx) => {
-        let userAns = STATE.answers[idx] || "لم يتم الإجابة";
-        let isCorrect = userAns === item.right;
-        if(isCorrect) correctCount++;
-
+function submitQuiz() {
+    let q = STATE.activeQuiz; let score = 0;
+    let reviewHtml = `<h3 style="font-weight:900; margin-bottom:1rem;">مراجعة الإجابات والتقرير السريري:</h3>`;
+    
+    q.questions.forEach((quest, idx) => {
+        let userAns = STATE.answers[idx]; let isRight = userAns === quest.right;
+        if(isRight) score++;
         reviewHtml += `
-            <div style="margin-bottom:1rem; text-align:right; border-bottom:1px solid #ccc; padding-bottom:0.5rem;">
-                <p><strong>س${idx+1}: ${item.q}</strong></p>
-                <p style="font-size:0.8rem; color:${isCorrect?'green':'red'};">إجابتك: ${userAns.toUpperCase()} - ${isCorrect?'✔️ صحيحة':'❌ خاطئة'}</p>
-                <p style="font-size:0.8rem; color:green;">الإجابة النموذجية: ${item.right.toUpperCase()}</p>
-                <p style="font-size:0.75rem; background:#f9f9f9; padding:0.3rem; border-right:3px solid var(--accent); color:var(--text-secondary);">💡 الشرح الطبي: ${item.exp}</p>
-            </div>
-        `;
+            <div style="margin-bottom:1rem; padding:0.8rem; background:${isRight?'rgba(16,185,129,0.1)':'rgba(239,68,68,0.1)'}; border-radius:var(--radius); border:1px solid ${isRight?'var(--success)':'var(--danger)'}">
+                <p><strong>س ${idx+1}: ${quest.q}</strong></p>
+                <p style="font-size:0.85rem; margin:0.3rem 0;">إجابتك: ${userAns ? userAns.toUpperCase() : 'لم تُجب'} | الإجابة الصحيحة: ${quest.right.toUpperCase()}</p>
+                <p style="font-size:0.75rem; color:var(--text-secondary); background:rgba(0,0,0,0.03); padding:0.3rem; border-radius:4px;">💡 <strong>التفسير العلمي:</strong> ${quest.exp}</p>
+            </div>`;
     });
-
-    let scorePercent = Math.round((correctCount / q.questions.length) * 100);
-
-    let finalModalHtml = `
-        <div style="text-align:center;">
-            <h2 style="color:var(--accent); font-weight:900;">نتيجتك في الاختبار: ${scorePercent}%</h2>
-            <p style="margin:0.5rem 0 1.5rem;">لقد أجبت بشكل صحيح على ${correctCount} من أصل ${q.questions.length} أسئلة.</p>
-            <hr style="margin-bottom:1rem;">
-            <div style="max-height:50vh; overflow-y:auto; padding:0 0.5rem;">
-                ${reviewHtml}
-            </div>
-            <button class="btn btn-primary" onclick="closeModal(); cancelQuiz();" style="margin-top:1rem;">إغلاق والعودة للقائمة</button>
-        </div>
-    `;
-    openModal(finalModalHtml);
+    
+    let percent = (score / q.questions.length) * 100;
+    reviewHtml = `<div style="text-align:center; margin-bottom:1.5rem;"><h2 style="font-size:2.5rem; font-weight:900; color:${percent>=60?'var(--success)':'var(--danger)'};">${percent}%</h2><p>لقد أحبت بشكل صحيح على ${score} من أصل ${q.questions.length}</p></div>` + reviewHtml;
+    
+    openModal(reviewHtml);
+    STATE.activeQuiz = null;
+    renderQuizzesScreen($('#mainContent'));
 }
 
-// 5. VIDEOS SCREEN VIEW (500 lectures from functional templates)
-let videoSelectedCat = "";
+// 5. VIDEOS SCREEN VIEW
+let vidSearchQuery = "";
 function renderVideosScreen(target) {
-    let filtered = DATA.videos.filter(v => videoSelectedCat === "" ? true : v.cat === videoSelectedCat);
+    let filtered = DATA.videos.filter(v => v.title.toLowerCase().includes(vidSearchQuery.toLowerCase()) || v.cat.toLowerCase().includes(vidSearchQuery.toLowerCase()));
     let totalPages = Math.ceil(filtered.length / STATE.perPage) || 1;
+    if(STATE.pages.videos > totalPages) STATE.pages.videos = totalPages;
     let start = (STATE.pages.videos - 1) * STATE.perPage;
     let paginated = filtered.slice(start, start + STATE.perPage);
 
     let html = `
-        <h2 style="font-weight:900; margin-bottom:1rem;"><i class="fas fa-play-circle"></i> المحاضرات المرئية والـ Video API الطبية (${DATA.videos.length} محاضرة منسقة)</h2>
-        <div class="search-container" style="max-width:350px; margin-right:0;">
-            <select class="form-control" onchange="triggerVideoCatChange(this.value)">
-                <option value="">كل تصنيفات الفيديوهات التعليمية</option>
-                ${CATS.map(c => `<option value="${c}" ${videoSelectedCat===c?'selected':''}>${c}</option>`).join('')}
-            </select>
+        <h2 style="font-weight:900; margin-bottom:1rem;"><i class="fas fa-video"></i> المحاضرات الطبية المدمجة (${DATA.videos.length} محاضرة فيديو)</h2>
+        <div class="search-container">
+            <input type="text" class="form-control" id="vidSearchInput" placeholder="ابحث عن محاضرات بالفيديو أو التخصص..." value="${vidSearchQuery}" oninput="vidSearchQuery=this.value; STATE.pages.videos=1; renderVideosScreen($('#mainContent'))">
         </div>
-
         <div class="cards-grid">
             ${paginated.map(v => `
-                <div class="card" style="padding:0; overflow:hidden;">
-                    <div style="position:relative; background:#000; aspect-ratio:16/9; display:flex; justify-content:center; align-items:center;">
-                        <img src="https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg" style="width:100%; height:100%; object-fit:cover; opacity:0.7;">
-                        <button class="btn btn-danger" style="position:absolute; border-radius:50%; width:50px; height:50px; padding:0; display:flex; justify-content:center; align-items:center;" onclick="watchVideo(${v.id})">
-                            <i class="fas fa-play" style="margin-right:-3px;"></i>
-                        </button>
+                <div class="card">
+                    <div class="video-box" style="margin-bottom:0.5rem; position:relative;">
+                        <img src="https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg" style="width:100%; border-radius:var(--radius); cursor:pointer;" onclick="watchVideo('${v.youtubeId}')">
+                        <i class="fab fa-youtube" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:red; font-size:2.5rem; pointer-events:none; opacity:0.85;"></i>
                     </div>
-                    <div style="padding:0.8rem;">
-                        <span class="badge badge-danger">${v.cat}</span>
-                        <h4 style="font-weight:800; font-size:0.85rem; margin-top:0.4rem; min-height:40px; line-height:1.4;">${v.title}</h4>
-                        <div style="display:flex; justify-content:between; font-size:0.7rem; color:var(--text-muted); margin-top:0.5rem; border-top:1px solid var(--border); padding-top:0.4rem;">
-                            <span>⏱ ${v.duration}</span>
-                            <span style="margin-right:auto;">👨‍🏫 ${v.lecturer}</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('')}
-        </div>
-    `;
-
+                    <span class="badge badge-danger">${v.cat}</span>
+                    <h4 style="font-weight:800; font-size:0.85rem; margin:0.5rem 0; min-height:40px;">${v.title}</h4>
+                    <p style="font-size:0.72rem; color:var(--text-muted);">👨‍🏫 الملقي: ${v.lecturer} | ⏱ المدة: ${v.duration}</p>
+                    <button onclick="watchVideo('${v.youtubeId}')" class="btn btn-danger btn-sm" style="width:100%; justify-content:center; margin-top:0.5rem;"><i class="fab fa-youtube"></i> تشغيل المحاضرة الحية</button>
+                </div>`).join('')}
+        </div>`;
     html += renderPaginationControls('videos', totalPages);
     target.innerHTML = html;
 }
 
-function triggerVideoCatChange(val) {
-    videoSelectedCat = val;
-    STATE.pages.videos = 1;
-    renderVideosScreen($('#mainContent'));
-}
-
 function watchVideo(id) {
-    let v = DATA.videos.find(x => x.id === id);
-    if(v) {
-        let embedHtml = `
-            <h3 style="font-weight:800; margin-bottom:0.8rem; color:var(--accent);">${v.title}</h3>
-            <div class="video-box">
-                <iframe src="https://www.youtube.com/embed/${v.youtubeId}?autoplay=1" allowfullscreen></iframe>
-            </div>
-            <p style="font-size:0.8rem; margin-top:0.8rem; color:var(--text-secondary);">المحاضر: ${v.lecturer} | القسم التعليمي: ${v.cat}</p>
-        `;
-        openModal(embedHtml);
-    }
+    openModal(`<div class="video-box"><iframe src="https://www.youtube.com/embed/${id}?autoplay=1" allowfullscreen></iframe></div>`);
 }
 
-// 6. ATLAS VIEW SCREEN (1000 items with dynamic sub-queries)
-let atlasSelectedCat = "";
+// 6. ATLAS SCREEN VIEW
 function renderAtlasScreen(target) {
-    let filtered = DATA.atlas.filter(a => atlasSelectedCat === "" ? true : a.cat === atlasSelectedCat);
-    let totalPages = Math.ceil(filtered.length / STATE.perPage) || 1;
+    let totalPages = Math.ceil(DATA.atlas.length / STATE.perPage) || 1;
     let start = (STATE.pages.atlas - 1) * STATE.perPage;
-    let paginated = filtered.slice(start, start + STATE.perPage);
+    let paginated = DATA.atlas.slice(start, start + STATE.perPage);
 
     let html = `
-        <h2 style="font-weight:900; margin-bottom:1rem;"><i class="fas fa-images"></i> الأطلس الطبي والتشريحي والنسيجي (${DATA.atlas.length} لوحة فنية)</h2>
-        <div class="search-container" style="max-width:350px; margin-right:0;">
-            <select class="form-control" onchange="triggerAtlasCatChange(this.value)">
-                <option value="">كل أقسام الأطلس المصور</option>
-                ${CATS.map(c => `<option value="${c}" ${atlasSelectedCat===c?'selected':''}>${c}</option>`).join('')}
-            </select>
-        </div>
-
+        <h2 style="font-weight:900; margin-bottom:1rem;"><i class="fas fa-images"></i> الأطلس الطبي المصور الكبرى (${DATA.atlas.length} لوحة مدمجة)</h2>
         <div class="cards-grid">
-            ${paginated.map(img => `
-                <div class="card" style="padding:0.5rem; cursor:pointer;" onclick="viewAtlasFull(${img.id})">
-                    <img src="${img.imgUrl}" class="atlas-img" alt="لوحة تشريحية" loading="lazy">
-                    <div style="padding:0.4rem;">
-                        <span class="badge badge-primary" style="font-size:0.6rem;">${img.cat}</span>
-                        <h4 style="font-weight:700; font-size:0.8rem; margin-top:0.3rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${img.title}</h4>
-                    </div>
-                </div>
-            `).join('')}
-        </div>
-    `;
-
+            ${paginated.map(a => `
+                <div class="card" style="text-align:center;">
+                    <img src="${a.imgUrl}" class="atlas-img" style="cursor:zoom-in; max-height:180px;" onclick="openModal('<img src=\\'${a.imgUrl}\\' style=\\'width:100%; max-height:80vh; object-fit:contain;\\'>')">
+                    <h4 style="font-weight:800; font-size:0.85rem; margin-top:0.5rem; text-align:right;">${a.title}</h4>
+                    <div style="text-align:right; margin-top:0.3rem;"><span class="badge badge-primary">${a.cat}</span></div>
+                </div>`).join('')}
+        </div>`;
     html += renderPaginationControls('atlas', totalPages);
     target.innerHTML = html;
 }
 
-function triggerAtlasCatChange(val) {
-    atlasSelectedCat = val;
-    STATE.pages.atlas = 1;
-    renderAtlasScreen($('#mainContent'));
-}
-
-function viewAtlasFull(id) {
-    let item = DATA.atlas.find(x => x.id === id);
-    if(item) {
-        let h = `
-            <h3 style="font-weight:800; margin-bottom:0.8rem; color:var(--primary);">${item.title}</h3>
-            <img src="${item.imgUrl}" style="width:100%; max-height:70vh; object-fit:contain; background:#f8fafc; border-radius:var(--radius);">
-            <p style="font-size:0.75rem; margin-top:0.5rem; text-align:center; color:var(--text-secondary);">المصدر الحقيقي للرسم التوضيحي: ويكيميديا وموسوعة علم التشريح المفتوحة.</p>
-        `;
-        openModal(h);
-    }
-}
-
-// 7. COMMUNITY/FORUM VIEW
+// 7. FORUM SCREEN VIEW
 function renderForumScreen(target) {
     let html = `
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-            <h2 style="font-weight:900;"><i class="fas fa-comments"></i> مجتمع همام الطبي لتبادل الخبرات</h2>
-            <button class="btn btn-gold btn-sm" onclick="showNewPostForm()"><i class="fas fa-plus"></i> إنشاء منشور طبي</button>
+        <h2 style="font-weight:900; margin-bottom:1rem;"><i class="fas fa-comments"></i> مجتمع الحوار والنقاش الطبي البيني</h2>
+        <div class="card" style="margin-bottom:1.5rem;">
+            <h4 style="font-weight:800; margin-bottom:0.5rem; color:var(--accent);">أنشئ حلقة نقاش أو سؤال جراحي جديد:</h4>
+            <form onsubmit="addPost(event)">
+                <input type="text" id="postTitle" class="form-control" placeholder="عنوان السؤال السريري" required style="margin-bottom:0.5rem;">
+                <textarea id="postBody" class="form-control" placeholder="اكتب تفاصيل حالتك أو استفسارك الدوائي..." required style="margin-bottom:0.5rem; height:80px; font-family:'Cairo';"></textarea>
+                <button type="submit" class="btn btn-primary">نشر في المجتمع العام</button>
+            </form>
         </div>
-
-        <div id="forumFormBox" style="display:none; margin-bottom:1.5rem;" class="card">
-            <h3 style="font-weight:800; margin-bottom:0.5rem;">كتابة منشور طبي جديد</h3>
-            <div style="margin-bottom:0.5rem;"><input type="text" id="pTitle" class="form-control" placeholder="عنوان السؤال السريري أو المنشور"></div>
-            <div style="margin-bottom:0.5rem;"><textarea id="pBody" class="form-control" rows="4" placeholder="اكتب التفاصيل الكاملة هنا للاستشارة أو النقاش..."></textarea></div>
-            <button class="btn btn-success btn-sm" onclick="submitNewPost()">نشر في الحائط العام</button>
-        </div>
-
-        <div style="display:flex; flex-direction:column; gap:0.8rem;">
+        <div style="display:flex; flex-direction:column; gap:1rem;">
             ${DB.posts.map(p => `
                 <div class="card">
-                    <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.4rem;">
-                        <div style="width:32px; height:32px; border-radius:50%; background:var(--accent); color:#fff; display:flex; justify-content:center; align-items:center; font-weight:900; font-size:0.8rem;">
-                            ${p.author[0]}
-                        </div>
-                        <div>
-                            <span style="font-weight:700; font-size:0.85rem;">${p.author}</span>
-                            <span style="font-size:0.65rem; color:var(--text-muted); display:block;">عضو المنصة المعتمد</span>
-                        </div>
-                    </div>
-                    <h3 style="font-weight:800; font-size:1.05rem; color:var(--primary);">${p.title}</h3>
-                    <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.3rem;">${p.body}</p>
-                </div>
-            `).join('')}
-        </div>
-    `;
+                    <h4 style="font-weight:800; color:var(--primary);"><i class="fas fa-bullhorn" style="color:var(--gold)"></i> ${p.title}</h4>
+                    <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.5rem;">بواسطة: ${p.author}</p>
+                    <p style="font-size:0.9rem; color:var(--text-secondary);">${p.body}</p>
+                </div>`).join('')}
+        </div>`;
     target.innerHTML = html;
 }
 
-function showNewPostForm() {
-    let b = $('#forumFormBox');
-    b.style.display = b.style.display === 'none' ? 'block' : 'none';
-}
-
-function submitNewPost() {
-    let title = $('#pTitle').value.trim();
-    let body = $('#pBody').value.trim();
-    if(!title || !body) { toast('الرجاء تعبئة العنوان والمحتوى لنشر المنشور', 'var(--danger)'); return; }
-
-    DB.posts.unshift({
-        id: Date.now(),
-        author: STATE.user.name,
-        title: title,
-        body: body
-    });
-    savePosts();
-    toast('تم نشر موضوعك بنجاح في حائط المنصة العام', 'var(--success)');
+function addPost(e) {
+    e.preventDefault();
+    let title = $('#postTitle').value.trim(); let body = $('#postBody').value.trim();
+    DB.posts.unshift({ id: Date.now(), author: STATE.user.name, title, body });
+    savePosts(); toast('تم نشر موضوعك في مجتمع همام بنجاح', 'var(--success)');
     renderForumScreen($('#mainContent'));
 }
 
-// 8. SUPERVISOR PANEL VIEW (خاص بأعضاء هيئة الإشراف)
+// 8. SUPERVISOR SCREEN VIEW
 function renderSupervisorScreen(target) {
-    if(STATE.user.role !== 'supervisor') {
-        target.innerHTML = `<div class="card" style="color:var(--danger); font-weight:800; text-align:center;">عذراً، هذه اللوحة مخصصة لأعضاء هيئة التدريس والإشراف فقط!</div>`;
-        return;
-    }
-
     let html = `
-        <h2 style="font-weight:900; margin-bottom:0.5rem; color:var(--gold);"><i class="fas fa-user-shield"></i> لوحة تحكم أعضاء هيئة الإشراف والتدريس والأدمن</h2>
-        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1.5rem;">مرحباً دكتور <strong>${STATE.user.name}</strong>. يمكنك مراجعة إحصائيات المنصة الضخمة وإدارة المستخدمين والطلاب المسجلين.</p>
-
+        <h2 style="font-weight:900; color:var(--gold); margin-bottom:1rem;"><i class="fas fa-user-shield"></i> لوحة الإشراف والتحكم المتقدمة بالأعضاء</h2>
         <div class="stats-grid">
-            <div class="stat-card" style="border-top:3px solid var(--accent);"><h3>${DB.users.length}</h3><p>إجمالي المسجلين بالمنصة</p></div>
-            <div class="stat-card" style="border-top:3px solid var(--gold);"><h3>${DATA.quizzes.length}</h3><p>الاختبارات المعدة</p></div>
-            <div class="stat-card" style="border-top:3px solid var(--danger);"><h3>500</h3><p>محاضرة نشطة بالـ API</p></div>
-            <div class="stat-card" style="border-top:3px solid var(--success);"><h3>2,000</h3><p>كتاب طبي متكامل</p></div>
+            <div class="stat-card"><h3>${DB.users.length}</h3><p>إجمالي المستخدمين</p></div>
+            <div class="stat-card"><h3>${DB.posts.length}</h3><p>المواضيع والمناقشات</p></div>
         </div>
-
-        <h3 style="font-weight:800; margin:1.5rem 0 0.5rem;">قائمة المستخدمين الحاليين المسجلين في النظام:</h3>
-        <div style="overflow-x:auto;">
-            <table style="width:100%; border-collapse:collapse; font-size:0.85rem; background:var(--card); text-align:right;">
-                <thead>
-                    <tr style="background:var(--primary); color:#fff;">
-                        <th style="padding:0.6rem; border:1px solid var(--border);">الاسم</th>
-                        <th style="padding:0.6rem; border:1px solid var(--border);">البريد الإلكتروني</th>
-                        <th style="padding:0.6rem; border:1px solid var(--border);">الصلاحية والصفة</th>
-                        <th style="padding:0.6rem; border:1px solid var(--border);">الجامعة الملحقة</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${DB.users.map(u => `
-                        <tr>
-                            <td style="padding:0.6rem; border:1px solid var(--border); font-weight:700;">${u.name}</td>
-                            <td style="padding:0.6rem; border:1px solid var(--border);">${u.email}</td>
-                            <td style="padding:0.6rem; border:1px solid var(--border);"><span class="badge ${u.role==='supervisor'?'badge-gold':'badge-primary'}">${u.role==='supervisor'?'عضو إشراف متميز':'طالب مسجل'}</span></td>
-                            <td style="padding:0.6rem; border:1px solid var(--border); color:var(--text-secondary);">${u.univ || 'هيئة الإشراف العليا'}</td>
+        <div class="card">
+            <h4 style="font-weight:800; margin-bottom:0.5rem;">سجل الأعضاء والطلاب المعتمدين:</h4>
+            <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; font-size:0.85rem; text-align:right;">
+                    <thead>
+                        <tr style="border-bottom:2px solid var(--border);">
+                            <th style="padding:0.5rem;">الاسم الكامل</th>
+                            <th style="padding:0.5rem;">البريد الإلكتروني</th>
+                            <th style="padding:0.5rem;">الصلاحية والرتبة</th>
                         </tr>
-                    `).join('')}
-                </tbody>
-            </table>
-        </div>
-    `;
+                    </thead>
+                    <tbody>
+                        ${DB.users.map(u => `
+                            <tr style="border-bottom:1px solid var(--border);">
+                                <td style="padding:0.5rem; font-weight:700;">${u.name}</td>
+                                <td style="padding:0.5rem;">${u.email}</td>
+                                <td style="padding:0.5rem;"><span class="badge ${u.role==='supervisor'?'badge-gold':'badge-primary'}">${u.role==='supervisor'?'مشرف منصة':'طالب مسجل'}</span></td>
+                            </tr>`).join('')}
+                    </tbody>
+                </table>
+            </div>
+        </div>`;
     target.innerHTML = html;
 }
 
-// ==================== HELPER PAGINATION CONTROLS ====================
+// ==================== PAGINATION CONTROLS ====================
 function renderPaginationControls(type, totalPages) {
-    let current = STATE.pages[type];
+    if(totalPages <= 1) return '';
+    let curr = STATE.pages[type];
     return `
         <div class="pagination">
-            <button class="btn btn-sm btn-primary" ${current <= 1 ? 'disabled style="opacity:0.5;"' : ''} onclick="changePage('${type}', ${current - 1})">السابق</button>
-            <span style="font-size:0.85rem; font-weight:700;">صفحة ${current} من أصل ${totalPages}</span>
-            <button class="btn btn-sm btn-primary" ${current >= totalPages ? 'disabled style="opacity:0.5;"' : ''} onclick="changePage('${type}', ${current + 1})">التالي</button>
-        </div>
-    `;
+            <button class="btn btn-sm btn-primary" onclick="changePage('${type}', ${curr - 1})" ${curr===1?'disabled':''}>السابق</button>
+            <span style="font-size:0.8rem; font-weight:700; margin:0 10px;">صفحة ${curr} من ${totalPages}</span>
+            <button class="btn btn-sm btn-primary" onclick="changePage('${type}', ${curr + 1})" ${curr===totalPages?'disabled':''}>التالي</button>
+        </div>`;
 }
 
-function changePage(type, targetPage) {
-    STATE.pages[type] = targetPage;
+function changePage(type, p) {
+    STATE.pages[type] = p;
     renderContent();
+    window.scrollTo(0,0);
 }
 
-// ==================== RUN APPLICATION INITIALIZATION ====================
-// فتح البوابة مباشرة لإجبار التسجيل قبل رؤية المحتويات
-navigate('gate');
+// ==================== INITIALIZATION ====================
+window.onload = () => {
+    navigate(STATE.user ? 'home' : 'gate');
+};
 </script>
-
 </body>
 </html>
